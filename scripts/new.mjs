@@ -1,4 +1,4 @@
-// npm run new -- <id> [--category agent] [--title "My Card"]
+// npm run new -- <id> [--category <category id>]  (default: first category in foundry.config.json) [--title "My Card"]
 import path from "node:path";
 import { loadConfig } from "./lib/config.mjs";
 import { scaffoldComponent } from "./lib/scaffold.mjs";

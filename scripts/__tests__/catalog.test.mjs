@@ -146,6 +146,20 @@ test("fails when a configured category has no id or label", () => {
   assert.throws(() => buildCatalog({ root, config: bad }), /category.*"label"/i);
 });
 
+test("fails when a configured category lacks a description or repeats an id", () => {
+  const root = makeRepo({ components: { alpha: { meta: meta("alpha") } } });
+  const noDescription = { ...CONFIG, categories: [{ id: "agent", label: "Agent" }] };
+  assert.throws(() => buildCatalog({ root, config: noDescription }), /category.*"description"/i);
+  const repeated = {
+    ...CONFIG,
+    categories: [
+      { id: "agent", label: "A", description: "a" },
+      { id: "agent", label: "B", description: "b" },
+    ],
+  };
+  assert.throws(() => buildCatalog({ root, config: repeated }), /duplicate category id "agent"/i);
+});
+
 test("variants and npm dependencies are carried through", () => {
   const root = makeRepo({
     components: { alpha: { meta: meta("alpha", { variants: ["One", "Two"], npm: ["glimm"] }) } },
@@ -279,6 +293,12 @@ test("a scaffolded component shows up in the catalog and registry", () => {
   assert.equal(created.order, 20); // after the highest existing order
   assert.ok(registry["my-card"]);
   assert.match(registry["my-card"].files[0].content, /export default function MyCardDemo/);
+});
+
+test("scaffolding without a category uses the first configured one", () => {
+  const root = makeRepo({});
+  scaffoldComponent({ root, config: CONFIG, id: "my-card" });
+  assert.equal(build(root).entries[0].category, "agent");
 });
 
 test("scaffolding refuses an existing id, a bad id, or an unknown category", () => {

@@ -8,7 +8,7 @@ const json = (v) => JSON.stringify(v, null, 2);
 
 export function renderMeta({ entries, groups, atoms }) {
   const internal = Object.fromEntries(atoms.map((a) => [a.id, { title: a.title, path: a.path }]));
-  const groupData = groups.map((g) => ({ id: g.id, label: g.label, description: g.description, ids: g.entries.map((e) => e.id) }));
+  const groupData = groups.map(({ entries: members, ...group }) => ({ ...group, ids: members.map((e) => e.id) }));
   const meta = entries.map((e) => Object.fromEntries(Object.entries(e).filter(([k]) => !BUILD_ONLY_FIELDS.includes(k))));
   return `${HEADER}
 import type { Group, Meta } from "./meta";

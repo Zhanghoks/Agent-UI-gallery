@@ -49,17 +49,18 @@ public/r/         生成的 shadcn registry
 
 ## 分类
 
-画廊的导航和卡片列表按分类分组，分类在 `foundry.config.json` 的 `categories` 里定义（顺序即显示顺序，每项有 `id`、`label`、`description`，没有组件的分类不显示）：
+画廊的导航和卡片列表按分类分组。分类定义在 `foundry.config.json` 的 `categories`（每项 `id`、`label`、`description` 都必填，顺序即显示顺序，没有组件的分类不显示）。
+分类体系与归类规则见 [ADR-010](docs/adr/010-category-taxonomy.md)；组件当前的归属以各自的 `meta.json` 为准。
 
-| id | 用来放什么 | 现有组件 |
-| --- | --- | --- |
-| `conversation` | 输入提示词、流式回答 | streaming-text、chat-composer、prompt-bar |
-| `progress` | agent 正在做什么 | loading-state、thinking-state、task-rows、tool-chips、agent-screen |
-| `collaboration` | 人机协作：审批、建议、微调、改写 | approval-card、recommendation-card、fine-tune-card、selection-actions |
-| `data` | agent 知道什么、产出什么 | context-cards、records-table、diff-table、filter-table、insight-cards、code-block |
-| `navigation` | 导航与工作流 | sidebar-nav、search、flowchart |
+| id | 回答的问题 |
+| --- | --- |
+| `conversation` | 人和 agent 怎么说话 |
+| `progress` | agent 正在做什么 |
+| `collaboration` | 人和 agent 怎么一起决定 |
+| `data` | agent 知道什么、产出什么 |
+| `workspace` | 工作发生的界面 |
 
-新增分类只需在配置里加一项；组件在组内按 `order` 排序。
+新增分类只需在配置里加一项；组件在分类内按 `order` 排序。
 
 ## 新增一个组件
 

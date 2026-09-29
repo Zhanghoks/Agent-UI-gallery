@@ -1,13 +1,20 @@
 "use client";
 
 import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { META, GROUPS } from "@/lib/meta";
+import { META, GROUPS, META_BY_ID } from "@/lib/meta";
 
 /* Component nav — anchors into the list, scrollspy highlights
  * the section in view, and a single pill glides to whichever
  * item the pointer is over (falling back to the active one). */
 
-const ENTRY_BY_ID = Object.fromEntries(META.map((m) => [m.id, m]));
+/* a group header (#group-<id>) counts as its first component being in view */
+const FIRST_IN_GROUP: Record<string, string> = Object.fromEntries(
+  GROUPS.map((g) => [`group-${g.id}`, g.ids[0]]),
+);
+
+function scrollToId(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export function Nav() {
   const [active, setActive] = useState(META[0].id);
@@ -19,12 +26,12 @@ export function Nav() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const e of entries) if (e.isIntersecting) setActive(e.target.id);
+        for (const e of entries) if (e.isIntersecting) setActive(FIRST_IN_GROUP[e.target.id] ?? e.target.id);
       },
       { rootMargin: "-20% 0px -70% 0px" },
     );
-    META.forEach((m) => {
-      const el = document.getElementById(m.id);
+    [...META.map((m) => m.id), ...Object.keys(FIRST_IN_GROUP)].forEach((id) => {
+      const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
@@ -62,10 +69,19 @@ export function Nav() {
               role="presentation"
               className="mt-3 mb-1 px-2 text-[11px] font-medium tracking-wide text-ink-3 first:mt-0"
             >
-              {group.label}
+              <a
+                href={`#group-${group.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToId(`group-${group.id}`);
+                }}
+                className="transition-colors duration-150 hover:text-ink-2"
+              >
+                {group.label}
+              </a>
             </li>
             {group.ids.map((id) => {
-              const m = ENTRY_BY_ID[id];
+              const m = META_BY_ID[id];
               return (
                 <li
                   key={m.id}
@@ -80,9 +96,7 @@ export function Nav() {
                     onBlur={() => setHovered(null)}
                     onClick={(e) => {
                       e.preventDefault();
-                      document
-                        .getElementById(m.id)
-                        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      scrollToId(m.id);
                     }}
                     className={`relative z-10 flex items-center rounded-[7px] px-2 py-[5px]
                       text-[12.5px] transition-colors duration-150

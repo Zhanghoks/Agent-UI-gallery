@@ -100,7 +100,8 @@ function scanGallery(root, config, errors) {
     });
   }
 
-  const rank = (e) => categoryIds(config).indexOf(e.category);
+  const categoryOrder = categoryIds(config);
+  const rank = (e) => categoryOrder.indexOf(e.category);
   return entries.sort(
     (a, b) =>
       rank(a) - rank(b) ||

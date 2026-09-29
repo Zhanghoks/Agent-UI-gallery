@@ -2,7 +2,7 @@
   "id": "sidebar-nav",
   "title": "Sidebar Nav",
   "caption": "Collapsible workspace and chat navigation with gliding hover states.",
-  "category": "navigation",
+  "category": "workspace",
   "order": 140,
   "origin": "upstream",
   "deps": [

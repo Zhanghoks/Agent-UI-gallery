@@ -25,13 +25,13 @@
     },
     {
       "id": "data",
-      "label": "Context & data",
-      "description": "What the agent knows and produces — records, diffs, insights, code."
+      "label": "Data",
+      "description": "What the agent knows and produces — context, records, diffs, insights, code."
     },
     {
-      "id": "navigation",
-      "label": "Navigation",
-      "description": "Getting around — sidebar, search, workflows."
+      "id": "workspace",
+      "label": "Workspace",
+      "description": "Where the work lives — sidebar, search, the workflow canvas."
     }
   ]
 }

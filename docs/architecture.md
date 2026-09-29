@@ -50,7 +50,7 @@ export default defineComponent({
   id: "approval-card",
   title: "Approval Card",
   caption: "Human-in-the-loop questions the agent asks before acting.",
-  category: "agent",            // 用于导航分组
+  category: "progress",         // 导航与卡片分组，取自配置里的 categories
   variants: ["Default"],        // 可选
   deps: ["button", "glide-menu"], // 依赖的 atoms / 其他 gallery 组件
   npm: [],                      // 依赖的 npm 包
@@ -123,7 +123,7 @@ npm run build                  # 自动生成 public/r/my-agent-card.json
 ## 7. 待你决定（v1）
 
 - 命名：库的名字、registry 域名（没有域名可先用 Vercel 预览地址或本地 `http://localhost:3000/r`）。
-- 导航分组：是否按 `category` 分组（建议：`agent` / `data` / `input` / `layout`）。
+- 导航分组：是否按 `category` 分组（见 ADR-010）。
 - 付费图标库 `@central-icons-react`：是否替换为 `iconoir-react`（已在依赖里）以免 license 检查。
 - 声音（`InteractionSounds`）和 `agentation` 开发工具是否保留。
 
@@ -169,7 +169,7 @@ components/harness/renderers.tsx   // Part.type → 组件 的映射表（可被
 
 保留现有交互（左栏导航、卡片内变体切换 `SegmentedControl`、复制/看代码、深浅色），并按以下方向留扩展位，**都不改变现有观感**：
 
-1. **分类导航**：`meta.category` 驱动 `Nav` 分组，新增分类只需改 `foundry.config.json` 的分类列表。
+1. **分类导航**：`meta.category` 驱动 `Nav` 分组，新增分类只需改 `foundry.config.json` 的分类列表（`{ id, label, description }`，见 ADR-010）。
 2. **深链接**：卡片 `id` 已作为锚点；增加 `?variant=` 便于分享具体变体。
 3. **状态预览条**（可选）：受控组件在卡片上多一个「状态」切换（running / done / error），用受控 props 直接展示各状态，替代只能等定时器。
 4. **来源标记**：`meta.origin: "upstream" | "own"`，导航里区分「上游保留」与「自己新增」，方便逐步替换时看进度。

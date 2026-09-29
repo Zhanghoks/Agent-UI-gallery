@@ -1,3 +1,5 @@
+import { META } from "./gallery.generated";
+
 export type Meta = {
   id: string;
   title: string;
@@ -14,7 +16,10 @@ export type Meta = {
 };
 
 /** A non-empty category, in config order, with the ids of its components (in display order). */
-export type Group = { id: string; label: string; description?: string; ids: string[] };
+export type Group = { id: string; label: string; description: string; ids: string[] };
 
-/* All three are generated from components/gallery/*\/meta.json (npm run gen). */
+/* All generated from components/gallery/*\/meta.json (npm run gen). */
 export { META, GROUPS, INTERNAL } from "./gallery.generated";
+
+/** id → entry, for rendering GROUPS (which list ids only). */
+export const META_BY_ID: Record<string, Meta> = Object.fromEntries(META.map((m) => [m.id, m]));

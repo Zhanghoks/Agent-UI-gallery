@@ -6,5 +6,5 @@
 后果：改名/换域名只改一处。
 
 ## 实现补充
-- 配置文件是 `foundry.config.json`（而非 `.ts`）：构建脚本是纯 Node，页面通过 `resolveJsonModule` 直接导入同一份文件。字段：`name`、`tagline`、`description`、`registryName`、`homepage`、`registryBaseUrl`、`namespaceDir`、`harnessName`、`categories`。域名与库名目前是占位值。
+- 配置文件是 `foundry.config.json`（而非 `.ts`）：构建脚本是纯 Node，页面通过 `resolveJsonModule` 直接导入同一份文件。字段：`name`、`tagline`、`description`、`registryName`、`homepage`、`registryBaseUrl`、`namespaceDir`、`harnessName`、`categories`（`{ id, label, description }` 列表，见 ADR-010）。域名与库名目前是占位值。
 - 已移除：Turbo 推广块、邮件订阅（组件与 `/api/subscribe`）、"Fork this" 弹窗、上游 logo / 装饰图 / favicon。代码里本来就没有 PostHog，只有 README 提到，已一并删除。

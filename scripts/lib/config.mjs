@@ -14,14 +14,19 @@ export const categoryProblem = (config, category) =>
     ? null
     : `unknown category "${category}" (known: ${categoryIds(config).join(", ")})`;
 
-/** Problems with the config file itself (each category needs an id and a label). */
+/** Problems with the config file itself (each category needs an id, label and description). */
 export function configProblems(config) {
   if (!Array.isArray(config.categories) || !config.categories.length) {
     return ['foundry.config.json: "categories" must be a non-empty list'];
   }
-  return config.categories.flatMap((c, i) =>
-    ["id", "label"].filter((k) => typeof c?.[k] !== "string" || !c[k]).map(
-      (k) => `foundry.config.json: category #${i + 1} is missing "${k}"`,
-    ),
+  const problems = config.categories.flatMap((c, i) =>
+    ["id", "label", "description"]
+      .filter((k) => typeof c?.[k] !== "string" || !c[k])
+      .map((k) => `foundry.config.json: category #${i + 1} is missing "${k}"`),
   );
+  const ids = categoryIds(config);
+  for (const id of new Set(ids.filter((id, i) => ids.indexOf(id) !== i))) {
+    problems.push(`foundry.config.json: duplicate category id "${id}"`);
+  }
+  return problems;
 }

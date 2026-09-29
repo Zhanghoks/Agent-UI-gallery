@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
-import { REGISTRY, type Entry } from "@/lib/registry";
+import { ENTRY_BY_ID, type Entry } from "@/lib/registry";
 import { GROUPS, INTERNAL } from "@/lib/meta";
 import config from "@/foundry.config.json";
 
@@ -257,12 +257,9 @@ function Overlay({
   );
 }
 
-/* position of each entry in the flat, category-ordered list (numbers the cards) */
-const ENTRY_INDEX: Record<string, number> = Object.fromEntries(REGISTRY.map((e, i) => [e.id, i]));
-
 export function Grid({ sources }: { sources: Record<string, string> }) {
   const [openId, setOpenId] = useState<string | null>(null);
-  const open = REGISTRY.find((e) => e.id === openId);
+  const open = openId ? ENTRY_BY_ID[openId] : undefined;
 
   return (
     <>
@@ -277,20 +274,17 @@ export function Grid({ sources }: { sources: Record<string, string> }) {
                 {group.label}
                 <span className="font-mono text-[11px] font-normal text-ink-3 tabular-nums">{group.ids.length}</span>
               </h2>
-              {group.description && <p className="mt-1 text-[12.5px] text-ink-3 text-pretty">{group.description}</p>}
+              <p className="mt-1 text-[12.5px] text-ink-3 text-pretty">{group.description}</p>
             </header>
-            {group.ids.map((id) => {
-              const entry = REGISTRY[ENTRY_INDEX[id]];
-              return (
-                <Card
-                  key={id}
-                  entry={entry}
-                  code={sources[id] ?? ""}
-                  index={ENTRY_INDEX[id]}
-                  onOpen={() => setOpenId(id)}
-                />
-              );
-            })}
+            {group.ids.map((id, i) => (
+              <Card
+                key={id}
+                entry={ENTRY_BY_ID[id]}
+                code={sources[id] ?? ""}
+                index={i}
+                onOpen={() => setOpenId(id)}
+              />
+            ))}
           </Fragment>
         ))}
       </div>
