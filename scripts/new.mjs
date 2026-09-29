@@ -1,10 +1,10 @@
 // npm run new -- <id> [--category agent] [--title "My Card"]
-import fs from "node:fs";
 import path from "node:path";
+import { loadConfig } from "./lib/config.mjs";
 import { scaffoldComponent } from "./lib/scaffold.mjs";
 
 const root = process.cwd();
-const config = JSON.parse(fs.readFileSync(path.join(root, "foundry.config.json"), "utf8"));
+const config = loadConfig(root);
 const args = process.argv.slice(2);
 const flag = (name) => {
   const i = args.indexOf(`--${name}`);

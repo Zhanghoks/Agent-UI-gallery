@@ -11,3 +11,6 @@
 - `id` 必须等于文件夹名；`order` 控制画廊顺序；`origin` 标记上游/自有。
 - 共享构件在 `components/atoms/atoms.json` 里声明哪些会作为 registry 条目分发（GlideMenu 已从 primitives 移入 atoms）。
 - 迁移时发现上游 registry 的两处问题并已修复：① 旧脚本按硬编码行号切 CSS，records 块少切了末尾的 `}`，导致 foundation.css 多出一个孤立的 `}`、records-table.css 缺一个；② 手写的组件列表漏了 `agent-screen`，现在自动纳入。
+- **atoms / gallery 分界（规则）**：见 README「atoms 还是 gallery？」。`atoms/` 里的每个文件必须登记在 `atoms.json`，否则构建失败——这把分界从约定变成了校验。原先未登记的 6 个：`Chip`、`TextRow`、`StatusPill` 只被（未使用的）`site/Foundations.tsx` 用，已移到 `components/site/`；`Switch`、`ProgressRing`、`SegmentedControl` 没有任何使用方，已删除（git 历史可找回）。
+- **依赖对照**：扫描时解析 `index.tsx` 的 import，与 `deps`/`npm` 对照（缺少即失败），并检测 gallery 之间的循环依赖、gallery 对 `site/harness` 的反向依赖。对真实仓库的 21 个组件与 6 个 atoms 全部通过。
+- **迁移验证结论**：迁移时手工对比了迁移前后的 `public/r`：除组件路径变化、5 个组件里 `GlideMenu` 的 import 路径更新、以及新增 `agent-screen` 外，无其他差异。该对比是一次性的，没有做成持久测试（组件一旦被修改它就会失效）。

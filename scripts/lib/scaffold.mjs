@@ -2,9 +2,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { buildCatalog } from "./catalog.mjs";
-
-const titleCase = (id) => id.split("-").map((w) => w[0].toUpperCase() + w.slice(1)).join(" ");
-const pascal = (id) => titleCase(id).replace(/ /g, "");
+import { categoryProblem } from "./config.mjs";
+import { pascalCase, titleCase } from "./naming.mjs";
 
 const template = (name, title) => `"use client";
 
@@ -43,9 +42,8 @@ export function scaffoldComponent({ root, config, id, category, title }) {
     throw new Error(`"${id}" is not a valid id — use kebab-case (e.g. my-card)`);
   }
   category ??= config.categories[0];
-  if (!config.categories.includes(category)) {
-    throw new Error(`unknown category "${category}" (known: ${config.categories.join(", ")})`);
-  }
+  const categoryError = categoryProblem(config, category);
+  if (categoryError) throw new Error(categoryError);
   const dir = path.join(root, "components", "gallery", id);
   if (fs.existsSync(dir)) throw new Error(`component "${id}" already exists`);
 
@@ -53,7 +51,7 @@ export function scaffoldComponent({ root, config, id, category, title }) {
   if (atoms.some((a) => a.id === id)) throw new Error(`component "${id}" already exists as an atom`);
   const order = Math.max(0, ...entries.map((e) => e.order ?? 0)) + 10;
 
-  const name = pascal(id);
+  const name = pascalCase(id);
   const meta = {
     id,
     title: title ?? titleCase(id),

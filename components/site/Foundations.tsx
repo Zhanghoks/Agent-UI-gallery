@@ -1,7 +1,7 @@
 import { Button } from "@/components/atoms/Button";
-import { StatusPill } from "@/components/atoms/StatusPill";
-import { Chip } from "@/components/atoms/Chip";
-import { TextRow } from "@/components/atoms/TextRow";
+import { StatusPill } from "@/components/site/StatusPill";
+import { Chip } from "@/components/site/Chip";
+import { TextRow } from "@/components/site/TextRow";
 
 /* The token layer, made visible — type, color, shadow, spacing, buttons, text rows. */
 

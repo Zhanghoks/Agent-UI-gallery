@@ -5,6 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildCatalog } from "../lib/catalog.mjs";
+import { loadConfig } from "../lib/config.mjs";
 import { scaffoldComponent } from "../lib/scaffold.mjs";
 
 /* The one seam: gallery folders (+ atoms, global css, config) in →
@@ -53,6 +54,14 @@ const meta = (id, extra = {}) => ({
   category: "agent",
   ...extra,
 });
+
+const UPSTREAM_IDS = [
+  "agent-screen", "approval-card", "chat-composer", "code-block", "context-cards",
+  "diff-table", "filter-table", "fine-tune-card", "flowchart", "insight-cards",
+  "loading-state", "prompt-bar", "recommendation-card", "records-table", "search",
+  "selection-actions", "sidebar-nav", "streaming-text", "task-rows", "thinking-state",
+  "tool-chips",
+];
 
 const build = (root) => buildCatalog({ root, config: CONFIG });
 
@@ -251,12 +260,97 @@ test("scaffolding refuses an existing id, a bad id, or an unknown category", () 
   assert.throws(() => scaffoldComponent({ root, config: CONFIG, id: "x", category: "nope" }), /category "nope"/);
 });
 
+/* ── declared dependencies must match what the source really imports ── */
+
+const BUTTON = {
+  atoms: { button: { title: "Button", file: "Button.tsx" } },
+  atomFiles: { "Button.tsx": "export const Button = 1;" },
+};
+const withImports = (...lines) => lines.join("\n") + "\nexport default function x() {}\n";
+
+test("fails when a component imports a registered atom it does not list in deps", () => {
+  assertFails(
+    { alpha: { meta: meta("alpha"), index: withImports('import { Button } from "@/components/atoms/Button";') } },
+    /alpha.*imports atom "button".*deps/i,
+    BUTTON,
+  );
+});
+
+test("passes when the imported atom is listed in deps", () => {
+  const root = makeRepo({
+    ...BUTTON,
+    components: {
+      alpha: { meta: meta("alpha", { deps: ["button"] }), index: withImports('import { Button } from "@/components/atoms/Button";') },
+    },
+  });
+  assert.doesNotThrow(() => build(root));
+});
+
+test("fails when a component imports an atom file that is not registered", () => {
+  assertFails(
+    { alpha: { meta: meta("alpha"), index: withImports('import Chip from "@/components/atoms/Chip";') } },
+    /alpha.*atoms\/Chip.*not registered/i,
+    { atomFiles: { "Chip.tsx": "export default 1;" } },
+  );
+});
+
+test("fails when a component imports another gallery component it does not list in deps", () => {
+  assertFails(
+    {
+      alpha: { meta: meta("alpha"), index: withImports('import Bravo from "@/components/gallery/bravo";') },
+      bravo: { meta: meta("bravo") },
+    },
+    /alpha.*imports "bravo".*deps/i,
+  );
+});
+
+test("fails when a component imports an npm package it does not list in npm", () => {
+  assertFails(
+    { alpha: { meta: meta("alpha"), index: withImports('import { motion } from "motion/react";', 'import { useState } from "react";') } },
+    /alpha.*package "motion".*npm/i,
+  );
+});
+
+test("scoped packages and sub-paths resolve to the package name", () => {
+  const root = makeRepo({
+    components: {
+      alpha: {
+        meta: meta("alpha", { npm: ["@scope/icons", "glimm"] }),
+        index: withImports('import A from "@scope/icons/IconA";', 'import g from "glimm/dist/x";', 'import { createPortal } from "react-dom";'),
+      },
+    },
+  });
+  assert.doesNotThrow(() => build(root));
+});
+
+test("fails when an atom imports a package missing from its npm list", () => {
+  assertFails({}, /atom "button".*package "clsx"/i, {
+    atoms: { button: { title: "Button", file: "Button.tsx" } },
+    atomFiles: { "Button.tsx": 'import clsx from "clsx";\nexport const Button = clsx;' },
+  });
+});
+
+test("fails on a dependency cycle between gallery components", () => {
+  assertFails(
+    {
+      alpha: { meta: meta("alpha", { deps: ["bravo"] }), index: withImports('import B from "@/components/gallery/bravo";') },
+      bravo: { meta: meta("bravo", { deps: ["alpha"] }), index: withImports('import A from "@/components/gallery/alpha";') },
+    },
+    /cycle.*alpha.*bravo.*alpha/i,
+  );
+});
+
+test("fails when a file in atoms/ is not registered in atoms.json", () => {
+  assertFails({}, /atoms\/Stray\.tsx.*not registered/i, { atomFiles: { "Stray.tsx": "export default 1;" } });
+});
+
 /* ── the real repository ── */
 
 test("the real gallery scans cleanly and still contains the 21 upstream components", () => {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-  const config = JSON.parse(fs.readFileSync(path.join(root, "foundry.config.json"), "utf8"));
+  const config = loadConfig(root);
   const { entries } = buildCatalog({ root, config });
   assert.equal(new Set(entries.map((e) => e.id)).size, entries.length);
-  assert.equal(entries.filter((e) => e.origin === "upstream").length, 21);
+  const upstream = entries.filter((e) => e.origin === "upstream").map((e) => e.id).sort();
+  assert.deepEqual(upstream, UPSTREAM_IDS);
 });

@@ -6,10 +6,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { buildCatalog } from "./lib/catalog.mjs";
+import { loadConfig } from "./lib/config.mjs";
 import { renderCss, renderDemos, renderMeta } from "./lib/emit.mjs";
 
 const root = process.cwd();
-const config = JSON.parse(fs.readFileSync(path.join(root, "foundry.config.json"), "utf8"));
+const config = loadConfig(root);
 const write = (p, content) => fs.writeFileSync(path.join(root, p), content);
 
 let catalog;

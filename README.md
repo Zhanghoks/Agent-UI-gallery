@@ -34,6 +34,19 @@ docs/             architecture.md、adr/、NOTICE.md
 public/r/         生成的 shadcn registry
 ```
 
+## atoms 还是 gallery？
+
+| | `atoms/` | `gallery/` |
+| --- | --- | --- |
+| 是什么 | 没有 agent 语义的小构件（Button、GlideMenu…） | agent 要展示给人看的组件（ApprovalCard、ToolChips…） |
+| 画廊卡片 / `meta.json` | 无 | 有 |
+| 被谁用 | 被 gallery 组件 import | 被 harness 和其他项目使用 |
+
+- 会被两个以上组件复用、自己不需要画廊卡片的 → atoms，并登记到 `atoms.json`。
+- 只被一个组件用的小东西 → 直接写在那个组件文件里。
+- 只服务画廊网站的 → `components/site/`。
+- 依赖方向单向：`harness → gallery → atoms`；gallery 组件可以依赖其他 gallery 组件（不能成环），不能依赖 `site/`、`harness/`。
+
 ## 新增一个组件
 
 1. 新建 `components/gallery/<id>/index.tsx`（默认导出 demo 组件，接收可选 `variant`）。
@@ -55,7 +68,11 @@ public/r/         生成的 shadcn registry
 ```
 
 `id` 必须与文件夹同名；`category` 取自 `foundry.config.json`；`deps` 可填 atoms 或其他画廊组件的 id；
-`variants`、`deps`、`npm`、`css` 可省略。`npm run dev` 会自动生成目录，出错时会一次列出全部问题。
+`variants`、`deps`、`npm`、`css` 可省略。
+
+**`deps` 和 `npm` 必须和 `index.tsx` 里真实的 import 一致**：import 了某个 atom / 其他 gallery 组件却没写进 `deps`、
+import 了 npm 包（react、react-dom、next 除外）却没写进 `npm`、import 了 `atoms/` 里没登记的文件、
+依赖成环，构建都会失败并指出是哪个组件。`atoms/` 目录里的每个文件也必须登记在 `atoms.json`。`npm run dev` 会自动生成目录，出错时会一次列出全部问题。
 
 ## 命令
 

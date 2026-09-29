@@ -60,7 +60,7 @@ export default defineComponent({
 
 ### 3.2 自动生成索引，而不是手写（ADR-002）
 
-`scripts/gen-index.mjs` 扫描 `components/gallery/*/meta.ts`，生成：
+`scripts/gen.mjs` 扫描 `components/gallery/*/meta.ts`，生成：
 - `lib/gallery.generated.ts`：`META` 列表 + 懒加载 `Demo` 映射（取代手写的 `lib/registry.tsx` 与 `lib/meta.ts` 里的列表）
 - `public/r/*.json`（`build-registry.mjs` 直接读同一份 meta，不再自己维护列表）
 
@@ -75,7 +75,7 @@ export default defineComponent({
 
 ### 3.4 站点配置与品牌集中（ADR-004、ADR-005）
 
-新增 `foundry.config.ts`：站点名、logo、标语、registry `baseUrl`、命名空间目录（现为 `beautifui`）、页脚链接。`layout.tsx`、`page.tsx`、`build-registry.mjs` 都只读它。
+新增 `foundry.config.json`：站点名、logo、标语、registry `baseUrl`、命名空间目录（现为 `beautifui`）、页脚链接。`layout.tsx`、`page.tsx`、`build-registry.mjs` 都只读它。
 
 去除：Turbo 推广块（`Built by Turbo`、`Book a call`、`turbo-flourish.png`）、邮件订阅（`EmailCapture`、`EmailNudge`、`api/subscribe`）、PostHog、`InteractionSounds`（待你决定）。
 保留：`LICENSE` 里的原作者版权声明（MIT 要求），并在 `docs/NOTICE.md` 注明来源。
@@ -83,7 +83,7 @@ export default defineComponent({
 ### 3.5 Harness
 
 `IceCreamHarness.tsx`（1062 行）拆成：
-- `harness/scenarios.ts`：演示数据（可整体替换）
+- `harness/scenarios.tsxx`：演示数据（可整体替换）
 - `harness/Harness.tsx`：只负责渲染
 - 第二阶段再按 README 的 seam 表接真实 agent（SSE / AI SDK）。
 
@@ -96,8 +96,8 @@ Agent-UI-gallery/
   components/
     atoms/  gallery/<id>/{index.tsx,meta.ts,styles.css?}  site/  harness/
   lib/                  utils.ts、define.ts（defineComponent 类型）、gallery.generated.ts
-  scripts/              gen-index.mjs、build-registry.mjs、new-component.mjs
-  foundry.config.ts
+  scripts/              gen.mjs、build-registry.mjs、new.mjs
+  foundry.config.json
   public/r/             生成产物
 ```
 
@@ -113,9 +113,9 @@ npm run build                  # 自动生成 public/r/my-agent-card.json
 
 1. 初始化 git，做一次基线提交（当前目录不是 git 仓库）。
 2. CSS 拆分（3.3），验证 `public/r/*.json` 与迁移前逐字节一致。
-3. 引入 `defineComponent` + `gen-index`；把 21 个组件移入 `gallery/<id>/`（纯搬移，不改逻辑）。
+3. 引入 `meta.json` + `gen`；把 21 个组件移入 `gallery/<id>/`（纯搬移，不改逻辑）。
 4. `build-registry.mjs` 改为读 meta；对比产物。
-5. `foundry.config.ts` + 去品牌 / 去 Turbo / 去订阅。
+5. `foundry.config.json` + 去品牌 / 去 Turbo / 去订阅。
 6. Harness 拆分。
 7. `npm run new` 脚手架。
 8. 之后：逐个替换 / 新增自己的组件。
@@ -169,7 +169,7 @@ components/harness/renderers.tsx   // Part.type → 组件 的映射表（可被
 
 保留现有交互（左栏导航、卡片内变体切换 `SegmentedControl`、复制/看代码、深浅色），并按以下方向留扩展位，**都不改变现有观感**：
 
-1. **分类导航**：`meta.category` 驱动 `Nav` 分组，新增分类只需改 `foundry.config.ts` 的分类列表。
+1. **分类导航**：`meta.category` 驱动 `Nav` 分组，新增分类只需改 `foundry.config.json` 的分类列表。
 2. **深链接**：卡片 `id` 已作为锚点；增加 `?variant=` 便于分享具体变体。
 3. **状态预览条**（可选）：受控组件在卡片上多一个「状态」切换（running / done / error），用受控 props 直接展示各状态，替代只能等定时器。
 4. **来源标记**：`meta.origin: "upstream" | "own"`，导航里区分「上游保留」与「自己新增」，方便逐步替换时看进度。
@@ -180,13 +180,13 @@ components/harness/renderers.tsx   // Part.type → 组件 的映射表（可被
 - registry 快照：迁移前先跑一次 `build`，把 `public/r/` 存为基线；步骤 2、3、4 之后逐文件 diff，必须一致（组件路径变更处除外并列清单）。
 - 类型检查 + `next build` 每步必过。
 - 画廊页 smoke：一个脚本请求 `/`、`/harness`，断言 21 个 `id` 锚点都存在。
-- `meta` 校验：`gen-index` 检查 id 唯一、`deps` 都能解析、`css` 文件存在，出错即失败。
+- `meta` 校验：`gen` 检查 id 唯一、`deps` 都能解析、`css` 文件存在，出错即失败。
 
 ## 12. 修订后的迁移顺序
 
 1. git init + 基线提交 + registry 基线快照
 2. CSS 拆分（ADR-003）
-3. 文件夹化 + gen-index + build-registry 读 meta（ADR-001/002）
+3. 文件夹化 + gen（目录 + registry 都读 meta）（ADR-001/002）
 4. foundry.config + 去品牌（ADR-004/005）
 5. Harness 拆分（数据与渲染分离）
 6. `npm run new` 脚手架（生成受控组件 + demo 模板，ADR-007）
