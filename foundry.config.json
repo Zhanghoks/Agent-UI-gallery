@@ -1,0 +1,8 @@
+{
+  "name": "Beautiful UI",
+  "registryName": "beautifui",
+  "homepage": "https://www.beautifului.dev",
+  "registryBaseUrl": "https://www.beautifului.dev/r",
+  "namespaceDir": "beautifui",
+  "categories": ["agent", "input", "data", "layout"]
+}

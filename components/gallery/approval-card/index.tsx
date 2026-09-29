@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { Button } from "@/components/atoms/Button";
-import GlideMenu from "@/components/primitives/GlideMenu";
+import GlideMenu from "@/components/atoms/GlideMenu";
 
 /* ─────────────────────────────────────────────────────────
  * APPROVAL CARD (human-in-the-loop)

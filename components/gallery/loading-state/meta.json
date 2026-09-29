@@ -1,0 +1,14 @@
+{
+  "id": "loading-state",
+  "title": "Loading State",
+  "caption": "Pixel-grid loader with shimmer and elapsed time.",
+  "category": "agent",
+  "order": 10,
+  "origin": "upstream",
+  "variants": [
+    "Drive",
+    "Dots",
+    "Orbit",
+    "Surfer"
+  ]
+}

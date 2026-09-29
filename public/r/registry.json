@@ -137,6 +137,11 @@
       "name": "selection-actions",
       "type": "registry:component",
       "title": "Selection Actions"
+    },
+    {
+      "name": "agent-screen",
+      "type": "registry:component",
+      "title": "Agent Screen"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "id": "thinking-state",
+  "title": "Thinking",
+  "caption": "Expandable traces — steps, reasoning, search, coding.",
+  "category": "agent",
+  "order": 20,
+  "origin": "upstream",
+  "variants": [
+    "Steps",
+    "Reasoning",
+    "Search",
+    "Coding"
+  ]
+}

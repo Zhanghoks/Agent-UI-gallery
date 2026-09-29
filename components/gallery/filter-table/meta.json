@@ -1,0 +1,8 @@
+{
+  "id": "filter-table",
+  "title": "Filter Table",
+  "caption": "Status chips that reorganize live data.",
+  "category": "data",
+  "order": 130,
+  "origin": "upstream"
+}

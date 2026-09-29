@@ -1,0 +1,11 @@
+{
+  "id": "insight-cards",
+  "title": "Insight Cards",
+  "caption": "Paged agent insights with scrub-ready live charts.",
+  "category": "data",
+  "order": 170,
+  "origin": "upstream",
+  "npm": [
+    "liveline"
+  ]
+}

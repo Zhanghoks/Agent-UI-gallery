@@ -1,23 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import ApprovalCard from "@/components/primitives/ApprovalCard";
-import ChatComposer from "@/components/primitives/ChatComposer";
-import CodeBlock from "@/components/primitives/CodeBlock";
-import ContextCards from "@/components/primitives/ContextCards";
-import DiffTable from "@/components/primitives/DiffTable";
-import FilterTable from "@/components/primitives/FilterTable";
-import FineTuneCard from "@/components/primitives/FineTuneCard";
-import InsightCards from "@/components/primitives/InsightCards";
-import LoadingState from "@/components/primitives/LoadingState";
-import RecommendationCard from "@/components/primitives/RecommendationCard";
-import RecordsTable from "@/components/primitives/RecordsTable";
-import SearchList from "@/components/primitives/SearchList";
-import SidebarNav from "@/components/primitives/SidebarNav";
-import StreamingText from "@/components/primitives/StreamingText";
-import TaskRows from "@/components/primitives/TaskRows";
-import ThinkingState from "@/components/primitives/ThinkingState";
-import ToolChips from "@/components/primitives/ToolChips";
+import ApprovalCard from "@/components/gallery/approval-card";
+import ChatComposer from "@/components/gallery/chat-composer";
+import CodeBlock from "@/components/gallery/code-block";
+import ContextCards from "@/components/gallery/context-cards";
+import DiffTable from "@/components/gallery/diff-table";
+import FilterTable from "@/components/gallery/filter-table";
+import FineTuneCard from "@/components/gallery/fine-tune-card";
+import InsightCards from "@/components/gallery/insight-cards";
+import LoadingState from "@/components/gallery/loading-state";
+import RecommendationCard from "@/components/gallery/recommendation-card";
+import RecordsTable from "@/components/gallery/records-table";
+import SearchList from "@/components/gallery/search";
+import SidebarNav from "@/components/gallery/sidebar-nav";
+import StreamingText from "@/components/gallery/streaming-text";
+import TaskRows from "@/components/gallery/task-rows";
+import ThinkingState from "@/components/gallery/thinking-state";
+import ToolChips from "@/components/gallery/tool-chips";
 
 function Spark({ className = "" }: { className?: string }) {
   return (

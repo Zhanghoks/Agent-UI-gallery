@@ -18,7 +18,7 @@ const AGENT_PROMPT = `Add the Beautiful UI agent harness to my app.
 Source (MIT, Next.js + Tailwind v4): ${REPO_URL}
 
 1. Clone the repo (or read its raw files) and copy into my project:
-   - components/primitives/*: the UI primitives (thinking state, streaming
+   - components/gallery/*: the UI primitives (thinking state, streaming
      text, approvals, tool chips, records/diff tables, prompt bar, etc.)
    - components/site/IceCreamHarness.tsx: the chat shell that arranges them
    - the design tokens in app/globals.css (the :root, .dark, and @theme blocks)

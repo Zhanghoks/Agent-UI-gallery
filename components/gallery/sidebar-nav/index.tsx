@@ -14,7 +14,7 @@ import { IconPopsicle2 } from "@central-icons-react/round-outlined-radius-2-stro
 import { IconSettingsGear1 } from "@central-icons-react/round-outlined-radius-2-stroke-2/IconSettingsGear1";
 import { IconSidebarLeftArrow } from "@central-icons-react/round-outlined-radius-2-stroke-2/IconSidebarLeftArrow";
 import { IconUserAdd } from "@central-icons-react/round-outlined-radius-2-stroke-2/IconUserAdd";
-import GlideMenu from "@/components/primitives/GlideMenu";
+import GlideMenu from "@/components/atoms/GlideMenu";
 
 /* ─────────────────────────────────────────────────────────
  * SIDEBAR NAV

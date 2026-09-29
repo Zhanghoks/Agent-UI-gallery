@@ -1,0 +1,8 @@
+{
+  "id": "tool-chips",
+  "title": "Tool Chips",
+  "caption": "Code edits and tool calls as compact chips.",
+  "category": "agent",
+  "order": 50,
+  "origin": "upstream"
+}

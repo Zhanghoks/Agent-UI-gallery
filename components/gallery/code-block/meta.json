@@ -1,0 +1,12 @@
+{
+  "id": "code-block",
+  "title": "Code Block",
+  "caption": "A line-numbered listing and a unified diff.",
+  "category": "data",
+  "order": 180,
+  "origin": "upstream",
+  "variants": [
+    "Code",
+    "Diff"
+  ]
+}

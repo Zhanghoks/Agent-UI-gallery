@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import GlideMenu from "@/components/primitives/GlideMenu";
+import GlideMenu from "@/components/atoms/GlideMenu";
 
 /* ─────────────────────────────────────────────────────────
  * FINE-TUNE CARD — compact interactive inspector.

@@ -1,0 +1,13 @@
+{
+  "id": "recommendation-card",
+  "title": "Recommendation Card",
+  "caption": "Agent suggestion with a confidence meter and actions.",
+  "category": "agent",
+  "order": 90,
+  "origin": "upstream",
+  "deps": [
+    "button",
+    "entity-chip",
+    "value-pill"
+  ]
+}

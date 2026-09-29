@@ -1,0 +1,12 @@
+{
+  "id": "records-table",
+  "title": "Records Table",
+  "caption": "CRM-style grid with tags, sorting, and relationship status.",
+  "category": "data",
+  "order": 120,
+  "origin": "upstream",
+  "deps": [
+    "glide-menu"
+  ],
+  "css": "styles.css"
+}

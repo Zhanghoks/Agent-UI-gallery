@@ -1,0 +1,11 @@
+{
+  "id": "search",
+  "title": "Search",
+  "caption": "Command search with live filtering and an empty state.",
+  "category": "input",
+  "order": 150,
+  "origin": "upstream",
+  "deps": [
+    "glide-menu"
+  ]
+}

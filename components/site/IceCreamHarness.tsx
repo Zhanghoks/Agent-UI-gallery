@@ -1,21 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import AgentScreen from "@/components/primitives/AgentScreen";
-import ApprovalCard from "@/components/primitives/ApprovalCard";
-import ContextCards from "@/components/primitives/ContextCards";
-import DiffTable from "@/components/primitives/DiffTable";
-import InsightCards from "@/components/primitives/InsightCards";
-import LoadingState from "@/components/primitives/LoadingState";
-import PromptBar from "@/components/primitives/PromptBar";
-import RecommendationCard from "@/components/primitives/RecommendationCard";
-import RecordsTable from "@/components/primitives/RecordsTable";
-import SelectionActions from "@/components/primitives/SelectionActions";
-import SidebarNav from "@/components/primitives/SidebarNav";
-import StreamingText from "@/components/primitives/StreamingText";
-import TaskRows from "@/components/primitives/TaskRows";
-import ThinkingState from "@/components/primitives/ThinkingState";
-import ToolChips from "@/components/primitives/ToolChips";
+import AgentScreen from "@/components/gallery/agent-screen";
+import ApprovalCard from "@/components/gallery/approval-card";
+import ContextCards from "@/components/gallery/context-cards";
+import DiffTable from "@/components/gallery/diff-table";
+import InsightCards from "@/components/gallery/insight-cards";
+import LoadingState from "@/components/gallery/loading-state";
+import PromptBar from "@/components/gallery/prompt-bar";
+import RecommendationCard from "@/components/gallery/recommendation-card";
+import RecordsTable from "@/components/gallery/records-table";
+import SelectionActions from "@/components/gallery/selection-actions";
+import SidebarNav from "@/components/gallery/sidebar-nav";
+import StreamingText from "@/components/gallery/streaming-text";
+import TaskRows from "@/components/gallery/task-rows";
+import ThinkingState from "@/components/gallery/thinking-state";
+import ToolChips from "@/components/gallery/tool-chips";
 import { UseThisModal } from "@/components/site/UseThisHarness";
 
 /* ─────────────────────────────────────────────────────────

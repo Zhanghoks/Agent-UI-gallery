@@ -10,11 +10,11 @@ import { META } from "@/lib/meta";
 /* Sources are read at build time (static export) so every card
  * can offer its own copy-paste-able file. */
 function readSources(): Record<string, string> {
-  const dir = path.join(process.cwd(), "components", "primitives");
+  const dir = path.join(process.cwd(), "components", "gallery");
   return Object.fromEntries(
     META.map((entry) => [
       entry.id,
-      fs.readFileSync(path.join(dir, entry.file), "utf8"),
+      fs.readFileSync(path.join(dir, entry.id, "index.tsx"), "utf8"),
     ]),
   );
 }

@@ -1,0 +1,8 @@
+{
+  "id": "flowchart",
+  "title": "Flowchart",
+  "caption": "Workflow trigger and condition steps on a dotted canvas.",
+  "category": "layout",
+  "order": 160,
+  "origin": "upstream"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "diff-table",
+  "title": "Diff Table",
+  "caption": "AI-proposed edits sweeping through tabular data.",
+  "category": "data",
+  "order": 110,
+  "origin": "upstream",
+  "deps": [
+    "button"
+  ]
+}

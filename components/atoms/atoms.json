@@ -1,0 +1,29 @@
+{
+  "button": {
+    "title": "Button",
+    "file": "Button.tsx",
+    "npm": [
+      "class-variance-authority"
+    ]
+  },
+  "glide-menu": {
+    "title": "GlideMenu",
+    "file": "GlideMenu.tsx"
+  },
+  "entity-chip": {
+    "title": "EntityChip",
+    "file": "EntityChip.tsx"
+  },
+  "value-pill": {
+    "title": "ValuePill",
+    "file": "ValuePill.tsx"
+  },
+  "shimmer": {
+    "title": "Shimmer",
+    "file": "Shimmer.tsx"
+  },
+  "stream-text": {
+    "title": "StreamText",
+    "file": "StreamText.tsx"
+  }
+}

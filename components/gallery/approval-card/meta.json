@@ -1,0 +1,12 @@
+{
+  "id": "approval-card",
+  "title": "Approval Card",
+  "caption": "Human-in-the-loop questions the agent asks before acting.",
+  "category": "agent",
+  "order": 40,
+  "origin": "upstream",
+  "deps": [
+    "button",
+    "glide-menu"
+  ]
+}

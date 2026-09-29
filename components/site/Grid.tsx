@@ -194,7 +194,7 @@ function Overlay({
           <div className="min-w-0">
             <h3 className="text-[13px] font-semibold text-ink">{entry.title}</h3>
             <p className="truncate font-mono text-[11.5px] text-ink-3">
-              components/{entry.file}
+              components/gallery/{entry.id}/index.tsx
             </p>
             {(entry.deps?.length || entry.npm?.length) ? (
               <p className="mt-1 text-[11.5px] leading-relaxed text-ink-3">

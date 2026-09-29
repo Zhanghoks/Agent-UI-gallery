@@ -1,0 +1,11 @@
+{
+  "id": "fine-tune-card",
+  "title": "Fine-tune Card",
+  "caption": "The agent adjusts design properties in an inspector.",
+  "category": "agent",
+  "order": 190,
+  "origin": "upstream",
+  "deps": [
+    "glide-menu"
+  ]
+}

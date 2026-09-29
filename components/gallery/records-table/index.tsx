@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import GlideMenu from "@/components/primitives/GlideMenu";
+import GlideMenu from "@/components/atoms/GlideMenu";
 
 /* ─────────────────────────────────────────────────────────
  * RECORDS TABLE — an AI spreadsheet grid. Columns are
