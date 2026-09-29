@@ -1,11 +1,13 @@
 "use client";
 
 import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { META } from "@/lib/meta";
+import { META, GROUPS } from "@/lib/meta";
 
 /* Component nav — anchors into the list, scrollspy highlights
  * the section in view, and a single pill glides to whichever
  * item the pointer is over (falling back to the active one). */
+
+const ENTRY_BY_ID = Object.fromEntries(META.map((m) => [m.id, m]));
 
 export function Nav() {
   const [active, setActive] = useState(META[0].id);
@@ -54,39 +56,43 @@ export function Nav() {
               "top 220ms cubic-bezier(0.23,1,0.32,1), height 220ms cubic-bezier(0.23,1,0.32,1), opacity 150ms ease",
           }}
         />
-        {META.map((m, i) => (
-          <Fragment key={m.id}>
-            {m.category !== META[i - 1]?.category && (
-              <li
-                role="presentation"
-                className="mt-3 mb-1 px-2 text-[11px] font-medium tracking-wide text-ink-3 capitalize first:mt-0"
-              >
-                {m.category}
-              </li>
-            )}
+        {GROUPS.map((group) => (
+          <Fragment key={group.id}>
             <li
-              ref={(el) => {
-                itemRefs.current[m.id] = el;
-              }}
+              role="presentation"
+              className="mt-3 mb-1 px-2 text-[11px] font-medium tracking-wide text-ink-3 first:mt-0"
             >
-              <a
-                href={`#${m.id}`}
-                onMouseEnter={() => setHovered(m.id)}
-                onFocus={() => setHovered(m.id)}
-                onBlur={() => setHovered(null)}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document
-                    .getElementById(m.id)
-                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
-                }}
-                className={`relative z-10 flex items-center rounded-[7px] px-2 py-[5px]
-                  text-[12.5px] transition-colors duration-150
-                  ${active === m.id ? "font-medium text-ink" : "text-ink-2 hover:text-ink"}`}
-              >
-                {m.title}
-              </a>
+              {group.label}
             </li>
+            {group.ids.map((id) => {
+              const m = ENTRY_BY_ID[id];
+              return (
+                <li
+                  key={m.id}
+                  ref={(el) => {
+                    itemRefs.current[m.id] = el;
+                  }}
+                >
+                  <a
+                    href={`#${m.id}`}
+                    onMouseEnter={() => setHovered(m.id)}
+                    onFocus={() => setHovered(m.id)}
+                    onBlur={() => setHovered(null)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document
+                        .getElementById(m.id)
+                        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                    className={`relative z-10 flex items-center rounded-[7px] px-2 py-[5px]
+                      text-[12.5px] transition-colors duration-150
+                      ${active === m.id ? "font-medium text-ink" : "text-ink-2 hover:text-ink"}`}
+                  >
+                    {m.title}
+                  </a>
+                </li>
+              );
+            })}
           </Fragment>
         ))}
       </ul>

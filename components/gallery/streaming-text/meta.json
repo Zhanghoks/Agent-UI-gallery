@@ -2,7 +2,7 @@
   "id": "streaming-text",
   "title": "Streaming Text",
   "caption": "Streamed answer with inline sources, actions, and follow-ups.",
-  "category": "agent",
+  "category": "conversation",
   "order": 30,
   "origin": "upstream"
 }

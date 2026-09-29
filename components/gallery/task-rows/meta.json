@@ -2,7 +2,7 @@
   "id": "task-rows",
   "title": "Task Rows",
   "caption": "Live agent task status — running, failed, completed.",
-  "category": "agent",
+  "category": "progress",
   "order": 60,
   "origin": "upstream",
   "variants": [

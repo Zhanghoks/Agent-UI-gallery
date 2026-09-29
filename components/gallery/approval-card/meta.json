@@ -2,7 +2,7 @@
   "id": "approval-card",
   "title": "Approval Card",
   "caption": "Human-in-the-loop questions the agent asks before acting.",
-  "category": "agent",
+  "category": "collaboration",
   "order": 40,
   "origin": "upstream",
   "deps": [

@@ -47,6 +47,20 @@ public/r/         生成的 shadcn registry
 - 只服务画廊网站的 → `components/site/`。
 - 依赖方向单向：`harness → gallery → atoms`；gallery 组件可以依赖其他 gallery 组件（不能成环），不能依赖 `site/`、`harness/`。
 
+## 分类
+
+画廊的导航和卡片列表按分类分组，分类在 `foundry.config.json` 的 `categories` 里定义（顺序即显示顺序，每项有 `id`、`label`、`description`，没有组件的分类不显示）：
+
+| id | 用来放什么 | 现有组件 |
+| --- | --- | --- |
+| `conversation` | 输入提示词、流式回答 | streaming-text、chat-composer、prompt-bar |
+| `progress` | agent 正在做什么 | loading-state、thinking-state、task-rows、tool-chips、agent-screen |
+| `collaboration` | 人机协作：审批、建议、微调、改写 | approval-card、recommendation-card、fine-tune-card、selection-actions |
+| `data` | agent 知道什么、产出什么 | context-cards、records-table、diff-table、filter-table、insight-cards、code-block |
+| `navigation` | 导航与工作流 | sidebar-nav、search、flowchart |
+
+新增分类只需在配置里加一项；组件在组内按 `order` 排序。
+
 ## 新增一个组件
 
 1. 新建 `components/gallery/<id>/index.tsx`（默认导出 demo 组件，接收可选 `variant`）。
@@ -57,7 +71,7 @@ public/r/         生成的 shadcn registry
   "id": "my-card",
   "title": "My Card",
   "caption": "One-line description.",
-  "category": "agent",
+  "category": "progress",
   "order": 220,
   "origin": "own",
   "variants": ["A", "B"],
@@ -67,7 +81,7 @@ public/r/         生成的 shadcn registry
 }
 ```
 
-`id` 必须与文件夹同名；`category` 取自 `foundry.config.json`；`deps` 可填 atoms 或其他画廊组件的 id；
+`id` 必须与文件夹同名；`category` 必须是 `foundry.config.json` 里 `categories` 的某个 `id`（见下「分类」）；`deps` 可填 atoms 或其他画廊组件的 id；
 `variants`、`deps`、`npm`、`css` 可省略。
 
 **`deps` 和 `npm` 必须和 `index.tsx` 里真实的 import 一致**：import 了某个 atom / 其他 gallery 组件却没写进 `deps`、

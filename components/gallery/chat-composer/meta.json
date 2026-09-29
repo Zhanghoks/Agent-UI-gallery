@@ -2,7 +2,7 @@
   "id": "chat-composer",
   "title": "Chat",
   "caption": "Tabbed chat panel with reasoning replies and a composer.",
-  "category": "input",
+  "category": "conversation",
   "order": 70,
   "origin": "upstream"
 }

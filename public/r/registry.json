@@ -39,59 +39,9 @@
       "title": "StreamText"
     },
     {
-      "name": "loading-state",
-      "type": "registry:component",
-      "title": "Loading State"
-    },
-    {
-      "name": "thinking-state",
-      "type": "registry:component",
-      "title": "Thinking"
-    },
-    {
       "name": "streaming-text",
       "type": "registry:component",
       "title": "Streaming Text"
-    },
-    {
-      "name": "approval-card",
-      "type": "registry:component",
-      "title": "Approval Card"
-    },
-    {
-      "name": "tool-chips",
-      "type": "registry:component",
-      "title": "Tool Chips"
-    },
-    {
-      "name": "task-rows",
-      "type": "registry:component",
-      "title": "Task Rows"
-    },
-    {
-      "name": "recommendation-card",
-      "type": "registry:component",
-      "title": "Recommendation Card"
-    },
-    {
-      "name": "context-cards",
-      "type": "registry:component",
-      "title": "Context Cards"
-    },
-    {
-      "name": "fine-tune-card",
-      "type": "registry:component",
-      "title": "Fine-tune Card"
-    },
-    {
-      "name": "selection-actions",
-      "type": "registry:component",
-      "title": "Selection Actions"
-    },
-    {
-      "name": "agent-screen",
-      "type": "registry:component",
-      "title": "Agent Screen"
     },
     {
       "name": "chat-composer",
@@ -104,9 +54,54 @@
       "title": "Prompt Bar"
     },
     {
-      "name": "search",
+      "name": "loading-state",
       "type": "registry:component",
-      "title": "Search"
+      "title": "Loading State"
+    },
+    {
+      "name": "thinking-state",
+      "type": "registry:component",
+      "title": "Thinking"
+    },
+    {
+      "name": "tool-chips",
+      "type": "registry:component",
+      "title": "Tool Chips"
+    },
+    {
+      "name": "task-rows",
+      "type": "registry:component",
+      "title": "Task Rows"
+    },
+    {
+      "name": "agent-screen",
+      "type": "registry:component",
+      "title": "Agent Screen"
+    },
+    {
+      "name": "approval-card",
+      "type": "registry:component",
+      "title": "Approval Card"
+    },
+    {
+      "name": "recommendation-card",
+      "type": "registry:component",
+      "title": "Recommendation Card"
+    },
+    {
+      "name": "fine-tune-card",
+      "type": "registry:component",
+      "title": "Fine-tune Card"
+    },
+    {
+      "name": "selection-actions",
+      "type": "registry:component",
+      "title": "Selection Actions"
+    },
+    {
+      "name": "context-cards",
+      "type": "registry:component",
+      "title": "Context Cards"
     },
     {
       "name": "diff-table",
@@ -137,6 +132,11 @@
       "name": "sidebar-nav",
       "type": "registry:component",
       "title": "Sidebar Nav"
+    },
+    {
+      "name": "search",
+      "type": "registry:component",
+      "title": "Search"
     },
     {
       "name": "flowchart",

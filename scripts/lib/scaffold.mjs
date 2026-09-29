@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { buildCatalog } from "./catalog.mjs";
-import { categoryProblem } from "./config.mjs";
+import { categoryIds, categoryProblem } from "./config.mjs";
 import { pascalCase, titleCase } from "./naming.mjs";
 
 const template = (name, title) => `"use client";
@@ -41,7 +41,7 @@ export function scaffoldComponent({ root, config, id, category, title }) {
   if (!/^[a-z][a-z0-9]*(-[a-z0-9]+)*$/.test(id ?? "")) {
     throw new Error(`"${id}" is not a valid id — use kebab-case (e.g. my-card)`);
   }
-  category ??= config.categories[0];
+  category ??= categoryIds(config)[0];
   const categoryError = categoryProblem(config, category);
   if (categoryError) throw new Error(categoryError);
   const dir = path.join(root, "components", "gallery", id);

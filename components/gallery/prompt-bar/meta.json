@@ -2,7 +2,7 @@
   "id": "prompt-bar",
   "title": "Prompt Bar",
   "caption": "Composer with @ sources, / commands, model picker, and dictation.",
-  "category": "input",
+  "category": "conversation",
   "order": 80,
   "origin": "upstream",
   "variants": [

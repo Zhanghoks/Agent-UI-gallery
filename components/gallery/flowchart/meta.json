@@ -2,7 +2,7 @@
   "id": "flowchart",
   "title": "Flowchart",
   "caption": "Workflow trigger and condition steps on a dotted canvas.",
-  "category": "layout",
+  "category": "navigation",
   "order": 160,
   "origin": "upstream"
 }

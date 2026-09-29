@@ -2,7 +2,7 @@
   "id": "thinking-state",
   "title": "Thinking",
   "caption": "Expandable traces — steps, reasoning, search, coding.",
-  "category": "agent",
+  "category": "progress",
   "order": 20,
   "origin": "upstream",
   "variants": [

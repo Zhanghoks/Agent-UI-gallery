@@ -2,7 +2,7 @@
   "id": "context-cards",
   "title": "Context Cards",
   "caption": "Retrieved knowledge chunks with their sources.",
-  "category": "agent",
+  "category": "data",
   "order": 100,
   "origin": "upstream"
 }

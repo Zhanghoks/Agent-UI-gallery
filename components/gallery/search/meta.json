@@ -2,7 +2,7 @@
   "id": "search",
   "title": "Search",
   "caption": "Command search with live filtering and an empty state.",
-  "category": "input",
+  "category": "navigation",
   "order": 150,
   "origin": "upstream",
   "deps": [

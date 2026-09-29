@@ -2,7 +2,7 @@
   "id": "loading-state",
   "title": "Loading State",
   "caption": "Pixel-grid loader with shimmer and elapsed time.",
-  "category": "agent",
+  "category": "progress",
   "order": 10,
   "origin": "upstream",
   "variants": [

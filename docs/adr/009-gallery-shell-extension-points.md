@@ -4,3 +4,6 @@
 背景：用户最看重画廊的交互方式。
 决定：不改变现有布局与交互；只增加 category 分组、`?variant=` 深链接、可选状态预览条、`origin` 标记，且均由 meta 驱动、按需增量加入。
 后果：+ 观感稳定；+ 逐步替换时可见进度；− 状态预览条要求组件已是受控形态，故只对新/已改造组件显示。
+
+## 实现补充
+- 分类导航已实现：`foundry.config.json` 的 `categories` 为 `{ id, label, description }` 列表，目录扫描产出按分类分组的 `groups`；导航与卡片列表都按组渲染，卡片列表带分组标题。现有 21 个组件分为 conversation / progress / collaboration / data / navigation 五类（见 README「分类」）。

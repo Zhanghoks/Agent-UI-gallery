@@ -2,7 +2,7 @@ export type Meta = {
   id: string;
   title: string;
   caption: string;
-  /** navigation group — one of `categories` in foundry.config.json */
+  /** id of a category in foundry.config.json */
   category: string;
   /** "upstream" = carried over from Beautiful UI, "own" = added here */
   origin: "upstream" | "own";
@@ -13,5 +13,8 @@ export type Meta = {
   npm?: string[];
 };
 
-/* Both are generated from components/gallery/*\/meta.json (npm run gen). */
-export { META, INTERNAL } from "./gallery.generated";
+/** A non-empty category, in config order, with the ids of its components (in display order). */
+export type Group = { id: string; label: string; description?: string; ids: string[] };
+
+/* All three are generated from components/gallery/*\/meta.json (npm run gen). */
+export { META, GROUPS, INTERNAL } from "./gallery.generated";

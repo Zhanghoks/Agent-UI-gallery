@@ -2,7 +2,7 @@
   "id": "selection-actions",
   "title": "Selection Actions",
   "caption": "Highlight a passage and hand it to the agent to rewrite.",
-  "category": "agent",
+  "category": "collaboration",
   "order": 200,
   "origin": "upstream",
   "deps": [

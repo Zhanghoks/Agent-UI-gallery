@@ -17,7 +17,11 @@ const CONFIG = {
   homepage: "https://example.test",
   registryBaseUrl: "https://example.test/r",
   namespaceDir: "testui",
-  categories: ["agent", "data"],
+  categories: [
+    { id: "agent", label: "Agent", description: "Things agents do." },
+    { id: "data", label: "Data", description: "Things agents show." },
+    { id: "empty", label: "Empty", description: "Nothing here yet." },
+  ],
 };
 
 const GLOBALS = [
@@ -116,6 +120,30 @@ test("entries are grouped by the category order in the config, then by `order`",
   });
   // CONFIG.categories is ["agent", "data"]
   assert.deepEqual(build(root).entries.map((e) => e.id), ["bravo", "delta", "alpha", "charlie"]);
+});
+
+test("groups follow the config's category order, carry labels, and skip empty categories", () => {
+  const root = makeRepo({
+    components: {
+      alpha: { meta: meta("alpha", { category: "data", order: 10 }) },
+      bravo: { meta: meta("bravo", { category: "agent", order: 20 }) },
+      charlie: { meta: meta("charlie", { category: "data", order: 30 }) },
+    },
+  });
+  const { groups } = build(root);
+  assert.deepEqual(
+    groups.map((g) => [g.id, g.label, g.description, g.entries.map((e) => e.id)]),
+    [
+      ["agent", "Agent", "Things agents do.", ["bravo"]],
+      ["data", "Data", "Things agents show.", ["alpha", "charlie"]],
+    ],
+  );
+});
+
+test("fails when a configured category has no id or label", () => {
+  const root = makeRepo({ components: { alpha: { meta: meta("alpha") } } });
+  const bad = { ...CONFIG, categories: [{ id: "agent" }] };
+  assert.throws(() => buildCatalog({ root, config: bad }), /category.*"label"/i);
 });
 
 test("variants and npm dependencies are carried through", () => {

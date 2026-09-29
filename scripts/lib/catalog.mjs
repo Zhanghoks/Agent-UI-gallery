@@ -2,7 +2,7 @@
 // catalog entries + shadcn registry files out. Pure reads, no writes.
 import fs from "node:fs";
 import path from "node:path";
-import { categoryProblem } from "./config.mjs";
+import { categoryIds, categoryProblem, configProblems } from "./config.mjs";
 
 const GALLERY_DIR = "components/gallery";
 const ATOMS_DIR = "components/atoms";
@@ -100,7 +100,7 @@ function scanGallery(root, config, errors) {
     });
   }
 
-  const rank = (e) => config.categories.indexOf(e.category);
+  const rank = (e) => categoryIds(config).indexOf(e.category);
   return entries.sort(
     (a, b) =>
       rank(a) - rank(b) ||
@@ -282,9 +282,20 @@ function buildRegistry({ root, config, entries, atoms }) {
   return out;
 }
 
+/* categories in config order, each with its entries; empty ones are left out */
+function groupByCategory(entries, config) {
+  return config.categories
+    .map((c) => ({ ...c, entries: entries.filter((e) => e.category === c.id) }))
+    .filter((g) => g.entries.length);
+}
+
 /* ── public seam ──────────────────────────────────────────── */
 
 export function buildCatalog({ root, config }) {
+  const configErrors = configProblems(config);
+  if (configErrors.length) {
+    throw new Error(`Gallery catalog is invalid:\n${configErrors.map((e) => `  - ${e}`).join("\n")}`);
+  }
   const errors = [];
   const atoms = scanAtoms(root, errors);
   const entries = scanGallery(root, config, errors);
@@ -297,6 +308,7 @@ export function buildCatalog({ root, config }) {
   }
   return {
     entries,
+    groups: groupByCategory(entries, config),
     atoms,
     cssImports: entries.flatMap((e) => (e.css ? [e.css] : [])),
     registry: buildRegistry({ root, config, entries, atoms }),

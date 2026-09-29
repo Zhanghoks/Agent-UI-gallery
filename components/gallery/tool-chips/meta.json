@@ -2,7 +2,7 @@
   "id": "tool-chips",
   "title": "Tool Chips",
   "caption": "Code edits and tool calls as compact chips.",
-  "category": "agent",
+  "category": "progress",
   "order": 50,
   "origin": "upstream"
 }

@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { REGISTRY, type Entry } from "@/lib/registry";
-import { INTERNAL } from "@/lib/meta";
+import { GROUPS, INTERNAL } from "@/lib/meta";
 import config from "@/foundry.config.json";
 
 /* ─────────────────────────────────────────────────────────
@@ -257,6 +257,9 @@ function Overlay({
   );
 }
 
+/* position of each entry in the flat, category-ordered list (numbers the cards) */
+const ENTRY_INDEX: Record<string, number> = Object.fromEntries(REGISTRY.map((e, i) => [e.id, i]));
+
 export function Grid({ sources }: { sources: Record<string, string> }) {
   const [openId, setOpenId] = useState<string | null>(null);
   const open = REGISTRY.find((e) => e.id === openId);
@@ -264,14 +267,31 @@ export function Grid({ sources }: { sources: Record<string, string> }) {
   return (
     <>
       <div className="flex w-full flex-col pt-8 pb-12 lg:pt-10 lg:pb-16">
-        {REGISTRY.map((entry, i) => (
-          <Card
-            key={entry.id}
-            entry={entry}
-            code={sources[entry.id] ?? ""}
-            index={i}
-            onOpen={() => setOpenId(entry.id)}
-          />
+        {GROUPS.map((group) => (
+          <Fragment key={group.id}>
+            <header
+              id={`group-${group.id}`}
+              className="scroll-mt-8 border-b border-dashed border-line px-5 pt-10 pb-5 first:pt-0 sm:px-8"
+            >
+              <h2 className="flex items-baseline gap-2 text-[15px] font-semibold tracking-[-0.01em] text-ink">
+                {group.label}
+                <span className="font-mono text-[11px] font-normal text-ink-3 tabular-nums">{group.ids.length}</span>
+              </h2>
+              {group.description && <p className="mt-1 text-[12.5px] text-ink-3 text-pretty">{group.description}</p>}
+            </header>
+            {group.ids.map((id) => {
+              const entry = REGISTRY[ENTRY_INDEX[id]];
+              return (
+                <Card
+                  key={id}
+                  entry={entry}
+                  code={sources[id] ?? ""}
+                  index={ENTRY_INDEX[id]}
+                  onOpen={() => setOpenId(id)}
+                />
+              );
+            })}
+          </Fragment>
         ))}
       </div>
       {open && (

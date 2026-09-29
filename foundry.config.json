@@ -8,9 +8,30 @@
   "namespaceDir": "agent-ui",
   "harnessName": "Agent Harness",
   "categories": [
-    "agent",
-    "input",
-    "data",
-    "layout"
+    {
+      "id": "conversation",
+      "label": "Conversation",
+      "description": "Composing prompts and streaming answers."
+    },
+    {
+      "id": "progress",
+      "label": "Progress",
+      "description": "What the agent is doing — thinking, tool calls, tasks, its screen."
+    },
+    {
+      "id": "collaboration",
+      "label": "Collaboration",
+      "description": "Human in the loop — approvals, suggestions, fine-tuning, rewrites."
+    },
+    {
+      "id": "data",
+      "label": "Context & data",
+      "description": "What the agent knows and produces — records, diffs, insights, code."
+    },
+    {
+      "id": "navigation",
+      "label": "Navigation",
+      "description": "Getting around — sidebar, search, workflows."
+    }
   ]
 }
