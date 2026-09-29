@@ -1,152 +1,93 @@
-# Beautiful UI
+# Agent UI Gallery
 
-Crafted, copy-paste interface primitives for AI-native products — thinking and
-reasoning states, streaming answers, human-in-the-loop approvals, tool-call and
-task status, records and diff tables, prompt bars, and more — plus a live
-**harness** that arranges them into a working agent chat.
+面向 AI 原生产品的组件库，以「画廊」形式展示：每个组件都是可交互的实时 demo，可复制源码，也可通过 shadcn registry 安装到其他项目。
 
-Everything is one self-contained component per primitive, built on a small
-design-token layer. MIT licensed. Take it, wire it to your own agent, ship it.
+Fork 自 [Beautiful UI](docs/NOTICE.md)（MIT）。技术栈：Next.js 15 · React 19 · Tailwind CSS v4 · TypeScript。
 
-- **Gallery:** every primitive as a live, copy-paste demo — `/`
-- **Harness:** the primitives composed into an agent chat — `/harness`
+- 画廊：`/`
+- Harness（把组件组合成 agent 聊天的演示）：`/harness`
 
-## Quick start
+## 快速开始
 
 ```bash
-git clone https://github.com/slev12397/beautiful-ui.git
-cd beautiful-ui
-npm install
+npm install --ignore-scripts   # 见下方「图标库」
 npm run dev
 ```
 
-Open http://localhost:3000. Analytics and email capture are optional (see
-[Environment](#environment)) — but note the icon set below is not.
+需要 Node 20+。
 
-> **Heads up — commercial icon set.** `SidebarNav` uses
-> [`@central-icons-react`](https://centralicons.com), a paid icon library with
-> a license check that runs on `npm install`. Set `CENTRAL_LICENSE_KEY` in your
-> environment before installing, **or** swap those imports in
-> `components/primitives/SidebarNav.tsx` for your own icons. Everything else
-> runs with no configuration.
+> **图标库**：`sidebar-nav` 使用商业图标库 `@central-icons-react`，安装时会做 license 检查。
+> 设置 `CENTRAL_LICENSE_KEY` 后正常 `npm install`，或用 `--ignore-scripts` 跳过检查，或替换该组件的图标。
 
-Stack: Next.js (App Router) · React · Tailwind CSS v4 · TypeScript.
-
-## What's in here
+## 目录
 
 ```
-app/
-  globals.css              design tokens (:root, .dark, @theme) + component CSS
-  layout.tsx               fonts (Inter + JetBrains Mono), theme boot
-  page.tsx                 the gallery
-  harness/page.tsx         the harness route
 components/
-  primitives/*             the library — one self-contained file per primitive
-  site/*                   the shell/chrome (harness, gallery grid, theme, sounds)
-lib/
-  meta.ts, registry.tsx    the gallery catalog
+  atoms/          共享小构件（不进画廊）；atoms.json 声明哪些会作为 registry 条目分发
+  gallery/<id>/   每个组件一个文件夹：index.tsx · meta.json · styles.css（可选）
+  site/           画廊外壳（Grid、Nav、主题、harness…）
+app/              页面与 globals.css（设计 token、@theme、基础规则、通用动画）
+lib/              meta 类型；*.generated.* 由 `npm run gen` 生成，不入库
+scripts/          gen.mjs（生成）、lib/catalog.mjs（扫描 → 目录 + registry，有测试）
+foundry.config.json   站点名、registry 地址、命名空间目录、分类列表
+docs/             architecture.md、adr/、NOTICE.md
+public/r/         生成的 shadcn registry
 ```
 
-The primitives are the product. Most files under `components/primitives/` paste
-in on their own; some also import a shared building block (`Button`, `GlideMenu`,
-`EntityChip`, …) or an npm package (`liveline`, `glimm`, `iconoir-react`, …). Every
-component's exact dependencies are listed on its gallery card, and the
-[component registry](#install-a-component) resolves them for you automatically.
+## 新增一个组件
 
-## Install a component
+1. 新建 `components/gallery/<id>/index.tsx`（默认导出 demo 组件，接收可选 `variant`）。
+2. 新建 `components/gallery/<id>/meta.json`：
 
-**Recommended — the CLI resolves the whole dependency tree** (internal building
-blocks, npm packages, and only the CSS a component actually needs):
+```json
+{
+  "id": "my-card",
+  "title": "My Card",
+  "caption": "One-line description.",
+  "category": "agent",
+  "order": 220,
+  "origin": "own",
+  "variants": ["A", "B"],
+  "deps": ["button"],
+  "npm": [],
+  "css": "styles.css"
+}
+```
+
+`id` 必须与文件夹同名；`category` 取自 `foundry.config.json`；`deps` 可填 atoms 或其他画廊组件的 id；
+`variants`、`deps`、`npm`、`css` 可省略。`npm run dev` 会自动生成目录，出错时会一次列出全部问题。
+
+## 命令
+
+| 命令 | 作用 |
+| --- | --- |
+| `npm run dev` | 生成目录并启动开发服务器 |
+| `npm run gen` | 只生成目录（`lib/*.generated.*`、`app/gallery.generated.css`） |
+| `npm run registry` | 生成目录并写出 `public/r/*.json` |
+| `npm run build` | 生成目录 + registry，然后 `next build` |
+| `npm test` | 目录扫描 / registry 生成的测试 |
+| `npm run typecheck` | 生成目录并 `tsc --noEmit` |
+
+## 安装组件（registry）
 
 ```bash
-npx shadcn add https://www.beautifului.dev/r/approval-card.json
+npx shadcn add <registryBaseUrl>/approval-card.json
 ```
 
-Browse the index at
-[`/r/registry.json`](https://www.beautifului.dev/r/registry.json). Each item
-declares its `registryDependencies`, npm `dependencies`, and `files`, so one
-`add` pulls the component, its building blocks, installs its packages, and drops
-in the foundation plus any component-specific CSS (e.g. `records-table.css`) —
-not the whole stylesheet.
+`registryBaseUrl` 在 `foundry.config.json` 中配置（目前是本地占位地址）。安装会带上内部依赖、npm 依赖、
+`foundation` 样式，以及该组件独有的样式文件（按提示在你的 globals.css 里 `@import`）。
 
-**Manual — copy-paste:** open a component's code view in the gallery; it lists
-exactly what to also copy and `npm i`. Add the [foundation](#one-time-setup)
-once, then paste the component and anything under "Requires".
+## 设计系统
 
-## The design system
+token 在 `app/globals.css` 中（`:root` / `.dark` / `@theme inline`）：偏冷的蓝灰中性色、实线细边框、单一蓝色强调色；
+圆角 chip 6 · control 8 · card 10 · window 14；Inter + JetBrains Mono。粘贴任何组件前，先把 `app/globals.css`
+（即 registry 的 `foundation`）整体引入一次。
 
-Tokens live in `app/globals.css` as Tailwind v4 `@theme` variables, themed for
-light and dark from the same source:
+## 接入真实 agent
 
-- **Cool, blue-tinted neutrals**, solid hairline borders (not alpha), one blue
-  accent, semantic color (green/orange/red) used sparingly.
-- **Tight radii** — chip `6` · control `8` · card `10` · window `14` · pill.
-- **Restrained, layered shadows** — hairline · btn · card · raised · overlay.
-- **Type** — Inter (tight tracking, tabular numerals) + JetBrains Mono.
+`components/site/IceCreamHarness.tsx` 是演示：`SCENARIOS` 把假 prompt 映射到由组件拼成的回复。
+接入真实后端时替换这些数据，组件作为渲染层不变。事件协议的设计见 `docs/architecture.md` 第 9 节。
 
-### One-time setup
+## 许可
 
-A single component is **not** self-contained on its own — it renders on this
-shared foundation stylesheet. Before pasting any primitive, drop
-[`app/globals.css`](https://github.com/slev12397/beautiful-ui/blob/main/app/globals.css)
-into your project **in full, once**. It contains everything the components rely on:
-
-- `@import "tailwindcss"` and `@import "shadow-plugin/unprefixed"` (the smooth
-  `--shadow-xs … --shadow-lg` scale that `shadow-card` / `shadow-overlay` build on)
-- the `:root` / `.dark` variables **and** the `@theme inline` block that maps them
-  to the utilities (`bg-ink`, `text-ink-3`, `shadow-overlay`, `rounded-window`, …)
-- every `@keyframes` (`pop-in`, `fade-up`, `shimmer-text`, `pixel-on`, `stream-in`, …)
-  and the `prefers-reduced-motion` fallbacks
-
-The `:root`/`.dark` variables **alone won't work** — the `@theme inline` block is
-what makes those utility classes exist. It's framework-agnostic: the same file
-works in Vue, Svelte, or plain HTML on Tailwind v4.
-
-## Wiring the harness to a real agent
-
-`components/site/IceCreamHarness.tsx` is a demo: a `SCENARIOS` map turns fake
-prompts into scripted replies built from the primitives. To make it real,
-replace the demo data with your backend — the primitives stay exactly as they
-are; they're just the rendering layer for your agent's output.
-
-| Demo seam | Replace with |
-| --- | --- |
-| `SCENARIOS` / `matchScenario` in `IceCreamHarness.tsx` | your agent request per user message |
-| `StreamingText` / `StreamLine` | your token stream (SSE or the [AI SDK](https://ai-sdk.dev) `streamText`) |
-| `ThinkingState` | your agent's reasoning / step events |
-| `ToolChips` | your tool-call events and their results |
-| `ApprovalCard` | your human-in-the-loop confirmations |
-| `ContextCards` | your retrieval / memory chunks |
-| `RecordsTable` / `DiffTable` | your data and proposed edits |
-| model picker in `PromptBar` | your available models |
-
-A typical production wiring:
-
-1. **Models** — call your LLM from a Next.js route or Server Action. On Vercel,
-   the [AI SDK](https://ai-sdk.dev) + AI Gateway lets you use `"provider/model"`
-   strings and stream tokens straight into `StreamingText`.
-2. **Streaming** — stream tokens (SSE / `ReadableStream`) into the streaming
-   primitives; they render word-by-word as data arrives.
-3. **Tools & approvals** — map your agent's tool-call and confirmation events
-   onto `ToolChips`, `ThinkingState`, and `ApprovalCard`.
-4. **Memory & context** — feed your retrieval/memory results into `ContextCards`
-   and the side pane; persist threads however you like (the harness keeps them
-   in local state for the demo).
-5. **Data** — point `RecordsTable` / `DiffTable` at your real rows.
-
-## Environment
-
-All optional. Copy `.env.example` to `.env.local` to enable them.
-
-| Variable | Purpose |
-| --- | --- |
-| `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` | PostHog analytics (client) |
-| `NEXT_PUBLIC_POSTHOG_HOST` | PostHog host |
-| `RESEND_API_KEY` | email capture via Resend (server-only) |
-
-Without them, analytics is disabled and the email-capture endpoint returns a
-graceful "unavailable" — nothing crashes.
-
-## License
-
-MIT — see [LICENSE](./LICENSE). Built by [Turbo](https://turbodesign.co).
+MIT，见 [LICENSE](./LICENSE) 与 [docs/NOTICE.md](docs/NOTICE.md)。

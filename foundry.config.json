@@ -1,8 +1,16 @@
 {
-  "name": "Beautiful UI",
-  "registryName": "beautifui",
-  "homepage": "https://www.beautifului.dev",
-  "registryBaseUrl": "https://www.beautifului.dev/r",
-  "namespaceDir": "beautifui",
-  "categories": ["agent", "input", "data", "layout"]
+  "name": "Agent UI Gallery",
+  "tagline": "Crafted components for AI-native agent interfaces.",
+  "description": "A gallery of copy-paste components for chat agents: thinking states, streaming answers, human-in-the-loop approvals, tool calls, and the tables and cards agents talk to humans with.",
+  "registryName": "agent-ui",
+  "homepage": "http://localhost:3000",
+  "registryBaseUrl": "http://localhost:3000/r",
+  "namespaceDir": "agent-ui",
+  "harnessName": "Agent Harness",
+  "categories": [
+    "agent",
+    "input",
+    "data",
+    "layout"
+  ]
 }

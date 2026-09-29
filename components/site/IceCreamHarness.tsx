@@ -16,11 +16,10 @@ import StreamingText from "@/components/gallery/streaming-text";
 import TaskRows from "@/components/gallery/task-rows";
 import ThinkingState from "@/components/gallery/thinking-state";
 import ToolChips from "@/components/gallery/tool-chips";
-import { UseThisModal } from "@/components/site/UseThisHarness";
 
 /* ─────────────────────────────────────────────────────────
  * ICE CREAM HARNESS
- * An interactive chat window that shows every Beautiful UI
+ * An interactive chat window that shows every gallery
  * primitive in its natural habitat. Ask a question (or tap a
  * suggestion) and the agent replies — thinking, then building
  * the answer out of live components. Everything is fake data.
@@ -694,7 +693,6 @@ export default function IceCreamHarness() {
   /* spreadsheet: which view/property is open in the right inspector (null = chat) */
   const [propView, setPropView] = useState<string | null>(null);
   /* "use this harness" open-source modal */
-  const [useOpen, setUseOpen] = useState(false);
   const chatIdRef = useRef(1);
   const msgIdRef = useRef(0);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -945,8 +943,7 @@ export default function IceCreamHarness() {
         activeTitle={chat.title}
         onPick={(id, label, prompt) => pickRecent(id as ScenarioId, label, prompt)}
         onNewChat={newChat}
-        footerLabel="Fork this"
-        onFooterClick={() => setUseOpen(true)}
+        footerLabel="New chat"
       />
 
       <div className="flex min-w-0 flex-1 flex-col gap-2.5">
@@ -1055,8 +1052,6 @@ export default function IceCreamHarness() {
           )}
         </div>
       </div>
-
-      <UseThisModal open={useOpen} onClose={() => setUseOpen(false)} />
     </main>
   );
 }

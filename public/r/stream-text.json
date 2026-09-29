@@ -3,9 +3,9 @@
   "name": "stream-text",
   "type": "registry:ui",
   "title": "StreamText",
-  "description": "Shared building block used by other Beautiful UI components.",
+  "description": "Shared building block used by other Agent UI Gallery components.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json"
+    "http://localhost:3000/r/foundation.json"
   ],
   "files": [
     {

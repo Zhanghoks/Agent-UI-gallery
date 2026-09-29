@@ -5,7 +5,7 @@
   "title": "Streaming Text",
   "description": "Streamed answer with inline sources, actions, and follow-ups.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json"
+    "http://localhost:3000/r/foundation.json"
   ],
   "files": [
     {

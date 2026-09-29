@@ -3,9 +3,9 @@ import path from "node:path";
 import Link from "next/link";
 import { Grid } from "@/components/site/Grid";
 import { Nav } from "@/components/site/Nav";
-import { EmailCapture } from "@/components/site/EmailCapture";
 import { ThemeToggle } from "@/components/site/ThemeToggle";
 import { META } from "@/lib/meta";
+import config from "@/foundry.config.json";
 
 /* Sources are read at build time (static export) so every card
  * can offer its own copy-paste-able file. */
@@ -29,17 +29,12 @@ export default function Home() {
         <aside className="flex flex-col border-b border-dashed border-line px-5 pt-12 pb-6 sm:px-7 sm:pt-16 sm:pb-7 lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden lg:border-r lg:border-b-0 lg:pt-[clamp(2.5rem,8vh,5rem)]">
           <div className="shrink-0">
             <div className="flex items-center justify-between">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logo.png"
-                alt="Beautiful UI"
-                className="-ml-3 size-20 shrink-0 lg:ml-0"
-              />
+              <span className="text-[13px] font-semibold tracking-[-0.01em] text-ink">{config.name}</span>
               <ThemeToggle />
             </div>
 
             <h1 className="mt-12 text-[21px] leading-snug font-semibold tracking-[-0.02em] text-ink text-balance lg:mt-[clamp(1.5rem,5vh,3rem)]">
-              Beautiful UI for AI-native interfaces.
+              {config.tagline}
             </h1>
           </div>
 
@@ -49,67 +44,21 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-8 shrink-0 lg:mt-6">
-            <a
-              href="https://turbodesign.co/"
-              target="_blank"
-              rel="noreferrer"
-              className="block rounded-control px-2 py-1"
-            >
-              <span className="flex min-w-0 flex-col gap-1">
-                <span className="flex min-w-0 items-center gap-1.5">
-                  <span className="block truncate text-[12.5px] font-medium leading-tight text-ink">
-                    Built by Turbo
-                  </span>
-                  <span
-                    aria-hidden
-                    className="relative h-3 w-6 shrink-0 overflow-hidden"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="/turbo-flourish.png"
-                      alt=""
-                      className="absolute top-1/2 left-0 w-9 max-w-none -translate-y-[46%]"
-                    />
-                  </span>
-                </span>
-                <span className="block truncate text-[12px] leading-tight text-ink-2">
-                  Product design studio
-                </span>
-              </span>
-              <span className="mt-1.5 block text-[12px] leading-relaxed text-ink-2 text-pretty">
-                Get expert product design for your business.
-              </span>
-            </a>
-            <a
-              href="https://cal.com/shane-levine-7bnfdw/30min?overlayCalendar=true"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2.5 inline-flex h-7 items-center gap-1.5 rounded-full bg-field px-2.5 text-[11.5px] font-medium text-ink
-                shadow-btn transition-[background-color,transform] duration-150 hover:bg-hover active:scale-[0.96]"
-            >
-              Book a call
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </a>
-          </div>
         </aside>
 
         {/* right — the components, then the signup at the end of the scroll */}
         <div className="min-w-0">
           <Grid sources={sources} />
-          <EmailCapture />
 
           {/* footer — lives in the scroll column so the sticky rail is untouched */}
           <footer className="flex items-center justify-between gap-4 border-t border-dashed border-line px-5 py-6 sm:px-8">
-            <span className="text-[12px] text-ink-3">© 2026 Beautiful UI</span>
+            <span className="text-[12px] text-ink-3">© 2026 {config.name}</span>
             <span className="flex items-center gap-4">
               <Link
                 href="/harness"
                 className="text-[12px] text-ink-3 transition-colors duration-150 hover:text-ink"
               >
-                Ice Cream Harness
+                {config.harnessName}
               </Link>
               <Link
                 href="/license"

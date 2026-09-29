@@ -5,8 +5,8 @@
   "title": "Diff Table",
   "description": "AI-proposed edits sweeping through tabular data.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json",
-    "https://www.beautifului.dev/r/button.json"
+    "http://localhost:3000/r/foundation.json",
+    "http://localhost:3000/r/button.json"
   ],
   "files": [
     {

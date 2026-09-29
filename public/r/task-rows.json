@@ -5,7 +5,7 @@
   "title": "Task Rows",
   "description": "Live agent task status — running, failed, completed.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json"
+    "http://localhost:3000/r/foundation.json"
   ],
   "files": [
     {

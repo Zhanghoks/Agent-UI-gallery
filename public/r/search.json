@@ -5,8 +5,8 @@
   "title": "Search",
   "description": "Command search with live filtering and an empty state.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json",
-    "https://www.beautifului.dev/r/glide-menu.json"
+    "http://localhost:3000/r/foundation.json",
+    "http://localhost:3000/r/glide-menu.json"
   ],
   "files": [
     {

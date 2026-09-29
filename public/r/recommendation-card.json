@@ -5,10 +5,10 @@
   "title": "Recommendation Card",
   "description": "Agent suggestion with a confidence meter and actions.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json",
-    "https://www.beautifului.dev/r/button.json",
-    "https://www.beautifului.dev/r/entity-chip.json",
-    "https://www.beautifului.dev/r/value-pill.json"
+    "http://localhost:3000/r/foundation.json",
+    "http://localhost:3000/r/button.json",
+    "http://localhost:3000/r/entity-chip.json",
+    "http://localhost:3000/r/value-pill.json"
   ],
   "files": [
     {

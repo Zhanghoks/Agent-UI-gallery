@@ -5,7 +5,7 @@
   "title": "Tool Chips",
   "description": "Code edits and tool calls as compact chips.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json"
+    "http://localhost:3000/r/foundation.json"
   ],
   "files": [
     {

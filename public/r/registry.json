@@ -1,12 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "beautifui",
-  "homepage": "https://www.beautifului.dev",
+  "name": "agent-ui",
+  "homepage": "http://localhost:3000",
   "items": [
     {
       "name": "foundation",
       "type": "registry:style",
-      "title": "Beautiful UI foundation"
+      "title": "Agent UI Gallery foundation"
     },
     {
       "name": "button",

@@ -8,10 +8,10 @@
     "iconoir-react"
   ],
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json",
-    "https://www.beautifului.dev/r/button.json",
-    "https://www.beautifului.dev/r/shimmer.json",
-    "https://www.beautifului.dev/r/stream-text.json"
+    "http://localhost:3000/r/foundation.json",
+    "http://localhost:3000/r/button.json",
+    "http://localhost:3000/r/shimmer.json",
+    "http://localhost:3000/r/stream-text.json"
   ],
   "files": [
     {

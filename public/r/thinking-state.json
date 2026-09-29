@@ -5,7 +5,7 @@
   "title": "Thinking",
   "description": "Expandable traces — steps, reasoning, search, coding.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json"
+    "http://localhost:3000/r/foundation.json"
   ],
   "files": [
     {

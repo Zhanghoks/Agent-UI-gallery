@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { DevToolbar } from "@/components/site/DevToolbar";
-import { EmailNudge } from "@/components/site/EmailNudge";
 import { InteractionSounds } from "@/components/site/InteractionSounds";
 import { ThemeSync } from "@/components/site/ThemeSync";
+import config from "@/foundry.config.json";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,9 +17,8 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Beautiful UI — Crafted primitives for AI-native interfaces",
-  description:
-    "A small library of extremely crafted, copy-paste components for chat agents, thinking states, human-in-the-loop approvals, and everything agents need to talk to humans beautifully.",
+  title: `${config.name} — ${config.tagline}`,
+  description: config.description,
 };
 
 const themeScript = `(function(){try{var t=localStorage.getItem("bui-theme");document.documentElement.classList.toggle("dark",t!=="light")}catch(e){document.documentElement.classList.add("dark")}})()`;
@@ -35,7 +34,6 @@ export default function RootLayout({
       <body className={`${inter.variable} ${mono.variable} font-sans`}>
         <ThemeSync />
         <InteractionSounds />
-        <EmailNudge />
         {children}
         <DevToolbar />
       </body>

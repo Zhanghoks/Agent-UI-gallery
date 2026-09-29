@@ -5,7 +5,7 @@
   "title": "Flowchart",
   "description": "Workflow trigger and condition steps on a dotted canvas.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json"
+    "http://localhost:3000/r/foundation.json"
   ],
   "files": [
     {

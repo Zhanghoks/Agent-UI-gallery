@@ -5,7 +5,7 @@
   "title": "Context Cards",
   "description": "Retrieved knowledge chunks with their sources.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json"
+    "http://localhost:3000/r/foundation.json"
   ],
   "files": [
     {

@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
+import config from "@/foundry.config.json";
 
 /* The license text is read from the repo's LICENSE file at build time, so
  * this page and the actual license can never drift apart. */
@@ -9,8 +10,8 @@ function readLicense(): string {
 }
 
 export const metadata = {
-  title: "License — Beautiful UI",
-  description: "Beautiful UI components are released under the MIT License.",
+  title: `License — ${config.name}`,
+  description: `${config.name} components are released under the MIT License.`,
 };
 
 export default function LicensePage() {

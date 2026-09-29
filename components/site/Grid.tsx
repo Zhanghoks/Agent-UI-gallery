@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { REGISTRY, type Entry } from "@/lib/registry";
 import { INTERNAL } from "@/lib/meta";
+import config from "@/foundry.config.json";
 
 /* ─────────────────────────────────────────────────────────
  * GRID + CODE OVERLAY
@@ -211,9 +212,9 @@ function Overlay({
             )}
             <p
               className="mt-1.5 truncate font-mono text-[11px] text-ink-3"
-              title={`npx shadcn add https://www.beautifului.dev/r/${entry.id}.json`}
+              title={`npx shadcn add ${config.registryBaseUrl}/${entry.id}.json`}
             >
-              <span className="text-ink-2">$</span> npx shadcn add https://www.beautifului.dev/r/{entry.id}.json
+              <span className="text-ink-2">$</span> npx shadcn add {config.registryBaseUrl}/{entry.id}.json
             </p>
           </div>
           <div className="flex items-center gap-1.5">
@@ -250,15 +251,6 @@ function Overlay({
             <code className="rounded bg-surface px-1 py-0.5 font-mono text-[11.5px] text-ink-2 shadow-hairline">app/globals.css</code>{" "}
             once (tokens, <code className="font-mono text-ink-2">@theme</code> mappings, keyframes, reduced-motion).
           </span>
-          <a
-            href="https://github.com/slev12397/beautiful-ui/blob/main/app/globals.css"
-            target="_blank"
-            rel="noreferrer"
-            className="flex shrink-0 items-center gap-1 font-medium text-ink transition-colors duration-150 hover:text-accent"
-          >
-            globals.css
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M14 5h5v5M19 5l-8 8" /></svg>
-          </a>
         </div>
       </div>
     </div>

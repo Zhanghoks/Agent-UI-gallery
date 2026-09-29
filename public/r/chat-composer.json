@@ -5,7 +5,7 @@
   "title": "Chat",
   "description": "Tabbed chat panel with reasoning replies and a composer.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json"
+    "http://localhost:3000/r/foundation.json"
   ],
   "files": [
     {

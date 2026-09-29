@@ -3,13 +3,13 @@
   "name": "sidebar-nav",
   "type": "registry:component",
   "title": "Sidebar Nav",
-  "description": "Collapsible workspace and chat navigation with gliding hover states. Then add `@import \"./beautifui/sidebar-nav.css\";` to your app's globals.css.",
+  "description": "Collapsible workspace and chat navigation with gliding hover states. Then add `@import \"./agent-ui/sidebar-nav.css\";` to your app's globals.css.",
   "dependencies": [
     "@central-icons-react/round-outlined-radius-2-stroke-2"
   ],
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json",
-    "https://www.beautifului.dev/r/glide-menu.json"
+    "http://localhost:3000/r/foundation.json",
+    "http://localhost:3000/r/glide-menu.json"
   ],
   "files": [
     {
@@ -19,10 +19,10 @@
       "target": "components/gallery/sidebar-nav/index.tsx"
     },
     {
-      "path": "app/beautifui/sidebar-nav.css",
+      "path": "app/agent-ui/sidebar-nav.css",
       "content": "/* ══════════════════════════════════════════════════════════\n * COMPONENT-SPECIFIC — SidebarNav\n * The 52↔224px collapsible sidebar tree.\n * Copy this block only alongside SidebarNav; it is not part of the\n * generic foundation above.\n * ══════════════════════════════════════════════════════════ */\n.sidebar-row {\n  width: 208px;\n  transition-duration: var(--sidebar-copy-duration);\n  transition-timing-function: var(--sidebar-easing);\n}\n\n.sidebar-copy {\n  opacity: 1;\n  transform: translateX(0);\n  transition:\n    opacity var(--sidebar-copy-duration) ease-out,\n    transform var(--sidebar-copy-duration) var(--sidebar-easing);\n}\n\n.sidebar-logo,\n.sidebar-collapse-control,\n.sidebar-expand-control {\n  transition-duration: var(--sidebar-copy-duration);\n  transition-timing-function: ease-out;\n}\n\n.sidebar-expand-control {\n  pointer-events: none;\n  opacity: 0;\n}\n\n.sidebar-glide-highlight {\n  right: 8px;\n  left: 8px;\n}\n\n[data-sidebar-collapsed=\"true\"] .sidebar-row {\n  width: 36px;\n}\n\n[data-sidebar-collapsed=\"true\"] .sidebar-copy {\n  pointer-events: none;\n  opacity: 0;\n  transform: translateX(calc(var(--sidebar-copy-offset) * -1));\n}\n\n[data-sidebar-collapsed=\"true\"] .sidebar-workspace-control {\n  pointer-events: none;\n}\n\n[data-sidebar-collapsed=\"true\"] .sidebar-logo,\n[data-sidebar-collapsed=\"true\"] .sidebar-collapse-control {\n  pointer-events: none;\n  opacity: 0;\n}\n\n[data-sidebar-collapsed=\"true\"] .sidebar-expand-control {\n  pointer-events: auto;\n  opacity: 1;\n}\n\n[data-sidebar-collapsed=\"true\"] .sidebar-glide-highlight {\n  right: auto;\n  width: 36px;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .home-reveal {\n    opacity: 1 !important;\n    transform: none !important;\n    filter: none !important;\n  }\n}\n\n/* ── records table ────────────────────────────────────────\n * The grid is deliberately more architectural than card-like:\n * one quiet surface, precise rules, and color reserved for\n * meaning. The first column remains an anchor while both axes\n * can move independently inside the table viewport.\n */\n",
       "type": "registry:file",
-      "target": "app/beautifui/sidebar-nav.css"
+      "target": "app/agent-ui/sidebar-nav.css"
     }
   ]
 }

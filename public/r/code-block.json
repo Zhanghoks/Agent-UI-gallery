@@ -5,7 +5,7 @@
   "title": "Code Block",
   "description": "A line-numbered listing and a unified diff.",
   "registryDependencies": [
-    "https://www.beautifului.dev/r/foundation.json"
+    "http://localhost:3000/r/foundation.json"
   ],
   "files": [
     {
