@@ -88,8 +88,12 @@ function scanGallery(root, config, errors) {
     });
   }
 
+  const rank = (e) => config.categories.indexOf(e.category);
   return entries.sort(
-    (a, b) => (a.order ?? Infinity) - (b.order ?? Infinity) || a.id.localeCompare(b.id),
+    (a, b) =>
+      rank(a) - rank(b) ||
+      (a.order ?? Infinity) - (b.order ?? Infinity) ||
+      a.id.localeCompare(b.id),
   );
 }
 

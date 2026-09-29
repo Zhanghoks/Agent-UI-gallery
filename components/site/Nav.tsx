@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { META } from "@/lib/meta";
 
 /* Component nav — anchors into the list, scrollspy highlights
@@ -54,31 +54,40 @@ export function Nav() {
               "top 220ms cubic-bezier(0.23,1,0.32,1), height 220ms cubic-bezier(0.23,1,0.32,1), opacity 150ms ease",
           }}
         />
-        {META.map((m) => (
-          <li
-            key={m.id}
-            ref={(el) => {
-              itemRefs.current[m.id] = el;
-            }}
-          >
-            <a
-              href={`#${m.id}`}
-              onMouseEnter={() => setHovered(m.id)}
-              onFocus={() => setHovered(m.id)}
-              onBlur={() => setHovered(null)}
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById(m.id)
-                  ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        {META.map((m, i) => (
+          <Fragment key={m.id}>
+            {m.category !== META[i - 1]?.category && (
+              <li
+                role="presentation"
+                className="mt-3 mb-1 px-2 text-[11px] font-medium tracking-wide text-ink-3 capitalize first:mt-0"
+              >
+                {m.category}
+              </li>
+            )}
+            <li
+              ref={(el) => {
+                itemRefs.current[m.id] = el;
               }}
-              className={`relative z-10 flex items-center rounded-[7px] px-2 py-[5px]
-                text-[12.5px] transition-colors duration-150
-                ${active === m.id ? "font-medium text-ink" : "text-ink-2 hover:text-ink"}`}
             >
-              {m.title}
-            </a>
-          </li>
+              <a
+                href={`#${m.id}`}
+                onMouseEnter={() => setHovered(m.id)}
+                onFocus={() => setHovered(m.id)}
+                onBlur={() => setHovered(null)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById(m.id)
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className={`relative z-10 flex items-center rounded-[7px] px-2 py-[5px]
+                  text-[12.5px] transition-colors duration-150
+                  ${active === m.id ? "font-medium text-ink" : "text-ink-2 hover:text-ink"}`}
+              >
+                {m.title}
+              </a>
+            </li>
+          </Fragment>
         ))}
       </ul>
     </nav>

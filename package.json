@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "node --test scripts/__tests__/catalog.test.mjs",
-    "typecheck": "npm run gen && tsc --noEmit"
+    "typecheck": "npm run gen && tsc --noEmit",
+    "new": "node scripts/new.mjs"
   },
   "dependencies": {
     "@central-icons-react/round-outlined-radius-2-stroke-2": "^1.1.315",

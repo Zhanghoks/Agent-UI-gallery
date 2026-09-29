@@ -5,6 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildCatalog } from "../lib/catalog.mjs";
+import { scaffoldComponent } from "../lib/scaffold.mjs";
 
 /* The one seam: gallery folders (+ atoms, global css, config) in →
  * catalog entries + registry files out. Fixtures are tiny throwaway repos. */
@@ -93,6 +94,19 @@ test("entries are ordered by `order`, then id", () => {
     },
   });
   assert.deepEqual(build(root).entries.map((e) => e.id), ["alpha", "bravo", "charlie", "delta"]);
+});
+
+test("entries are grouped by the category order in the config, then by `order`", () => {
+  const root = makeRepo({
+    components: {
+      alpha: { meta: meta("alpha", { category: "data", order: 10 }) },
+      bravo: { meta: meta("bravo", { category: "agent", order: 20 }) },
+      charlie: { meta: meta("charlie", { category: "data", order: 30 }) },
+      delta: { meta: meta("delta", { category: "agent", order: 40 }) },
+    },
+  });
+  // CONFIG.categories is ["agent", "data"]
+  assert.deepEqual(build(root).entries.map((e) => e.id), ["bravo", "delta", "alpha", "charlie"]);
 });
 
 test("variants and npm dependencies are carried through", () => {
@@ -212,6 +226,29 @@ test("reports every problem at once", () => {
     () => build(root),
     (err) => /alpha/.test(err.message) && /bravo/.test(err.message),
   );
+});
+
+/* ── scaffolding: a new component must be valid the moment it is created ── */
+
+test("a scaffolded component shows up in the catalog and registry", () => {
+  const root = makeRepo({ components: { alpha: { meta: meta("alpha", { order: 10 }) } } });
+  scaffoldComponent({ root, config: CONFIG, id: "my-card", category: "data" });
+
+  const { entries, registry } = build(root);
+  const created = entries.find((e) => e.id === "my-card");
+  assert.equal(created.title, "My Card");
+  assert.equal(created.category, "data");
+  assert.equal(created.origin, "own");
+  assert.equal(created.order, 20); // after the highest existing order
+  assert.ok(registry["my-card"]);
+  assert.match(registry["my-card"].files[0].content, /export default function MyCardDemo/);
+});
+
+test("scaffolding refuses an existing id, a bad id, or an unknown category", () => {
+  const root = makeRepo({ components: { alpha: { meta: meta("alpha") } } });
+  assert.throws(() => scaffoldComponent({ root, config: CONFIG, id: "alpha" }), /already exists/);
+  assert.throws(() => scaffoldComponent({ root, config: CONFIG, id: "Not Kebab" }), /kebab-case/);
+  assert.throws(() => scaffoldComponent({ root, config: CONFIG, id: "x", category: "nope" }), /category "nope"/);
 });
 
 /* ── the real repository ── */

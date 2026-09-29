@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import IceCreamHarness from "@/components/site/IceCreamHarness";
+import Harness from "@/components/harness/Harness";
 import config from "@/foundry.config.json";
 
 export const metadata: Metadata = {
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function HarnessPage() {
-  return <IceCreamHarness />;
+  return <Harness />;
 }

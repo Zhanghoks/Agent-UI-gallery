@@ -65,6 +65,7 @@ public/r/         生成的 shadcn registry
 | `npm run gen` | 只生成目录（`lib/*.generated.*`、`app/gallery.generated.css`） |
 | `npm run registry` | 生成目录并写出 `public/r/*.json` |
 | `npm run build` | 生成目录 + registry，然后 `next build` |
+| `npm run new -- <id> [--category c]` | 生成新组件文件夹（受控组件 + demo 模板） |
 | `npm test` | 目录扫描 / registry 生成的测试 |
 | `npm run typecheck` | 生成目录并 `tsc --noEmit` |
 
@@ -85,7 +86,7 @@ token 在 `app/globals.css` 中（`:root` / `.dark` / `@theme inline`）：偏�
 
 ## 接入真实 agent
 
-`components/site/IceCreamHarness.tsx` 是演示：`SCENARIOS` 把假 prompt 映射到由组件拼成的回复。
+`components/harness/scenarios.tsx` 是演示数据（`components/harness/Harness.tsx` 只负责渲染）：`SCENARIOS` 把假 prompt 映射到由组件拼成的回复。
 接入真实后端时替换这些数据，组件作为渲染层不变。事件协议的设计见 `docs/architecture.md` 第 9 节。
 
 ## 许可
