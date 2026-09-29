@@ -2,7 +2,7 @@
 
 面向 AI 原生产品的组件库，以「画廊」形式展示：每个组件都是可交互的实时 demo，可复制源码，也可通过 shadcn registry 安装到其他项目。
 
-Fork 自 [Beautiful UI](docs/NOTICE.md)（MIT）。技术栈：Next.js 15 · React 19 · Tailwind CSS v4 · TypeScript。
+Fork 自 [Beautiful UI](docs/NOTICE.md)（MIT）。文档从 [docs/README.md](docs/README.md) 读起，术语见 [CONTEXT.md](CONTEXT.md)。技术栈：Next.js 15 · React 19 · Tailwind CSS v4 · TypeScript。
 
 - 画廊：`/`
 - Harness（把组件组合成 agent 聊天的演示）：`/harness`
@@ -30,7 +30,7 @@ app/              页面与 globals.css（设计 token、@theme、基础规则�
 lib/              meta 类型；*.generated.* 由 `npm run gen` 生成，不入库
 scripts/          gen.mjs（生成）、lib/catalog.mjs（扫描 → 目录 + registry，有测试）
 foundry.config.json   站点名、registry 地址、命名空间目录、分类列表
-docs/             architecture.md、adr/、NOTICE.md
+docs/             README.md（索引）· architecture.md · roadmap.md · adr/ · NOTICE.md
 public/r/         生成的 shadcn registry
 ```
 
@@ -50,7 +50,7 @@ public/r/         生成的 shadcn registry
 ## 分类
 
 画廊的导航和卡片列表按分类分组。分类定义在 `foundry.config.json` 的 `categories`（每项 `id`、`label`、`description` 都必填，顺序即显示顺序，没有组件的分类不显示）。
-分类体系与归类规则见 [ADR-010](docs/adr/010-category-taxonomy.md)；组件当前的归属以各自的 `meta.json` 为准。
+分类体系与归类规则见 [ADR-0010](docs/adr/0010-category-taxonomy.md)；组件当前的归属以各自的 `meta.json` 为准。
 
 | id | 回答的问题 |
 | --- | --- |
@@ -98,7 +98,10 @@ import 了 npm 包（react、react-dom、next 除外）却没写进 `npm`、impo
 | `npm run registry` | 生成目录并写出 `public/r/*.json` |
 | `npm run build` | 生成目录 + registry，然后 `next build` |
 | `npm run new -- <id> [--category c]` | 生成新组件文件夹（受控组件 + demo 模板） |
-| `npm test` | 目录扫描 / registry 生成的测试 |
+| `npm test` | 全部测试（目录扫描 + 文档一致性） |
+| `npm run docs:check` | 只检查文档与仓库是否一致（也包含在 `npm test` 里） |
+| `npm start` | 启动生产构建（需先 `npm run build`） |
+| `npm run lint` | `next lint` |
 | `npm run typecheck` | 生成目录并 `tsc --noEmit` |
 
 ## 安装组件（registry）
@@ -119,7 +122,7 @@ token 在 `app/globals.css` 中（`:root` / `.dark` / `@theme inline`）：偏�
 ## 接入真实 agent
 
 `components/harness/scenarios.tsx` 是演示数据（`components/harness/Harness.tsx` 只负责渲染）：`SCENARIOS` 把假 prompt 映射到由组件拼成的回复。
-接入真实后端时替换这些数据，组件作为渲染层不变。事件协议的设计见 `docs/architecture.md` 第 9 节。
+接入真实后端时替换这些数据，组件作为渲染层不变。事件协议的设计见 [路线图](docs/roadmap.md) 与 ADR-0008。
 
 ## 许可
 

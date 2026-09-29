@@ -1,4 +1,4 @@
-Status: ready-for-agent
+Status: resolved
 
 # Spec：整理设计文件与整体架构文档
 

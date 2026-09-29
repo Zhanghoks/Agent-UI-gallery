@@ -1,4 +1,4 @@
-Status: ready-for-agent
+Status: resolved
 
 # Spec：可扩展的自有 Agent 组件库（画廊基座）
 
