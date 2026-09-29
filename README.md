@@ -11,14 +11,11 @@ Fork 自 [Beautiful UI](docs/NOTICE.md)（MIT）。技术栈：Next.js 15 · Rea
 ## 快速开始
 
 ```bash
-npm install --ignore-scripts   # 见下方「图标库」
+npm install
 npm run dev
 ```
 
 需要 Node 20+。
-
-> **图标库**：`sidebar-nav` 使用商业图标库 `@central-icons-react`，安装时会做 license 检查。
-> 设置 `CENTRAL_LICENSE_KEY` 后正常 `npm install`，或用 `--ignore-scripts` 跳过检查，或替换该组件的图标。
 
 ## 新增一个组件
 

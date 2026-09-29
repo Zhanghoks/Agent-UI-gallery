@@ -25,5 +25,9 @@
   "stream-text": {
     "title": "StreamText",
     "file": "StreamText.tsx"
+  },
+  "icons": {
+    "title": "Icons",
+    "file": "Icons.tsx"
   }
 }

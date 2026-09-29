@@ -6,10 +6,8 @@
   "order": 140,
   "origin": "upstream",
   "deps": [
-    "glide-menu"
-  ],
-  "npm": [
-    "@central-icons-react/round-outlined-radius-2-stroke-2"
+    "glide-menu",
+    "icons"
   ],
   "css": "styles.css"
 }

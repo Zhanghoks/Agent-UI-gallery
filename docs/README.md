@@ -27,6 +27,7 @@
 | [0010](adr/0010-category-taxonomy.md) | 分类体系：按组件承担的工作划分 | 已采纳 |
 | [0011](adr/0011-atoms-boundary-and-dependency-validation.md) | atoms 边界与依赖校验 | 已采纳 |
 | [0012](adr/0012-docs-structure-and-consistency-check.md) | 文档分工与文档一致性检查 | 已采纳 |
+| [0013](adr/0013-own-icon-set.md) | 使用自有图标集，不依赖第三方图标包 | 已采纳 |
 
 ## 技能配置
 

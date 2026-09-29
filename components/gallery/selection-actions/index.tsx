@@ -9,17 +9,17 @@ import {
   type ReactNode,
 } from "react";
 import {
-  ArrowUp,
-  ChatBubbleQuestion,
-  Check,
-  EmojiSatisfied,
-  NavArrowRight,
-  Refresh,
-  Scissor,
-  Spark,
-  TextBox,
-  Xmark,
-} from "iconoir-react";
+  ArrowUpIcon,
+  CheckIcon,
+  ChevronRightIcon,
+  CloseIcon,
+  HelpBubbleIcon,
+  RefreshIcon,
+  ScissorsIcon,
+  SmileIcon,
+  SparkIcon,
+  TextBoxIcon,
+} from "@/components/atoms/Icons";
 import { Button } from "@/components/atoms/Button";
 import { Shimmer } from "@/components/atoms/Shimmer";
 import { StreamText } from "@/components/atoms/StreamText";
@@ -89,23 +89,23 @@ const iconProps = {
 } as const;
 
 const icons = {
-  explain: <ChatBubbleQuestion {...iconProps} />,
-  improve: <Spark {...iconProps} />,
-  shorten: <Scissor {...iconProps} />,
-  tone: <EmojiSatisfied {...iconProps} />,
-  grammar: <TextBox {...iconProps} />,
+  explain: <HelpBubbleIcon {...iconProps} />,
+  improve: <SparkIcon {...iconProps} />,
+  shorten: <ScissorsIcon {...iconProps} />,
+  tone: <SmileIcon {...iconProps} />,
+  grammar: <TextBoxIcon {...iconProps} />,
   send: (
-    <ArrowUp
+    <ArrowUpIcon
       width="16"
       height="16"
       strokeWidth="2.4"
       aria-hidden="true"
     />
   ),
-  chevron: <NavArrowRight {...iconProps} />,
-  check: <Check {...iconProps} />,
-  close: <Xmark {...iconProps} />,
-  retry: <Refresh {...iconProps} />,
+  chevron: <ChevronRightIcon {...iconProps} />,
+  check: <CheckIcon {...iconProps} />,
+  close: <CloseIcon {...iconProps} />,
+  retry: <RefreshIcon {...iconProps} />,
 };
 
 /* the single "keep" affirm — solid ink with a hairline (not the atom's filled
