@@ -12,9 +12,9 @@
 site     画廊网站外壳（导航、卡片网格、主题）
 harness  演示用 agent 聊天，由 gallery 组件拼成
    ↓
-gallery  组件，一个文件夹一个（21 个，均为上游）
+gallery  组件，一个文件夹一个
    ↓
-atoms    共享小构件（6 个）
+atoms    atom：被多个组件复用的小构件
    ↓
 app/globals.css  设计 token 与基础样式
 ```
@@ -29,7 +29,7 @@ app/globals.css  设计 token 与基础样式
 foundry.config.json      站点名、registry 地址、命名空间目录、分类列表
 app/                     路由：画廊 /、演示 /harness、/license；globals.css
 components/
-  atoms/                 共享小构件；atoms.json 声明哪些随 registry 分发
+  atoms/                 atom；atoms.json 声明哪些随 registry 分发
   gallery/<id>/          index.tsx · meta.json · styles.css（可选）
   harness/               Harness.tsx（渲染）· scenarios.tsx（假数据）
   site/                  画廊外壳
@@ -86,16 +86,9 @@ scripts/lib/catalog.mjs   扫描 → 校验 → 目录 + 分组 + registry
 
 不测组件渲染与视觉。
 
-## 占位值
+## 占位值与待清理项
 
-- 库名 `Agent UI Gallery`、registry 地址 `http://localhost:3000`：占位，确定后只改配置。
-- 站点没有自己的 logo 与 favicon。
-
-## 已知待清理项
-
-- `components/site/Foundations.tsx`、`components/site/ChatExperience.tsx` 是上游遗留，没有任何地方引用；`components/site/Chip.tsx`、`components/site/TextRow.tsx`、`components/site/StatusPill.tsx` 只被前者使用。
-- `sidebar-nav` 依赖商业图标库 `@central-icons-react`，安装时有 license 检查（README 有说明）；是否替换未定。
-- 交互音效与开发工具条（`agentation`）是否保留未定。
+库名、registry 地址等占位值，以及上游遗留的未使用文件、图标库与音效是否保留等未决事项，统一记录在 [路线图](roadmap.md)。
 
 ## 决策记录
 

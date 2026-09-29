@@ -12,7 +12,7 @@
 - `meta.json` 字段：`id`、`title`、`caption`、`category`（必填）；`order`、`origin`（`upstream` / `own`，缺省 `own`）、`variants`、`deps`、`npm`、`css`（可选）。
 - `id` 必须等于文件夹名；`order` 决定同一分类内的显示顺序。
 - 元信息用 JSON 而不是 TypeScript：扫描脚本是纯 Node，无需 TS 运行时，校验在扫描时完成；类型在 `lib/meta.ts`。
-- 共享小构件不进画廊，放在 `components/atoms/`（边界规则见 ADR-0011）。
+- atom（共享的小构件）不进画廊，放在 `components/atoms/`（边界规则见 ADR-0011）。
 
 ## 后果
 

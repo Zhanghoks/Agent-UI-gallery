@@ -15,7 +15,7 @@ const write = (root, file, content = "") => {
 };
 
 const ADR = (n, status = "已采纳") =>
-  `# ADR-${n} 标题\n\n状态：${status}\n\n## 背景\n\nx\n\n## 决定\n\nx\n\n## 后果\n\nx\n`;
+  `# ADR-${n} 标题\n\n状态：${status}\n\n## 背景\n\nx\n\n## 决定\n\nx\n\n## 后果\n\nx\n\n## 备选\n\nx\n`;
 
 /** A repo that passes every check; tests break one thing at a time. */
 function makeRepo(overrides = {}) {
@@ -122,9 +122,21 @@ test("an ADR without a valid status is reported", () => {
   assert.match(check(invalid)[0].message, /状态/);
 });
 
-test("a superseded ADR may point to its replacement", () => {
-  const root = makeRepo({ "docs/adr/0001-first.md": ADR("0001", "已被取代（见 ADR-0002）") });
-  assert.deepEqual(check(root), []);
+test("a superseded ADR must name its replacement", () => {
+  const ok = makeRepo({ "docs/adr/0001-first.md": ADR("0001", "已被取代（见 ADR-0002）") });
+  assert.deepEqual(check(ok), []);
+  const bare = makeRepo({ "docs/adr/0001-first.md": ADR("0001", "已被取代") });
+  assert.match(check(bare)[0].message, /状态/);
+});
+
+test("the status line must be exactly one of the allowed values", () => {
+  const root = makeRepo({ "docs/adr/0001-first.md": ADR("0001", "已采纳（部分）") });
+  assert.match(check(root)[0].message, /状态/);
+});
+
+test("an ADR heading needs a title after the number", () => {
+  const root = makeRepo({ "docs/adr/0001-first.md": ADR("0001").replace("# ADR-0001 标题", "# ADR-0001") });
+  assert.match(check(root)[0].message, /title|标题/);
 });
 
 test("an ADR heading number must match the file name", () => {
@@ -137,11 +149,12 @@ test("an ADR file name must start with a four digit number", () => {
   assert.ok(check(root).some((p) => /four digit|四位/.test(p.message)));
 });
 
-test("an ADR must have background, decision and consequences sections", () => {
+test("an ADR must have background, decision, consequences and alternatives sections", () => {
   const root = makeRepo({ "docs/adr/0001-first.md": "# ADR-0001 标题\n\n状态：已采纳\n\n## 决定\n\nx\n" });
   const text = messages(check(root)).join("\n");
   assert.match(text, /背景/);
   assert.match(text, /后果/);
+  assert.match(text, /备选/);
 });
 
 /* ── index ── */
@@ -157,7 +170,72 @@ test("the docs index must list every ADR and doc", () => {
   assert.equal(check(root).every((p) => p.file === "docs/README.md"), true);
 });
 
+test("the index must link to an ADR, not just mention its file name", () => {
+  const root = makeRepo({ "docs/README.md": "# 文档\n\n[架构](architecture.md) [术语](../CONTEXT.md)\n提到 adr/0001-first.md 但没有链接\n" });
+  assert.match(check(root)[0].message, /0001-first\.md/);
+});
+
+test("a missing docs index is reported", () => {
+  const root = makeRepo({ "docs/README.md": null });
+  assert.ok(check(root).some((p) => /index/.test(p.message)));
+});
+
+/* ── markdown links and path suffixes ── */
+
+test("relative markdown links must resolve from the document's folder", () => {
+  const ok = makeRepo({ "docs/architecture.md": "见 [ADR](adr/0001-first.md#top) 与 [外链](https://x.test/a) 与 [锚点](#top)\n" });
+  assert.deepEqual(check(ok), []);
+  const bad = makeRepo({ "docs/architecture.md": "见 [坏链接](adr/gone.md)\n" });
+  const [problem] = check(bad);
+  assert.equal(problem.line, 1);
+  assert.match(problem.message, /adr\/gone\.md/);
+});
+
+test("line and anchor suffixes and a leading ./ do not hide a missing path", () => {
+  const ok = makeRepo({ "docs/architecture.md": "`scripts/build.mjs:12` `scripts/build.mjs#L3` `./scripts/build.mjs`\n" });
+  assert.deepEqual(check(ok), []);
+  const bad = makeRepo({ "docs/architecture.md": "`scripts/gone.mjs:12` `./scripts/gone2.mjs`\n" });
+  assert.equal(check(bad).length, 2);
+});
+
+test("a file path under a directory that does not exist is reported", () => {
+  const root = makeRepo({ "docs/architecture.md": "`scirpts/build.mjs`\n" });
+  assert.equal(check(root).length, 1);
+});
+
+/* ── README command table ── */
+
+test("a script mentioned only in prose does not count as documented", () => {
+  const root = makeRepo({
+    "package.json": JSON.stringify({ scripts: { dev: "x", test: "y", extra: "z" } }),
+    "README.md": "# Demo\n\n| 命令 | 作用 |\n| --- | --- |\n| `npm run dev` | 开发 |\n| `npm test` | 测试 |\n\n也可以 `npm run extra`。\n见 `docs/README.md`。\n",
+  });
+  assert.match(check(root)[0].message, /extra/);
+});
+
+test("builtin scripts such as npm start are matched too", () => {
+  const root = makeRepo({
+    "package.json": JSON.stringify({ scripts: { dev: "x", test: "y", start: "z" } }),
+    "README.md": "# Demo\n\n| `npm run dev` | 开发 |\n| `npm test` | 测试 |\n| `npm start` | 启动 |\n见 `docs/README.md`。\n",
+  });
+  assert.deepEqual(check(root), []);
+});
+
+test("a missing README is reported", () => {
+  const root = makeRepo({ "README.md": null });
+  assert.ok(check(root).some((p) => p.file === "README.md"));
+});
+
 /* ── exemptions ── */
+
+test("a marker on the previous line does not exempt when that line has other content", () => {
+  const root = makeRepo({
+    "docs/architecture.md": "曾叫 `old-name.mjs` <!-- docs-check-ignore: 沿革 -->\n又提到 `other-old.mjs`\n",
+  });
+  assert.equal(check(root).length, 1);
+});
+
+/* ── exemptions (continued) ── */
 
 test("an ignore marker with a reason exempts the code span on the same line", () => {
   const root = makeRepo({
