@@ -25,7 +25,7 @@ import {
  * chat history, and a collapse that preserves icon alignment.
  * ───────────────────────────────────────────────────────── */
 
-const WORKSPACE = { key: "creamery", name: "Creamery Ops", monogram: "C" };
+const monogramOf = (name: string) => (name.trim()[0] ?? "W").toUpperCase();
 
 const NAV_ITEMS = [
   { key: "home", label: "Home", icon: <HomeIcon size={18} /> },
@@ -41,11 +41,11 @@ export type SidebarRecent = {
 const DEFAULT_RECENTS: SidebarRecent[] = [
   { id: "suppliers", label: "Supplier records" },
   { id: "todos", label: "Urgent to-dos this morning" },
-  { id: "flavor", label: "Flavor page ticket" },
+  { id: "flavor", label: "Product page ticket" },
   { id: "workload", label: "Workload summary" },
   { id: "offboarding", label: "Off-board a supplier" },
   { id: "restock", label: "Batch restock function" },
-  { id: "edits", label: "Propose flavor edits" },
+  { id: "edits", label: "Propose catalog edits" },
   { id: "subway", label: "Subway surfing" },
 ];
 
@@ -63,6 +63,8 @@ type SidebarNavProps = {
   footerIcon?: ReactNode;
   onFooterClick?: () => void;
   recents?: SidebarRecent[];
+  /** name shown in the workspace switcher */
+  workspaceName?: string;
   variant?: string;
 };
 
@@ -138,9 +140,11 @@ function RailButton({
 }
 
 function WorkspaceMenu({
+  name,
   position,
   onClose,
 }: {
+  name: string;
   position: { top: number; left: number };
   onClose: () => void;
 }) {
@@ -163,9 +167,9 @@ function WorkspaceMenu({
           className="relative z-10 flex h-10 w-full items-center gap-1.5 rounded-[8px] px-2 text-left"
         >
           <span className="flex size-6 shrink-0 items-center justify-center rounded-[7px] bg-ink text-[11px] font-semibold text-surface">
-            {WORKSPACE.monogram}
+            {monogramOf(name)}
           </span>
-          <span className="min-w-0 flex-1 truncate text-[13.5px] font-medium text-ink">{WORKSPACE.name}</span>
+          <span className="min-w-0 flex-1 truncate text-[13.5px] font-medium text-ink">{name}</span>
           <span className="shrink-0 text-ink"><CheckIcon size={18} /></span>
         </button>
         <div className="my-1 h-px bg-line" />
@@ -213,6 +217,7 @@ export default function SidebarNav({
   footerIcon,
   onFooterClick,
   recents = DEFAULT_RECENTS,
+  workspaceName = "Workspace",
 }: SidebarNavProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [internalNav, setInternalNav] = useState("chats");
@@ -291,14 +296,14 @@ export default function SidebarNav({
               <PopsicleIcon size={18} />
             </span>
             <span className="sidebar-copy ml-1.5 min-w-0 flex-1 truncate text-[14px] font-medium text-ink-2">
-              {WORKSPACE.name}
+              {workspaceName}
             </span>
             <span className="sidebar-copy ml-1 flex shrink-0 text-ink-3">
               <ChevronDownIcon size={16} />
             </span>
           </button>
 
-          {workspaceOpen && <WorkspaceMenu position={workspacePosition} onClose={() => setWorkspaceOpen(false)} />}
+          {workspaceOpen && <WorkspaceMenu name={workspaceName} position={workspacePosition} onClose={() => setWorkspaceOpen(false)} />}
 
           <button
             type="button"

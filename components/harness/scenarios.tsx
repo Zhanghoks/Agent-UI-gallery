@@ -22,7 +22,7 @@ import ToolChips from "@/components/gallery/tool-chips";
  * this module — Harness.tsx only renders what it provides.
  * ───────────────────────────────────────────────────────── */
 
-export const NAME = "Shane";
+export const NAME = "there";
 
 /* ── shared bits ──────────────────────────────────────────── */
 
@@ -132,7 +132,7 @@ function FindTicketAnswer() {
       <ThinkingState variant="Search" onSettled={() => setSettled(true)} />
       {settled && (
         <div className="mt-1" style={{ animation: "fade-in 200ms ease-out both" }}>
-          <StreamLine tone="ink-2" text="Found it — the flavor page redesign ticket, plus the two docs it references. The retrieved chunks are in the side panel." />
+          <StreamLine tone="ink-2" text="Found it — the product page redesign ticket, plus the two docs it references. The retrieved chunks are in the side panel." />
         </div>
       )}
     </>
@@ -262,7 +262,7 @@ export const SCENARIOS: Record<string, Scenario> = {
     Answer: () => <OffboardingAnswer />,
   },
   "find-ticket": {
-    prompt: "There was a ticket about redesigning the flavor page — can you find it?",
+    prompt: "There was a ticket about redesigning the product page — can you find it?",
     beat: 500,
     paneTitle: "Context",
     Pane: () => <ContextCards />,
@@ -287,7 +287,7 @@ export const SCENARIOS: Record<string, Scenario> = {
     ),
   },
   edits: {
-    prompt: "Propose edits to the flavor list.",
+    prompt: "Propose edits to the product catalog.",
     beat: 1000,
     Answer: () => (
       <Reply intro="I staged the changes as a reviewable draft — nothing is applied yet. Sweep through and approve what looks right.">
@@ -322,7 +322,7 @@ const KEYWORDS: [ScenarioId, string[]][] = [
   ["find-ticket", ["find", "search", "ticket", "where", "look up", "locate"]],
   ["suppliers", ["supplier", "records", "vendor", "table", "maker", "grid"]],
   ["restock", ["restock", "code", "function", "batch", "script", "reorder"]],
-  ["edits", ["edit", "diff", "change", "propose", "update the", "flavor list"]],
+  ["edits", ["edit", "diff", "change", "propose", "update the", "catalog"]],
   ["rewrite", ["rewrite", "tighten", "reword", "shorten", "note", "copy"]],
 ];
 
@@ -341,7 +341,7 @@ export const SUGGESTION_POOL: { id: ScenarioId; label: string }[] = [
   { id: "suppliers", label: "Show me our supplier records" },
   { id: "todos", label: "What urgent to-dos need my attention this morning?" },
   { id: "workload", label: "Prep a summary of my workload" },
-  { id: "find-ticket", label: "Find the ticket about the flavor page redesign" },
+  { id: "find-ticket", label: "Find the ticket about the product page redesign" },
   { id: "restock", label: "Draft the batch restock function" },
   { id: "rewrite", label: "Tighten this launch note" },
 ];
@@ -350,10 +350,10 @@ export const RECENTS: { id: ScenarioId; label: string; prompt?: string }[] = [
   { id: "appeal", label: "Parking ticket appeal", prompt: SCENARIOS.appeal.prompt },
   { id: "suppliers", label: "Supplier records" },
   { id: "todos", label: "Urgent to-dos this morning" },
-  { id: "find-ticket", label: "Flavor page ticket" },
+  { id: "find-ticket", label: "Product page ticket" },
   { id: "workload", label: "Workload summary" },
   { id: "offboarding", label: "Off-board a supplier" },
   { id: "restock", label: "Batch restock function" },
-  { id: "edits", label: "Propose flavor edits" },
+  { id: "edits", label: "Propose catalog edits" },
   { id: "surfer", label: "Subway surfing", prompt: SCENARIOS.surfer.prompt },
 ];

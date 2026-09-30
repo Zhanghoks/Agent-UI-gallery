@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 import LoadingState from "@/components/gallery/loading-state";
 import PromptBar from "@/components/gallery/prompt-bar";
 import SidebarNav from "@/components/gallery/sidebar-nav";
+import config from "@/foundry.config.json";
 import { NAME, SCENARIOS, matchScenario, SUGGESTION_POOL, RECENTS, type ScenarioId } from "@/components/harness/scenarios";
 
 /* ─────────────────────────────────────────────────────────
@@ -154,7 +155,7 @@ function EmptyState({ onSend, shuffle, offset }: { onSend: (text: string, id: Sc
           <PromptBar
             demo={false}
             tall
-            placeholder="Ask anything about your creamery ops…"
+            placeholder="Ask anything…"
             onSend={(text) => onSend(text, matchScenario(text))}
           />
         </div>
@@ -595,6 +596,7 @@ export default function Harness() {
         fill
         className="hidden lg:flex"
         recents={RECENTS}
+        workspaceName={config.name}
         activeTitle={chat.title}
         onPick={(id, label, prompt) => pickRecent(id as ScenarioId, label, prompt)}
         onNewChat={newChat}
