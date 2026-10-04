@@ -1,0 +1,10 @@
+{
+  "id": "workflow-question-card",
+  "title": "Workflow Question Card",
+  "caption": "A sub-agent stopped the run to ask — who asked, what, and the answers on offer.",
+  "category": "collaboration",
+  "order": 80,
+  "origin": "own",
+  "variants": ["One question", "Two questions"],
+  "deps": ["button", "icons", "workflow-timeline"]
+}

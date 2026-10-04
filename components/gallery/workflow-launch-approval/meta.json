@@ -1,0 +1,10 @@
+{
+  "id": "workflow-launch-approval",
+  "title": "Workflow Launch Approval",
+  "caption": "Ask before a workflow runs — the plan as a timeline, where it came from, the script behind it.",
+  "category": "collaboration",
+  "order": 70,
+  "origin": "own",
+  "variants": ["Generated", "Saved"],
+  "deps": ["button", "icons", "workflow-timeline"]
+}
