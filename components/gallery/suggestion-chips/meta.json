@@ -1,0 +1,10 @@
+{
+  "id": "suggestion-chips",
+  "title": "Suggestion Chips",
+  "caption": "Follow-up prompts the agent offers, one tap to send.",
+  "category": "conversation",
+  "order": 340,
+  "origin": "own",
+  "variants": ["Row", "Stack"],
+  "deps": ["icons"]
+}

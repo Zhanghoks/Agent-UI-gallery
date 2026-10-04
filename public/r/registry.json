@@ -39,6 +39,11 @@
       "title": "StreamText"
     },
     {
+      "name": "icons",
+      "type": "registry:ui",
+      "title": "Icons"
+    },
+    {
       "name": "streaming-text",
       "type": "registry:component",
       "title": "Streaming Text"
@@ -52,6 +57,21 @@
       "name": "prompt-bar",
       "type": "registry:component",
       "title": "Prompt Bar"
+    },
+    {
+      "name": "queue-list",
+      "type": "registry:component",
+      "title": "Queue List"
+    },
+    {
+      "name": "suggestion-chips",
+      "type": "registry:component",
+      "title": "Suggestion Chips"
+    },
+    {
+      "name": "attachment-tray",
+      "type": "registry:component",
+      "title": "Attachment Tray"
     },
     {
       "name": "loading-state",
@@ -79,9 +99,64 @@
       "title": "Agent Screen"
     },
     {
+      "name": "plan-card",
+      "type": "registry:component",
+      "title": "Plan Card"
+    },
+    {
+      "name": "terminal-view",
+      "type": "registry:component",
+      "title": "Terminal View"
+    },
+    {
+      "name": "workflow-timeline",
+      "type": "registry:component",
+      "title": "Workflow Timeline"
+    },
+    {
+      "name": "workflow-run-card",
+      "type": "registry:component",
+      "title": "Workflow Run Card"
+    },
+    {
+      "name": "workflow-artifact",
+      "type": "registry:component",
+      "title": "Workflow Artifact"
+    },
+    {
+      "name": "workflow-workspace-log",
+      "type": "registry:component",
+      "title": "Workflow Workspace Log"
+    },
+    {
+      "name": "workflow-saved-card",
+      "type": "registry:component",
+      "title": "Workflow Saved Card"
+    },
+    {
+      "name": "workflow-run-history",
+      "type": "registry:component",
+      "title": "Workflow Run History"
+    },
+    {
       "name": "approval-card",
       "type": "registry:component",
       "title": "Approval Card"
+    },
+    {
+      "name": "workflow-launch-approval",
+      "type": "registry:component",
+      "title": "Workflow Launch Approval"
+    },
+    {
+      "name": "workflow-question-card",
+      "type": "registry:component",
+      "title": "Workflow Question Card"
+    },
+    {
+      "name": "checkpoint-bar",
+      "type": "registry:component",
+      "title": "Checkpoint Bar"
     },
     {
       "name": "recommendation-card",
@@ -127,6 +202,16 @@
       "name": "code-block",
       "type": "registry:component",
       "title": "Code Block"
+    },
+    {
+      "name": "test-results",
+      "type": "registry:component",
+      "title": "Test Results"
+    },
+    {
+      "name": "sources-list",
+      "type": "registry:component",
+      "title": "Sources List"
     },
     {
       "name": "sidebar-nav",

@@ -1,0 +1,9 @@
+{
+  "id": "attachment-tray",
+  "title": "Attachment Tray",
+  "caption": "Files attached to a message — upload progress, failures, and a way to take one off.",
+  "category": "conversation",
+  "order": 350,
+  "origin": "own",
+  "deps": ["icons"]
+}

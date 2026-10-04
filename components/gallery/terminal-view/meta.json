@@ -1,0 +1,10 @@
+{
+  "id": "terminal-view",
+  "title": "Terminal View",
+  "caption": "Command output as it streams — input, output and errors told apart.",
+  "category": "progress",
+  "order": 260,
+  "origin": "own",
+  "variants": ["Streaming", "Failed"],
+  "deps": ["icons"]
+}

@@ -1,0 +1,9 @@
+{
+  "id": "queue-list",
+  "title": "Queue List",
+  "caption": "Messages waiting for the agent to finish — send one now or take it back.",
+  "category": "conversation",
+  "order": 330,
+  "origin": "own",
+  "deps": ["icons"]
+}
