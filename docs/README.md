@@ -28,6 +28,7 @@
 | [0011](adr/0011-atoms-boundary-and-dependency-validation.md) | atoms 边界与依赖校验 | 已采纳 |
 | [0012](adr/0012-docs-structure-and-consistency-check.md) | 文档分工与文档一致性检查 | 已采纳 |
 | [0013](adr/0013-own-icon-set.md) | 使用自有图标集，不依赖第三方图标包 | 已采纳 |
+| [0014](adr/0014-workflow-protocol-and-zcode-intake.md) | workflow 展示协议、mock 后端，以及从 ZCode 整理组件 | 已采纳 |
 
 ## 技能配置
 
@@ -35,4 +36,4 @@
 
 ## 需求（spec）
 
-需求放在 `.scratch/<feature>/spec.md`（本地 issue tracker，见 issue tracker 配置），顶部的 `Status:` 记录进度。
+需求与任务放在 GitHub issues（见 issue tracker 配置）。`.scratch/` 里是改用 GitHub 之前留下的本地 spec，不再新增。

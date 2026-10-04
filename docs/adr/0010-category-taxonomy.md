@@ -6,14 +6,15 @@
 最初的四类（agent / input / data / layout）是按技术形态随手分的：一半组件挤在 `agent` 里，导航和网格也没有分组标题。随着组件增多，需要一套能持续容纳新组件的分类，且分类本身应描述「这个组件为 agent 交互做什么」，而不是它长什么样。
 
 ## 决定
-分类定义在 `foundry.config.json` 的 `categories`，每项 `{ id, label, description }`（三项必填、id 唯一），列表顺序就是显示顺序；没有组件的分类不显示。当前五类：
+分类定义在 `foundry.config.json` 的 `categories`，每项 `{ id, label, description }`（三项必填、id 唯一），列表顺序就是显示顺序；没有组件的分类不显示。当前六类（`workflow` 由 ADR-0014 加入）：
 
 | id | 回答的问题 | 现有组件 |
 | --- | --- | --- |
-| `conversation` | 人和 agent 怎么说话 | streaming-text、chat-composer、prompt-bar |
-| `progress` | agent 正在做什么 | loading-state、thinking-state、task-rows、tool-chips、agent-screen |
-| `collaboration` | 人和 agent 怎么一起决定 | approval-card、recommendation-card、fine-tune-card、selection-actions |
-| `data` | agent 知道什么、产出什么 | context-cards、records-table、diff-table、filter-table、insight-cards、code-block |
+| `conversation` | 人和 agent 怎么说话 | streaming-text、chat-composer、prompt-bar、queue-list、suggestion-chips、attachment-tray |
+| `progress` | agent 正在做什么 | loading-state、thinking-state、task-rows、tool-chips、agent-screen、plan-card、terminal-view |
+| `workflow` | 一次 workflow 走到哪、怎么找到并启动它 | workflow-timeline、workflow-run-card、workflow-artifact、workflow-workspace-log、workflow-saved-card、workflow-run-history |
+| `collaboration` | 人和 agent 怎么一起决定 | approval-card、recommendation-card、fine-tune-card、selection-actions、workflow-launch-approval、workflow-question-card、checkpoint-bar |
+| `data` | agent 知道什么、产出什么 | context-cards、records-table、diff-table、filter-table、insight-cards、code-block、test-results、sources-list |
 | `workspace` | 工作发生的界面 | sidebar-nav、search、flowchart |
 
 归类规则：

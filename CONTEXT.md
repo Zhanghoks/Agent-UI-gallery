@@ -20,6 +20,8 @@
 | **scenario**（场景） | harness 里的一段假数据：把一个用户提示映射到由组件拼成的回复；接真实后端时替换它 |
 | **受控组件** | 状态完全来自 props 的组件，可以被真实 agent 事件驱动（见 ADR-0007） |
 | **Demo** | 用定时器和假数据驱动受控组件的默认导出，画廊里看到的动画就是它 |
+| **workflow 协议** | `lib/workflow/protocol.ts` 定义的展示层契约：run 状态、事件、路由、命令。只描述界面要显示什么，与 ADR-0008 的 Part 协议互不替代（见 ADR-0014） |
+| **mock 服务端** | `lib/workflow/mock-server.ts` 与 `app/api/mock/workflow/*`：按脚本回放 run 的内存实现，接真实后端时被替换 |
 | **占位值** | 尚未确定、只用来让项目跑起来的值（库名、registry 地址） |
 
 ## 依赖方向
