@@ -1,0 +1,10 @@
+{
+  "id": "workflow-run-history",
+  "title": "Workflow Run History",
+  "caption": "Every run of a workflow, running ones first, with what each cost.",
+  "category": "workflow",
+  "order": 60,
+  "origin": "own",
+  "variants": ["Directory", "Empty"],
+  "deps": ["icons", "workflow-timeline"]
+}

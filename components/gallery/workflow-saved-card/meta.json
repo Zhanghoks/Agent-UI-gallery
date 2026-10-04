@@ -1,0 +1,10 @@
+{
+  "id": "workflow-saved-card",
+  "title": "Workflow Saved Card",
+  "caption": "A saved workflow you can run again — scope, last run, and the arguments it takes.",
+  "category": "workflow",
+  "order": 50,
+  "origin": "own",
+  "variants": ["Cards", "Never run"],
+  "deps": ["icons", "workflow-timeline"]
+}
