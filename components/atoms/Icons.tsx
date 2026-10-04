@@ -148,3 +148,142 @@ export const TextBoxIcon = icon(
     <path d="M7 9h10M7 13h10M7 17h6" />
   </>,
 );
+
+/* workflow display — shapes drawn for this set, not taken from an icon package */
+export const WorkflowIcon = icon(
+  "WorkflowIcon",
+  <>
+    <circle cx="6" cy="7" r="2" />
+    <circle cx="18" cy="7" r="2" />
+    <circle cx="12" cy="17" r="2" />
+    <path d="M8 7h8M7.2 8.8 11 15M16.8 8.8 13 15" />
+  </>,
+);
+export const TerminalIcon = icon(
+  "TerminalIcon",
+  <>
+    <rect x="4" y="5" width="16" height="14" rx="2" />
+    <path d="m8 10 2.4 2L8 14M12.5 14H16" />
+  </>,
+);
+export const FileIcon = icon(
+  "FileIcon",
+  <>
+    <path d="M7 3.5h6.5L18 8V20a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1z" />
+    <path d="M13 3.5V8h5" />
+  </>,
+);
+export const MarkdownIcon = icon(
+  "MarkdownIcon",
+  <>
+    <path d="M5 7h8a4 4 0 0 1 0 8H9" />
+    <path d="M9 7v11M15 11v7" />
+  </>,
+);
+export const ChartIcon = icon(
+  "ChartIcon",
+  <>
+    <path d="M4 19h16" />
+    <path d="M7 16V11M12 16V7M17 16v-5" />
+  </>,
+);
+export const TableIcon = icon(
+  "TableIcon",
+  <>
+    <rect x="4" y="5" width="16" height="14" rx="2" />
+    <path d="M4 10h16M10 10v9" />
+  </>,
+);
+export const MetricsIcon = icon(
+  "MetricsIcon",
+  <>
+    <path d="M4 16.5 8.5 11l3.2 3.2L19 6.5" />
+    <path d="M14.5 6.5H19V11" />
+  </>,
+);
+export const BoardIcon = icon(
+  "BoardIcon",
+  <>
+    <rect x="3.5" y="4" width="5" height="16" rx="1" />
+    <rect x="10" y="4" width="5" height="10" rx="1" />
+    <rect x="16.5" y="4" width="4" height="7" rx="1" />
+  </>,
+);
+export const BranchIcon = icon(
+  "BranchIcon",
+  <>
+    <circle cx="7" cy="6" r="2" />
+    <circle cx="7" cy="18" r="2" />
+    <circle cx="17" cy="14" r="2" />
+    <path d="M7 8v8M9 6h3a5 5 0 0 1 5 5v1" />
+  </>,
+);
+export const ArrowUpRightIcon = icon(
+  "ArrowUpRightIcon",
+  <>
+    <path d="M7 17 17 7" />
+    <path d="M9 7h8v8" />
+  </>,
+);
+export const StopIcon = icon("StopIcon", <rect x="7" y="7" width="10" height="10" rx="1.5" />);
+export const DiamondIcon = icon("DiamondIcon", <path d="M12 3.5 20.5 12 12 20.5 3.5 12z" />);
+
+/* run, plan and attachment shapes */
+export const PlayIcon = icon("PlayIcon", <path d="M8 5.5v13l10.5-6.5z" />);
+export const ClockIcon = icon(
+  "ClockIcon",
+  <>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M12 7.5V12l3 2" />
+  </>,
+);
+export const AlertIcon = icon(
+  "AlertIcon",
+  <>
+    <path d="M12 4 21 19.5H3z" />
+    <path d="M12 10v4.5M12 17.2v.1" />
+  </>,
+);
+export const PaperclipIcon = icon(
+  "PaperclipIcon",
+  <path d="m19 11-7 7a4.5 4.5 0 0 1-6.4-6.4l8-8a3 3 0 0 1 4.2 4.2l-8 8a1.5 1.5 0 0 1-2.1-2.1L14 8.5" />,
+);
+export const LinkIcon = icon(
+  "LinkIcon",
+  <>
+    <path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1" />
+    <path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" />
+  </>,
+);
+export const FlagIcon = icon(
+  "FlagIcon",
+  <>
+    <path d="M6 21V4" />
+    <path d="M6 5h11l-2.5 3.5L17 12H6" />
+  </>,
+);
+export const ListIcon = icon(
+  "ListIcon",
+  <>
+    <path d="M9.5 7H20M9.5 12H20M9.5 17H20" />
+    <path d="M4.5 7h.1M4.5 12h.1M4.5 17h.1" />
+  </>,
+);
+export const UndoIcon = icon(
+  "UndoIcon",
+  <>
+    <path d="M9 7 4.5 11.5 9 16" />
+    <path d="M5 11.5h9a5 5 0 0 1 0 10h-2" />
+  </>,
+);
+export const FolderIcon = icon(
+  "FolderIcon",
+  <path d="M3.5 7a1.5 1.5 0 0 1 1.5-1.5h4l2 2.5h8A1.5 1.5 0 0 1 20.5 9.5V18a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 18z" />,
+);
+export const ShieldIcon = icon(
+  "ShieldIcon",
+  <>
+    <path d="M12 3.5 19 6v5.5c0 4.2-2.9 7.4-7 9-4.1-1.6-7-4.8-7-9V6z" />
+    <path d="m9 12 2.2 2.2L15.2 10" />
+  </>,
+);

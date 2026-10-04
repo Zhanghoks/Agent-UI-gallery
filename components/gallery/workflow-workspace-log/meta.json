@@ -1,0 +1,11 @@
+{
+  "id": "workflow-workspace-log",
+  "title": "Workflow Workspace Log",
+  "caption": "What a workflow phase did in the workspace — reads, search, git, terminal.",
+  "category": "workflow",
+  "order": 40,
+  "origin": "own",
+  "deps": [
+    "icons"
+  ]
+}

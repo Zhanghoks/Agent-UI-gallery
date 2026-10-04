@@ -19,6 +19,11 @@
       "description": "What the agent is doing — thinking, tool calls, tasks, its screen."
     },
     {
+      "id": "workflow",
+      "label": "Workflow",
+      "description": "Following a workflow run and launching one — timeline, run card, artifacts, log, history."
+    },
+    {
       "id": "collaboration",
       "label": "Collaboration",
       "description": "Human in the loop — approvals, suggestions, fine-tuning, rewrites."

@@ -1,0 +1,17 @@
+{
+  "id": "workflow-run-card",
+  "title": "Workflow Run Card",
+  "caption": "A workflow in the conversation — live timeline, or the receipt when it ends.",
+  "category": "workflow",
+  "order": 20,
+  "origin": "own",
+  "variants": [
+    "Running",
+    "Completed"
+  ],
+  "deps": [
+    "icons",
+    "workflow-timeline",
+    "workflow-artifact"
+  ]
+}
