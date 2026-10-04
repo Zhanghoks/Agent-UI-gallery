@@ -253,7 +253,9 @@ export type CommandRejection =
   | "not_resumable"
   | "superseded"
   | "already_terminal"
-  | "invalid_args";
+  | "invalid_args"
+  /** The server did not answer with a protocol body (transport failure). */
+  | "unavailable";
 
 export type CommandResult<T extends object = object> =
   | ({ ok: true } & T)
@@ -272,7 +274,11 @@ export const WORKFLOW_API_BASE = "/api/mock/workflow";
 export const workflowRoutes = {
   runs: () => `${WORKFLOW_API_BASE}/runs`,
   run: (runId: string) => `${WORKFLOW_API_BASE}/runs/${runId}`,
-  events: (runId: string, after = 0) => `${WORKFLOW_API_BASE}/runs/${runId}/events?after=${after}`,
+  /** No `after`: stream from now. `after: 0` replays the run from its start. */
+  events: (runId: string, after?: number) =>
+    `${WORKFLOW_API_BASE}/runs/${runId}/events${after === undefined ? "" : `?after=${after}`}`,
+  /** Rewinds a live demo run. Mock-server only. */
+  restart: (runId: string, speed = 1) => `${WORKFLOW_API_BASE}/runs/${runId}?restart=1&speed=${speed}`,
   artifacts: (runId: string) => `${WORKFLOW_API_BASE}/runs/${runId}/artifacts`,
   artifactData: (runId: string, artifactId: string) =>
     `${WORKFLOW_API_BASE}/runs/${runId}/artifacts/${artifactId}`,

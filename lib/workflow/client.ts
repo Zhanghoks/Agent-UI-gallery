@@ -29,7 +29,11 @@ export async function postJson<T extends CommandResult<object>>(url: string, bod
     headers: { "Content-Type": "application/json" },
     body: body === undefined ? undefined : JSON.stringify(body),
   });
-  return (await response.json()) as T;
+  try {
+    return (await response.json()) as T;
+  } catch {
+    return { ok: false, reason: "unavailable", message: `HTTP ${response.status}` } as T;
+  }
 }
 
 export const api = {
@@ -39,7 +43,7 @@ export const api = {
     getJson<{ nodes: WorkspaceNode[] }>(workflowRoutes.workspace(runId)).then((data) => data.nodes),
   workspaceResult: (runId: string, nodeId: string) =>
     getJson<WorkspaceNodeResult>(workflowRoutes.workspaceResult(runId, nodeId)),
-  restart: (runId: string, speed: number) => getJson<RunState>(`${workflowRoutes.run(runId)}?restart=1&speed=${speed}`),
+  restart: (runId: string, speed: number) => getJson<RunState>(workflowRoutes.restart(runId, speed)),
 };
 
 /** Re-reads `load` every `ms` while `active`, and once on demand through `refresh`. */
@@ -69,9 +73,14 @@ export function useRunStream(runId: string | undefined, epoch = 0): RunState | u
   useEffect(() => {
     setState(undefined);
     if (!runId) return;
-    const source = new EventSource(workflowRoutes.events(runId).replace("?after=0", ""));
+    const source = new EventSource(workflowRoutes.events(runId));
     const receive = (raw: MessageEvent<string>) => {
-      const message = JSON.parse(raw.data) as RunStreamMessage;
+      let message: RunStreamMessage;
+      try {
+        message = JSON.parse(raw.data) as RunStreamMessage;
+      } catch {
+        return;
+      }
       if (message.kind === "snapshot") setState(message.state);
       else if (message.kind === "event") setState((current) => (current ? reduceRun(current, message.envelope) : current));
       else source.close();

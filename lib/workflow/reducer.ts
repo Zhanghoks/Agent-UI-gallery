@@ -32,7 +32,7 @@ export function initialRunState(runId: string, at: number): RunState {
 const LIVE_PHASES = new Set(["queued", "dispatched", "waiting"]);
 const BUSY_PHASES = new Set(["executing", "repairing", "nudged"]);
 
-const isTerminal = (status: RunState["status"]) =>
+export const isTerminal = (status: RunState["status"]) =>
   status === "completed" || status === "errored" || status === "stopped";
 
 /* An actor has no lifecycle events of its own. Its status is read off its

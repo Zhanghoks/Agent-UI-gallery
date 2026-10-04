@@ -187,7 +187,7 @@ export default function WorkflowConsole() {
         {(workspace ?? []).length > 0 ? (
           <div>
             <h3 className="pb-1.5 text-[11px] font-medium uppercase tracking-wide text-ink-3">Workspace</h3>
-            <WorkflowWorkspaceLog entries={toWorkspaceLog(workspace ?? [], outputs)} onToggle={toggleLog} openId={open} />
+            <WorkflowWorkspaceLog entries={toWorkspaceLog(workspace ?? [], outputs, state?.startedAt)} onToggle={toggleLog} openId={open} />
           </div>
         ) : null}
 

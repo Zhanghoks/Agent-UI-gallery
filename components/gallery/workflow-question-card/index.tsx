@@ -96,7 +96,7 @@ export function WorkflowQuestionCard({ questions, labels: labelOverrides, onAnsw
           }}
         >
           <input
-            className="min-w-0 flex-1 rounded-full bg-field px-3 py-1.5 text-[12px] text-ink outline-none placeholder:text-ink-3"
+            className="min-w-0 flex-1 rounded-full bg-field px-3 py-1.5 text-[12px] text-ink outline-none placeholder:text-ink-3 focus-visible:ring-2 focus-visible:ring-accent"
             onChange={(event) => setDraft(event.target.value)}
             placeholder={labels.placeholder}
             value={draft}

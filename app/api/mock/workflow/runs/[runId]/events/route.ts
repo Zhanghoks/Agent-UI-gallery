@@ -1,5 +1,6 @@
 import { noStore, notFound, type RunParams } from "@/lib/workflow/http";
-import { eventsAfter, getRunState, isTerminal, planStream } from "@/lib/workflow/mock-server";
+import { eventsAfter, getRunState, planStream } from "@/lib/workflow/mock-server";
+import { isTerminal } from "@/lib/workflow/reducer";
 import type { RunStreamMessage } from "@/lib/workflow/protocol";
 
 export const dynamic = "force-dynamic";
@@ -21,16 +22,22 @@ export async function GET(request: Request, { params }: RunParams) {
   if (!plan) return notFound(`run ${runId}`);
 
   const encoder = new TextEncoder();
+  let closed = false;
   const stream = new ReadableStream<Uint8Array>({
+    cancel() {
+      closed = true;
+    },
     async start(controller) {
-      const send = (message: RunStreamMessage) => controller.enqueue(encoder.encode(frame(message)));
+      const send = (message: RunStreamMessage) => {
+        if (!closed) controller.enqueue(encoder.encode(frame(message)));
+      };
       const pause = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
       let sent = plan.snapshot.lastEventSequence;
       send({ kind: "snapshot", state: plan.snapshot });
 
       // A replay from the start walks the backlog slowly enough to watch.
       const replay = after !== undefined;
-      while (!request.signal.aborted) {
+      while (!closed && !request.signal.aborted) {
         for (const envelope of eventsAfter(runId, sent)) {
           send({ kind: "event", envelope });
           sent = envelope.sequence;
@@ -43,7 +50,8 @@ export async function GET(request: Request, { params }: RunParams) {
         }
         await pause(POLL_MS);
       }
-      controller.close();
+      if (!closed) controller.close();
+      closed = true;
     },
   });
 
