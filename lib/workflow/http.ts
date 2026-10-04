@@ -15,7 +15,7 @@ export function notFound(what: string): Response {
 }
 
 export function command(result: CommandResult<object>): Response {
-  return json(result, result.ok ? 200 : result.reason === "not_found" ? 404 : 409);
+  return json(result);
 }
 
 export async function readJson<T>(request: Request): Promise<Partial<T>> {

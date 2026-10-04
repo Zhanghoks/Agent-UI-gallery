@@ -27,7 +27,10 @@ function stationStatus(state: RunState, name: string, nodes: RunNode[]): StepSta
   if (!entered) return "pending";
   const runOver = state.status === "completed" || state.status === "errored" || state.status === "stopped";
   if (nodes.some((node) => node.outcome === "failed")) return "failed";
-  if (state.status === "stopped") return nodes.every((node) => !isLiveNode(node)) ? "done" : "pending";
+  // A stopped run reads like "not reached": unfinished or cancelled work stays hollow, not red or green.
+  if (state.status === "stopped") {
+    return nodes.some((node) => isLiveNode(node) || node.outcome === "cancelled") ? "pending" : "done";
+  }
   if (nodes.some(isBusyNode)) return "running";
   if (nodes.some(isLiveNode)) return "running";
   if (state.currentPhase === name && !runOver) return "running";
@@ -221,13 +224,17 @@ function resultChips(node: WorkspaceNode): string[] | undefined {
   return chips.length > 0 ? chips : undefined;
 }
 
-/** `results` holds fetched node output, by node id; a row without one is not expandable. */
+/**
+ * `results` holds fetched node output, by node id; a row without one is not expandable.
+ * Offsets count from `runStartedAt`; without it, from the first row.
+ */
 export function toWorkspaceLog(
   nodes: readonly WorkspaceNode[],
   results: Readonly<Record<string, string>> = {},
+  runStartedAt?: number,
 ): WorkspaceLogEntry[] {
   const ordered = [...nodes].sort((a, b) => a.createdAt - b.createdAt);
-  const origin = ordered[0]?.createdAt ?? 0;
+  const origin = runStartedAt ?? ordered[0]?.createdAt ?? 0;
   return ordered.map((node) => ({
     id: node.nodeId,
     kind: node.kind,

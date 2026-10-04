@@ -19,7 +19,7 @@ import type {
   WorkspaceNode,
   WorkspaceNodeResult,
 } from "./protocol";
-import { foldRun, summarizeRun } from "./reducer";
+import { foldRun, isTerminal, summarizeRun } from "./reducer";
 
 /* In-memory stand-in for a workflow engine. It plays each run's event script
  * on a clock: ended runs are fully played, a live run starts its clock when
@@ -157,10 +157,6 @@ export function planStream(runId: string, after: number | undefined, now = Date.
 export function eventsAfter(runId: string, sequence: number, now = Date.now()): RunEventEnvelope[] {
   const rt = runtime(runId);
   return rt ? envelopesOf(rt, now).filter((envelope) => envelope.sequence > sequence) : [];
-}
-
-export function isTerminal(status: RunState["status"]) {
-  return status === "completed" || status === "errored" || status === "stopped";
 }
 
 export function listArtifacts(runId: string, now = Date.now()): RunArtifact[] | undefined {
