@@ -9,7 +9,7 @@
 | 3 | harness 接真实后端 | 未开始 | ADR-0008 | 依赖第 2 项；替换 `components/harness/scenarios.tsx` 的假数据，渲染部分不动 |
 | 4 | 画廊 `?variant=` 深链接 | 未开始 | ADR-0009 | 分享具体变体 |
 | 5 | 画廊状态预览条 | 未开始 | ADR-0009 | 受控组件可切换 running / done / error；依赖第 1 项 |
-| 6 | 逐个替换或新增自有组件 | 进行中 | ADR-0005 | 每替换一个，`origin` 从 `upstream` 改为 `own` |
+| 6 | 逐个替换或新增自有组件 | 进行中 | ADR-0005 | 已新增 workflow 分类六张、协作三张（启动确认、升级问题、恢复点），以及从 ZCode 整理的通用展示件七张，来源为 own。每替换一个上游组件，`origin` 从 `upstream` 改为 `own` |
 | 7 | 确定库名、registry 地址、logo | 待定 | ADR-0004 | 目前库名是 `Agent UI Gallery`、registry 地址是 `http://localhost:3000`，都是占位值；站点也没有自己的 logo 与 favicon。确定后只改 `foundry.config.json` |
 | 8 | 清理上游遗留的未使用文件 | 待定 | 尚无 | `components/site/Foundations.tsx`、`components/site/ChatExperience.tsx` 没有任何地方引用；`components/site/Chip.tsx`、`components/site/TextRow.tsx`、`components/site/StatusPill.tsx` 只被前者使用 |
 | 9 | 交互音效与开发工具条是否保留 | 待定 | 尚无 | 交互音效（`components/site/InteractionSounds.tsx`）与开发工具条（`components/site/DevToolbar.tsx`） |
@@ -30,3 +30,4 @@
 | atoms 边界与依赖校验 | 已完成 | ADR-0011 |
 | 文档分工与文档一致性检查 | 已完成 | ADR-0012 |
 | 自有图标集，移除第三方图标包 | 已完成 | ADR-0013 |
+| workflow 展示协议、mock 服务端与 `/workflow` 控制台，workflow 分类 | 已完成 | ADR-0014 |

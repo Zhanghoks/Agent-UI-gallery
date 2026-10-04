@@ -10,7 +10,8 @@
 
 ```
 site     画廊网站外壳（导航、卡片网格、主题）
-harness  演示用 agent 聊天，由 gallery 组件拼成
+harness  演示用 agent 聊天与 workflow 控制台，由 gallery 组件拼成
+workflow 协议 · reducer · mock 服务端 · 投影（lib/workflow/，与 harness 同层）
    ↓
 gallery  组件，一个文件夹一个
    ↓
@@ -21,19 +22,23 @@ app/globals.css  设计 token 与基础样式
 
 - `harness` 依赖 `gallery`，`gallery` 依赖 `atoms`；反向不允许。
 - `site` 与 `harness` 互不依赖，只由 `app/` 里的页面各自引入，共同联系是画廊页脚指向 `/harness` 的链接。
+- `lib/workflow/` 与 `harness` 同层：可以依赖 gallery 组件的类型，gallery 组件不能依赖它（组件经 registry 分发，不能引用只存在于画廊里的 `lib/`）。见 ADR-0014。
 - gallery 组件可以依赖其他 gallery 组件（不能成环），不能依赖 `site`、`harness`。规则与校验见 ADR-0011。
 
 ## 目录树
 
 ```
 foundry.config.json      站点名、registry 地址、命名空间目录、分类列表
-app/                     路由：画廊 /、演示 /harness、/license；globals.css
+app/                     路由：画廊 /、演示 /harness、控制台 /workflow、/license；globals.css
+  api/mock/workflow/     mock workflow 服务端的 HTTP 路由（ADR-0014）
 components/
   atoms/                 atom；atoms.json 声明哪些随 registry 分发
   gallery/<id>/          index.tsx · meta.json · styles.css（可选）
-  harness/               Harness.tsx（渲染）· scenarios.tsx（假数据）
+  harness/               Harness.tsx（渲染）· scenarios.tsx（假数据）· WorkflowConsole.tsx（接 mock 服务端）
   site/                  画廊外壳
 lib/                     meta 类型、registry 组装；*.generated.* 为生成文件
+  workflow/              protocol.ts 协议 · reducer.ts 事件折叠 · fixtures.ts 事件脚本 ·
+                         mock-server.ts 内存服务端 · project.ts 投影 · client.ts 浏览器端 hook
 scripts/
   gen.mjs                生成目录（--registry 同时写 public/r）
   new.mjs                生成新组件文件夹
@@ -43,7 +48,7 @@ scripts/
 public/r/                生成的 shadcn registry（入库）
 docs/                    本文、路线图、ADR、NOTICE、技能配置
 CONTEXT.md               术语表
-.scratch/                本地 issue tracker：spec 与 ticket
+.scratch/                改用 GitHub issues 之前遗留的本地 spec（不再新增）
 ```
 
 ## 数据流：新增一个组件之后
@@ -67,11 +72,32 @@ scripts/lib/catalog.mjs   扫描 → 校验 → 目录 + 分组 + registry
 
 ## 配置与分类
 
-`foundry.config.json` 是唯一配置（ADR-0004）。`categories` 是 `{ id, label, description }` 列表，顺序即显示顺序；现有五类 conversation / progress / collaboration / data / workspace，归类规则见 ADR-0010。同一分类内按 `order` 排序。
+`foundry.config.json` 是唯一配置（ADR-0004）。`categories` 是 `{ id, label, description }` 列表，顺序即显示顺序；现有六类 conversation / progress / workflow / collaboration / data / workspace，归类规则见 ADR-0010，`workflow` 的由来见 ADR-0014。同一分类内按 `order` 排序。
 
 ## 组件约定
 
 新组件由受控展示层与默认导出的 Demo 组成（ADR-0007），`npm run new` 生成模板。旧的 21 个组件还是定时器驱动，改造计划在路线图。
+
+workflow 分类有六张：`workflow-timeline`（横向时间线与纵向脊线）、`workflow-run-card`（运行中的卡与结束后的收据）、`workflow-artifact`（同一产物的五种密度）、`workflow-workspace-log`（脚本日志）、`workflow-saved-card`（已保存的 workflow）、`workflow-run-history`（运行目录）。启动前确认 `workflow-launch-approval`、升级问题 `workflow-question-card` 与恢复点 `checkpoint-bar` 在 collaboration。从 ZCode 的通用展示件整理来的还有 `plan-card`、`terminal-view`（progress）、`queue-list`、`suggestion-chips`、`attachment-tray`（conversation）、`test-results`、`sources-list`（data）。这些都是 `own`，按参照重画，不含 ZCode 源码（ADR-0014）。`flowchart` 仍是 workspace 里的编排画布。
+
+## workflow 协议与 mock 服务端
+
+`lib/workflow/` 是 workflow 展示的后端契约与参照实现（ADR-0014）：
+
+```
+fixtures.ts   事件脚本（5 个 run + 已保存 workflow）
+     │
+mock-server.ts  按时钟回放脚本；cancel / answer / resume / start 会改脚本
+     │            app/api/mock/workflow/*  → HTTP + SSE
+     ▼
+reducer.ts    reduceRun：事件 → run 状态（快照与流共用）
+     │
+project.ts    协议状态 → 时间线 / 运行卡 / 产物 / 工作区日志的展示模型
+     ▼
+client.ts     useRunStream（快照 + 事件）· usePoll · 命令 fetch
+```
+
+`/workflow` 页面（`components/harness/WorkflowConsole.tsx`）把已保存卡片、运行历史、运行卡、问题卡、工作区日志和产物索引接到这套服务端上。路由清单与语义见 ADR-0014。
 
 ## 命令
 

@@ -7,6 +7,7 @@ Fork 自 [Beautiful UI](docs/NOTICE.md)（MIT）。技术栈：Next.js 15 · Rea
 
 - 画廊：`/`
 - Harness（把组件组合成 agent 聊天的演示）：`/harness`
+- Workflow 控制台（组件接 mock workflow 服务端：启动、观看、回答、停止、续跑）：`/workflow`，服务端路由在 `/api/mock/workflow`，见 [ADR-0014](docs/adr/0014-workflow-protocol-and-zcode-intake.md)
 
 ## 快速开始
 
