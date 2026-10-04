@@ -1,0 +1,15 @@
+{
+  "id": "workflow-timeline",
+  "title": "Workflow Timeline",
+  "caption": "Where a workflow run is — stations, forks, and who is on them.",
+  "category": "workflow",
+  "order": 10,
+  "origin": "own",
+  "variants": [
+    "Timeline",
+    "Spine"
+  ],
+  "deps": [
+    "icons"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "workflow-artifact",
+  "title": "Workflow Artifact",
+  "caption": "One workflow output, from a pill to a deliverable row.",
+  "category": "workflow",
+  "order": 30,
+  "origin": "own",
+  "variants": [
+    "Pill",
+    "Strip",
+    "Tile",
+    "Deliverable",
+    "Index"
+  ],
+  "deps": [
+    "icons"
+  ]
+}
