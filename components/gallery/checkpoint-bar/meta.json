@@ -1,0 +1,9 @@
+{
+  "id": "checkpoint-bar",
+  "title": "Checkpoint Bar",
+  "caption": "A restore point in the conversation — what changed since, and a confirmed way back.",
+  "category": "collaboration",
+  "order": 90,
+  "origin": "own",
+  "deps": ["button", "icons"]
+}

@@ -378,6 +378,35 @@ test("fails when an atom imports a package missing from its npm list", () => {
   });
 });
 
+test("fails when a gallery component imports site or harness", () => {
+  assertFails(
+    {
+      alpha: {
+        meta: meta("alpha"),
+        index: withImports('import Nav from "@/components/site/Nav";', 'import Harness from "@/components/harness/Harness";'),
+      },
+    },
+    /alpha.*site\/Nav[\s\S]*alpha.*harness\/Harness/i,
+  );
+});
+
+test("a gallery dependency and a component stylesheet both ship", () => {
+  const root = makeRepo({
+    components: {
+      alpha: {
+        meta: meta("alpha", { deps: ["bravo"], css: "styles.css" }),
+        index: withImports('import Bravo from "@/components/gallery/bravo";'),
+        files: { "styles.css": ".alpha { color: red; }\n" },
+      },
+      bravo: { meta: meta("bravo") },
+    },
+  });
+  const { registry, cssImports } = build(root);
+  assert.ok(registry.alpha.registryDependencies.includes("https://example.test/r/bravo.json"));
+  assert.equal(registry.alpha.files.find((f) => f.type === "registry:file").target, "app/testui/alpha.css");
+  assert.deepEqual(cssImports, ["components/gallery/alpha/styles.css"]);
+});
+
 test("fails on a dependency cycle between gallery components", () => {
   assertFails(
     {
@@ -401,4 +430,51 @@ test("the real gallery scans cleanly and still contains the 21 upstream componen
   assert.equal(new Set(entries.map((e) => e.id)).size, entries.length);
   const upstream = entries.filter((e) => e.origin === "upstream").map((e) => e.id).sort();
   assert.deepEqual(upstream, UPSTREAM_IDS);
+});
+
+test("the real gallery lists the workflow components in the workflow category", () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+  const config = loadConfig(root);
+  const { entries, groups } = buildCatalog({ root, config });
+  const byId = Object.fromEntries(entries.map((e) => [e.id, e]));
+
+  assert.equal(byId["workflow-timeline"].origin, "own");
+  assert.deepEqual(byId["workflow-timeline"].variants, ["Timeline", "Spine"]);
+  assert.deepEqual(byId["workflow-artifact"].variants, ["Pill", "Strip", "Tile", "Deliverable", "Index"]);
+  assert.deepEqual(byId["workflow-run-card"].variants, ["Running", "Completed"]);
+  assert.deepEqual([...(byId["workflow-run-card"].deps ?? [])].sort(), ["icons", "workflow-artifact", "workflow-timeline"]);
+
+  const workflow = groups.find((g) => g.id === "workflow").entries.map((e) => e.id);
+  assert.deepEqual(workflow, [
+    "workflow-timeline",
+    "workflow-run-card",
+    "workflow-artifact",
+    "workflow-workspace-log",
+    "workflow-saved-card",
+    "workflow-run-history",
+  ]);
+  assert.equal(groups.find((g) => g.id === "workspace").entries.some((e) => e.id === "flowchart"), true);
+});
+
+test("the real gallery files the components taken from ZCode under the right categories", () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+  const config = loadConfig(root);
+  const { entries } = buildCatalog({ root, config });
+  const byId = Object.fromEntries(entries.map((e) => [e.id, e]));
+  const expected = {
+    "workflow-launch-approval": "collaboration",
+    "workflow-question-card": "collaboration",
+    "checkpoint-bar": "collaboration",
+    "plan-card": "progress",
+    "terminal-view": "progress",
+    "queue-list": "conversation",
+    "suggestion-chips": "conversation",
+    "attachment-tray": "conversation",
+    "test-results": "data",
+    "sources-list": "data",
+  };
+  for (const [id, category] of Object.entries(expected)) {
+    assert.equal(byId[id]?.category, category, id);
+    assert.equal(byId[id]?.origin, "own", id);
+  }
 });

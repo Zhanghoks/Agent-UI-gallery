@@ -1,0 +1,9 @@
+{
+  "id": "sources-list",
+  "title": "Sources List",
+  "caption": "What an answer was built from — numbered sources that fold away.",
+  "category": "data",
+  "order": 280,
+  "origin": "own",
+  "deps": ["icons"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "test-results",
+  "title": "Test Results",
+  "caption": "A test run at a glance — totals, suites, and the failures with their messages.",
+  "category": "data",
+  "order": 270,
+  "origin": "own",
+  "variants": ["Failures", "All passed"],
+  "deps": ["icons"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "plan-card",
+  "title": "Plan Card",
+  "caption": "The steps an agent intends to take, ticked off as it goes.",
+  "category": "progress",
+  "order": 250,
+  "origin": "own",
+  "variants": ["Working", "Done"],
+  "deps": ["icons"]
+}

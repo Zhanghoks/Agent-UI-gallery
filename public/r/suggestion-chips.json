@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "suggestion-chips",
+  "type": "registry:component",
+  "title": "Suggestion Chips",
+  "description": "Follow-up prompts the agent offers, one tap to send.",
+  "registryDependencies": [
+    "http://localhost:3000/r/foundation.json",
+    "http://localhost:3000/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "components/gallery/suggestion-chips/index.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { SparkIcon } from \"@/components/atoms/Icons\";\n\n/* Prompts the agent offers after an answer. A chip is a whole message: tapping\n * it hands the text to the host to send. \"Row\" wraps chips inline; \"Stack\" is a\n * list for narrow panes. */\n\nexport type Suggestion = { id: string; text: string };\n\nexport type SuggestionChipsProps = {\n  suggestions: readonly Suggestion[];\n  layout?: \"row\" | \"stack\";\n  onPick?: (text: string, id: string) => void;\n};\n\nexport function SuggestionChips({ suggestions, layout = \"row\", onPick }: SuggestionChipsProps) {\n  if (suggestions.length === 0) return null;\n  return (\n    <div className={layout === \"stack\" ? \"flex w-full max-w-[320px] flex-col items-stretch gap-1.5\" : \"flex w-full max-w-[460px] flex-wrap gap-1.5\"}>\n      {suggestions.map((suggestion) => (\n        <button\n          className={`inline-flex items-center gap-1.5 bg-surface px-3 py-1.5 text-left text-[12.5px] text-ink shadow-btn hover:bg-inset disabled:pointer-events-none ${\n            layout === \"stack\" ? \"rounded-control\" : \"rounded-full\"\n          }`}\n          disabled={!onPick}\n          key={suggestion.id}\n          onClick={() => onPick?.(suggestion.text, suggestion.id)}\n          type=\"button\"\n        >\n          <SparkIcon className=\"shrink-0 text-ink-3\" size={12} />\n          {suggestion.text}\n        </button>\n      ))}\n    </div>\n  );\n}\n\nconst SUGGESTIONS: Suggestion[] = [\n  { id: \"1\", text: \"Show me the diff\" },\n  { id: \"2\", text: \"Run the tests again\" },\n  { id: \"3\", text: \"Explain why it was flaky\" },\n  { id: \"4\", text: \"Open a PR\" },\n];\n\nexport default function SuggestionChipsDemo({ variant }: { variant?: string }) {\n  const [picked, setPicked] = useState<string>();\n  return (\n    <div className=\"flex w-full flex-col items-center gap-2 pb-8\">\n      <SuggestionChips layout={variant === \"Stack\" ? \"stack\" : \"row\"} onPick={(text) => setPicked(text)} suggestions={SUGGESTIONS} />\n      {picked ? <p className=\"text-[11px] text-ink-3\">Sent “{picked}”</p> : null}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/gallery/suggestion-chips/index.tsx"
+    }
+  ]
+}

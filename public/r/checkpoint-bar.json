@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkpoint-bar",
+  "type": "registry:component",
+  "title": "Checkpoint Bar",
+  "description": "A restore point in the conversation — what changed since, and a confirmed way back.",
+  "registryDependencies": [
+    "http://localhost:3000/r/foundation.json",
+    "http://localhost:3000/r/button.json",
+    "http://localhost:3000/r/icons.json"
+  ],
+  "files": [
+    {
+      "path": "components/gallery/checkpoint-bar/index.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { Button } from \"@/components/atoms/Button\";\nimport { FlagIcon, UndoIcon } from \"@/components/atoms/Icons\";\n\n/* A marker the agent drops before it changes files. Restoring is destructive,\n * so the button asks once in place before it calls back. After a restore the\n * bar says so and stops offering it. */\n\nexport type CheckpointBarLabels = {\n  restore: string;\n  confirm: string;\n  cancel: string;\n  restored: string;\n  changes: (count: number) => string;\n};\n\nexport const CHECKPOINT_LABELS: CheckpointBarLabels = {\n  restore: \"Restore\",\n  confirm: \"Discard later changes and restore?\",\n  cancel: \"Cancel\",\n  restored: \"Restored\",\n  changes: (count) => (count === 1 ? \"1 file changed since\" : `${count} files changed since`),\n};\n\nexport type CheckpointBarProps = {\n  /** Already formatted, e.g. \"12:04\". */\n  time: string;\n  label?: string;\n  changedFiles?: number;\n  restored?: boolean;\n  labels?: Partial<CheckpointBarLabels>;\n  onRestore?: () => void;\n};\n\nexport function CheckpointBar({ time, label, changedFiles, restored, labels: labelOverrides, onRestore }: CheckpointBarProps) {\n  const labels = { ...CHECKPOINT_LABELS, ...labelOverrides };\n  const [asking, setAsking] = useState(false);\n  return (\n    <div className=\"flex w-full max-w-[460px] items-center gap-3 text-[11px] text-ink-3\">\n      <span className=\"h-px flex-1 bg-line\" />\n      <span className=\"inline-flex shrink-0 items-center gap-1.5\">\n        <FlagIcon size={12} />\n        <span className=\"text-ink-2\">{label ?? \"Checkpoint\"}</span>\n        <span className=\"font-mono\">{time}</span>\n        {changedFiles !== undefined && changedFiles > 0 ? <span>· {labels.changes(changedFiles)}</span> : null}\n      </span>\n      {restored ? (\n        <span className=\"shrink-0 text-green\">{labels.restored}</span>\n      ) : onRestore ? (\n        asking ? (\n          <span className=\"flex shrink-0 items-center gap-1.5\">\n            <span className=\"text-ink-2\">{labels.confirm}</span>\n            <Button\n              onClick={() => {\n                setAsking(false);\n                onRestore();\n              }}\n              size=\"xs\"\n              variant=\"primary\"\n            >\n              {labels.restore}\n            </Button>\n            <Button onClick={() => setAsking(false)} size=\"xs\" variant=\"quiet\">\n              {labels.cancel}\n            </Button>\n          </span>\n        ) : (\n          <button\n            className=\"inline-flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-ink-2 hover:bg-hover-2\"\n            onClick={() => setAsking(true)}\n            type=\"button\"\n          >\n            <UndoIcon size={11} />\n            {labels.restore}\n          </button>\n        )\n      ) : null}\n      <span className=\"h-px flex-1 bg-line\" />\n    </div>\n  );\n}\n\nexport default function CheckpointBarDemo() {\n  const [restored, setRestored] = useState(false);\n  return (\n    <div className=\"w-full pb-8\">\n      <CheckpointBar changedFiles={4} onRestore={() => setRestored(true)} restored={restored} time=\"12:04\" />\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/gallery/checkpoint-bar/index.tsx"
+    }
+  ]
+}
