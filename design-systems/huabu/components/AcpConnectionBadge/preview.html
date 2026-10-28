@@ -1,0 +1,52 @@
+<!-- @dsCard group="Agents" height=176 subtitle="Whether the external agent is actually there" -->
+<div class="wrap">
+  <div class="row"><span class="lbl">connecting</span><span class="bd"><span class="dt info pulse"></span>Connecting</span></div>
+  <div class="row"><span class="lbl">connected</span><span class="bd"><span class="dt ok"></span>Connected</span></div>
+  <div class="row"><span class="lbl">failed</span><span class="bd err"><span class="dt er"></span>Disconnected</span></div>
+  <div class="note">A 6px dot plus a word, at <code>px-0.5 py-0.5 gap-1</code>. Connecting is <b>info</b> and
+    <code>animate-pulse</code>; connected is <b>success</b> at <b>50% opacity</b> — a healthy connection should be
+    nearly invisible; failure is <b>danger</b>, full strength, 10px uppercase medium with wide tracking at
+    <code>px-1.5</code>. Only the broken state is allowed to be loud.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .bd { display: inline-flex; align-items: center; gap: 4px; padding: 2px; font-size: 11px; color: var(--fg-muted); }
+  .bd.err { color: var(--danger); font-size: 10px; font-weight: 500; letter-spacing: .06em;
+            text-transform: uppercase; padding: 2px 6px; }
+  .dt { width: 6px; height: 6px; border-radius: var(--radius-full); }
+  .dt.info { background: var(--info); }
+  .dt.ok { background: var(--success); opacity: .5; }
+  .dt.er { background: var(--danger); }
+  @keyframes pls { 0%,100% { opacity: 1 } 50% { opacity: .4 } }
+  .pulse { animation: pls 1.6s ease-in-out infinite; }
+</style>

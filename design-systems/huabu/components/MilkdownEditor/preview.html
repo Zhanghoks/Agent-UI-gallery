@@ -1,0 +1,67 @@
+<!-- @dsCard group="Editors" height=252 subtitle="The markdown editor, wearing the app’s tokens" -->
+<div class="wrap">
+  <div class="ed">
+    <h4>Onboarding friction</h4>
+    <p>Three of five people stalled at the folder step. Two expected a template.</p>
+    <ul><li>Name the folder <span class="ic">Home</span></li><li>Offer a starter Space</li></ul>
+    <blockquote>"I thought it would make one for me."</blockquote>
+    <div class="fence"><span class="pr">$ </span>rg -n "choose a Home folder"</div>
+    <p class="sel">A selected run, in the editor's own selection fill.</p>
+  </div>
+  <div class="note">Crepe is re-skinned rather than restyled: every <code>--crepe-*</code> token is re-bound to an
+    app token — background <b>transparent</b> so the surrounding surface owns it, fonts <b>inherit</b>, surface
+    and outline to <b>bg-surface</b> / <b>edge-default</b>, hover and selection to <b>bg-hover</b>, primary to
+    <b>info</b>, error to <b>danger</b>. Rebinding the underlying <code>--fg-*</code> / <code>--bg-*</code> tokens
+    therefore re-themes the editor for free, dark mode included.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; }
+  .ed { max-width: 460px; font-size: 13px; line-height: 1.7; color: var(--fg-default); }
+  .ed h4 { margin: 0 0 6px; font-size: 15px; font-weight: 600; }
+  .ed p { margin: 0 0 7px; }
+  .ed ul { margin: 0 0 7px; padding-left: 20px; }
+  .ed blockquote { margin: 0 0 7px; padding-left: 10px; color: var(--fg-muted);
+                   border-left: 2px solid var(--edge-default); }
+  .ic { font-family: var(--font-mono); font-size: 12px; background: var(--bg-hover);
+        color: var(--fg-default); border-radius: var(--radius-sm); padding: 0 4px; }
+  .fence { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted);
+           background: var(--bg-default); border-radius: var(--radius-sm); padding: 5px 8px; margin-bottom: 7px; }
+  .pr { color: var(--fg-subtle); }
+  .sel { background: var(--bg-hover); border-radius: var(--radius-sm); }
+  .note { margin-top: 14px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); max-width: 520px; }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+</style>

@@ -1,0 +1,81 @@
+<!-- @dsCard group="Settings" height=228 subtitle="Type this code over there" -->
+<div class="wrap">
+  <div class="dc">
+    <div class="ttl">Finish signing in</div>
+    <p class="ln">Open <span class="url">example.com/device</span> and enter this code:</p>
+    <div class="code">HJKL-2846</div>
+    <div class="ft"><span class="wait"><span class="sp"></span>Waiting for confirmation…</span>
+      <button class="bt out">Copy code</button></div>
+  </div>
+  <div class="note">The code is the largest type on the screen: mono, wide tracking, <b>fg-default</b>, on
+    <b>bg-default</b> inside a hairline box and <code>select-all</code>, because the person is reading it aloud or
+    typing it on a phone. The verification URL is quoted in mono too. The wait is an inline <b>Loading</b> with a
+    plain <b>fg-subtle</b> line — this step can take a minute and nothing is wrong.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 4px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .ti { box-sizing: border-box; font-family: inherit; border: var(--border-hairline) solid var(--edge-default);
+        background: var(--bg-surface); color: var(--fg-default); border-radius: var(--radius-md);
+        outline: none; padding: 4px 8px; font-size: 12px; }
+  .sw { position: relative; display: inline-flex; align-items: center; width: 36px; height: 20px;
+        border-radius: var(--radius-full); border: 2px solid transparent; background: var(--edge-default);
+        box-sizing: border-box; }
+  .sw.on { background: var(--info); }
+  .knob { width: 16px; height: 16px; border-radius: var(--radius-full); background: var(--bg-surface);
+          box-shadow: var(--elevation-hover); }
+  .sw.on .knob { transform: translateX(16px); }
+
+  .dc { max-width: 380px; box-sizing: border-box; background: var(--bg-surface);
+        border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-lg);
+        padding: 16px; }
+  .ttl { font-size: 14px; font-weight: 600; color: var(--fg-default); }
+  .ln { margin: 6px 0 10px; font-size: 12px; line-height: 1.6; color: var(--fg-muted); }
+  .url { font-family: var(--font-mono); color: var(--fg-default); }
+  .code { font-family: var(--font-mono); font-size: 26px; letter-spacing: .12em; text-align: center;
+          color: var(--fg-default); background: var(--bg-default);
+          border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-md);
+          padding: 10px 0; user-select: all; }
+  .ft { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; }
+  .wait { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--fg-subtle); }
+  @keyframes sp6 { to { transform: rotate(360deg) } }
+  .sp { width: 12px; height: 12px; border-radius: var(--radius-full);
+        border: 1.6px solid var(--edge-default); border-top-color: var(--fg-subtle);
+        animation: sp6 700ms linear infinite; }
+  .bt.out { font-family: inherit; font-size: 11px; font-weight: 500; cursor: pointer; padding: 3px 9px;
+            border-radius: var(--radius-md); background: var(--bg-surface);
+            border: var(--border-hairline) solid var(--edge-default); color: var(--fg-muted); }
+</style>

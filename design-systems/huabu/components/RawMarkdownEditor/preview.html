@@ -1,0 +1,67 @@
+<!-- @dsCard group="Editors" height=236 subtitle="The source, in the app’s own syntax colours" -->
+<div class="wrap">
+  <div class="cm">
+    <div class="ln"><span class="gut">1</span><span class="h1">## Onboarding friction</span></div>
+    <div class="ln"><span class="gut">2</span></div>
+    <div class="ln"><span class="gut">3</span>Three of five stalled at the <span class="em">**folder step**</span>.</div>
+    <div class="ln act"><span class="gut on">4</span>Two expected a <span class="lk">[template](./starter.md)</span>.</div>
+    <div class="ln"><span class="gut">5</span><span class="cd">`rg -n "choose a Home folder"`</span></div>
+    <div class="ln"><span class="gut">6</span><span class="qt">&gt; "I thought it would make one for me."</span></div>
+  </div>
+  <div class="note">A CodeMirror theme built entirely from tokens — <b>fg-default</b> on a transparent background,
+    the active line in <b>info-bg</b>, selection in <b>info-bg-hover</b>, and syntax drawn from
+    <b>info</b>, <b>success</b>, <b>warning</b> and <b>danger</b> rather than a stock palette. The active-line
+    fill deliberately reuses the app's selected-state convention, so "where I am" means the same thing here as in
+    a list.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; }
+  .cm { max-width: 460px; font-family: var(--font-mono); font-size: 12px; line-height: 1.75;
+        color: var(--fg-default); background: transparent;
+        border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-md);
+        padding: 6px 0; overflow: hidden; }
+  .ln { display: flex; gap: 10px; padding: 0 10px; white-space: pre-wrap; }
+  .ln.act { background: var(--info-bg); }
+  .gut { width: 14px; flex: none; text-align: right; color: var(--fg-subtle); user-select: none; }
+  .gut.on { color: var(--info); }
+  .h1 { color: var(--info); font-weight: 600; }
+  .em { color: var(--warning); }
+  .lk { color: var(--success); }
+  .cd { color: var(--fg-muted); }
+  .qt { color: var(--fg-subtle); }
+  .note { margin-top: 14px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); max-width: 520px; }
+  .note b { color: var(--fg-default); font-weight: 500; }
+</style>

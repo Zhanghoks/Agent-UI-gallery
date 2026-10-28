@@ -1,0 +1,65 @@
+<!-- @dsCard group="Nodes" height=224 subtitle="Freehand ink that hit-tests its own strokes" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:16px">
+    <svg class="sk" width="200" height="130" viewBox="0 0 200 130" aria-hidden="true">
+      <rect class="bbox" x="6" y="6" width="188" height="118" />
+      <path class="ink" d="M24 96 C 52 30, 78 116, 104 52 S 150 20, 184 74" />
+      <path class="ink thin" d="M30 108 C 70 100, 120 112, 178 98" />
+    </svg>
+    <svg class="sk" width="200" height="130" viewBox="0 0 200 130" aria-hidden="true">
+      <rect class="bbox" x="6" y="6" width="188" height="118" />
+      <path class="ink hov" d="M24 96 C 52 30, 78 116, 104 52 S 150 20, 184 74" />
+      <path class="ink thin" d="M30 108 C 70 100, 120 112, 178 98" />
+      <circle class="er" cx="104" cy="52" r="12" />
+    </svg>
+    <div class="note" style="flex:1; min-width:170px; margin:0; border:none; padding:0">
+      Left: at rest the bounding box is pointer-transparent, so a click in the blank area drills through to
+      whatever is underneath. Right: a JS hit test against the stored points tagged the stroke
+      <code>data-sketch-hover</code>, which re-enables pointer events and adds a 2px
+      <b>info-light</b> drop-shadow. The disc is the eraser at its screen-space radius.
+    </div>
+  </div>
+  <div class="note">Strokes are <b>perfect-freehand</b> outlines: size 4, thinning 0.4, smoothing 0.5,
+    streamline 0.35, pressure simulated off. Colour is a palette token resolved at render time, with
+    <b>ink-black</b> and <b>accent-white</b> passing through as literals. A <i>selected</i> sketch behaves like any
+    node — its whole box is grabbable — so a multi-selection can be dragged without hunting for a hairline.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .sk { border-radius: var(--radius-lg); }
+  .bbox { fill: none; stroke: var(--edge-default); stroke-width: 1; stroke-dasharray: 3 3; }
+  .ink { fill: none; stroke: var(--fg-default); stroke-width: 5; stroke-linecap: round; }
+  .ink.thin { stroke: var(--accent-teal); stroke-width: 3; }
+  .ink.hov { filter: drop-shadow(0 0 2px var(--info-light)); }
+  .er { fill: none; stroke: var(--info); stroke-width: 1; stroke-dasharray: 2 3; }
+</style>

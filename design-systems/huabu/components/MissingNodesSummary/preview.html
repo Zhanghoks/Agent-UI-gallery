@@ -1,0 +1,61 @@
+<!-- @dsCard group="Panels" height=176 subtitle="Some of this Space is not where it was" -->
+<div class="wrap">
+  <button class="mn"><span class="warn"></span><span class="t">3 nodes are missing their files</span><span class="x"><i class="g" style="width:11px;height:11px"></i></span></button>
+  <button class="mn"><span class="warn"></span><span class="t">1 node points at a Space that could not be opened</span></button>
+  <div class="note">A full-width ghost <b>Button</b> forced to <code>justify-start px-1.5!</code> with a
+    truncating label, and a dismiss forced to <code>p-1!</code> — it lives inside the layers panel, so it must
+    not widen it. <b>warning</b>, like the node's own banner, so the panel row and the thing it points at agree.
+    It summarises; the node itself carries the detail and the fix.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .surf { box-sizing: border-box; background: var(--bg-surface); }
+  .hb { display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 12px;
+        border-bottom: var(--border-hairline) solid var(--edge-default); }
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 5px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 16px; height: 16px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .ttl { font-size: 14px; font-weight: 600; color: var(--fg-muted); min-width: 0;
+         overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .mn { display: flex; align-items: center; gap: 6px; width: 300px; box-sizing: border-box;
+        font-family: inherit; font-size: 12px; color: var(--fg-muted); background: transparent;
+        border: none; cursor: pointer; text-align: left; padding: 5px 6px; border-radius: var(--radius-md);
+        margin-bottom: 6px; }
+  .mn:hover { background: var(--bg-hover); }
+  .warn { flex: none; width: 13px; height: 12px; background: var(--warning);
+          clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .t { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .x { flex: none; color: var(--fg-subtle); display: inline-flex; padding: 2px; }
+</style>

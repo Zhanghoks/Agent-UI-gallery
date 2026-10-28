@@ -1,0 +1,71 @@
+<!-- @dsCard group="Nodes" height=216 subtitle="The shared layout behind every file-backed node" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:14px">
+    <div class="pc" style="width:196px">
+      <div class="thumb"></div>
+      <div class="info">
+        <div class="tl"><span class="ico"></span><span class="tx">A long title that wraps under its own icon</span></div>
+        <div class="bd">Extract, caption or metadata the node type supplies.</div>
+      </div>
+    </div>
+    <div class="pc" style="width:196px">
+      <div class="thumb short"></div>
+      <div class="info">
+        <div class="tl"><span class="ico"></span><span class="tx">Short title</span></div>
+        <div class="bd">The info area grows as the thumbnail shrinks.</div>
+      </div>
+    </div>
+    <div class="note" style="flex:1; min-width:150px; margin:0; border:none; padding:0">
+      One layout: media on top at <code>object-cover</code> over <b>bg-default</b>, then a flexing info area.
+      Title <b>lg</b> medium with <code>wrap-break-word</code>; the icon is <b>floated</b> and nudged
+      <code>translate-y-1.75</code>, so the second line runs under it, not beside it.
+    </div>
+  </div>
+  <div class="note">Padding <code>px-4 pt-2</code> for the title, <code>px-4 pb-2</code> for the body, everything
+    <code>overflow-hidden</code> on a <b>bg-surface</b> column. PDF, Office, image and web previews all render
+    through this, which is why file-backed nodes read as one family.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .pc { box-sizing: border-box; background: var(--bg-surface); border: var(--border-node) solid transparent;
+        border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--elevation-hover);
+        display: flex; flex-direction: column; }
+  .thumb { height: 66px; background: var(--bg-default);
+           background-image: repeating-linear-gradient(45deg, var(--skeleton-2) 0 9px, var(--skeleton-1) 9px 18px); }
+  .thumb.short { height: 34px; }
+  .info { display: flex; flex-direction: column; }
+  .tl { padding: 6px 12px 0; font-size: 14px; font-weight: 500; color: var(--fg-default); overflow-wrap: break-word; }
+  .ico { float: left; margin-right: 8px; width: 16px; height: 16px; border-radius: 3px;
+         background: var(--skeleton-2); transform: translateY(3px); }
+  .bd { padding: 4px 12px 8px; font-size: 11px; line-height: 1.6; color: var(--fg-muted); }
+</style>

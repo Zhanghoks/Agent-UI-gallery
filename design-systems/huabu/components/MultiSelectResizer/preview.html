@@ -1,0 +1,60 @@
+<!-- @dsCard group="Canvas" height=200 subtitle="Outline, not border, so the box stays exact" -->
+<div class="wrap grid-bg">
+  <div class="box">
+    <span class="n" style="left:14px; top:12px; width:62px; height:32px"></span>
+    <span class="n" style="left:88px; top:16px; width:70px; height:28px"></span>
+    <span class="n" style="left:170px; top:10px; width:56px; height:36px"></span>
+    <span class="n" style="left:36px; top:58px; width:76px; height:26px"></span>
+    <span class="n" style="left:128px; top:56px; width:66px; height:30px"></span>
+    <span class="h tl"></span><span class="h tr"></span><span class="h bl"></span><span class="h br"></span>
+  </div>
+  <div class="note">The overlay is <code>z-999</code>, <code>pointer-events-none</code>, and drawn with
+    <code>outline: 1px solid</code> <b>info-light</b> — an outline, not a border, so the box's own dimensions stay
+    exact and the handle offsets stay aligned with the bounding box. Handles are <code>pointer-events-auto</code>
+    squares filled <b>info-light</b> with a 1px white edge, centred on each corner at
+    <code>-handleSize / 2</code>, with the right <code>nwse</code>/<code>nesw</code> cursor and
+    <code>touch-action: none</code>.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .box { position: relative; width: 250px; height: 96px; margin: 10px 0 0 6px;
+         outline: var(--border-hairline) solid var(--info-light); }
+  .n { position: absolute; border-radius: 3px; background: var(--bg-surface);
+       box-shadow: inset 0 0 0 1px var(--edge-default); }
+  .h { position: absolute; width: 9px; height: 9px; box-sizing: border-box;
+       background: var(--info-light); border: 1px solid #fff; }
+  .h.tl { left: -4.5px; top: -4.5px; cursor: nwse-resize; }
+  .h.tr { right: -4.5px; top: -4.5px; cursor: nesw-resize; }
+  .h.bl { left: -4.5px; bottom: -4.5px; cursor: nesw-resize; }
+  .h.br { right: -4.5px; bottom: -4.5px; cursor: nwse-resize; }
+</style>

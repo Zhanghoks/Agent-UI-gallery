@@ -1,0 +1,56 @@
+<!-- @dsCard group="Canvas" height=244 subtitle="Relationships, and the pill that names them" -->
+<div class="wrap">
+  <svg class="paths" viewBox="0 0 660 200" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M30 42 C 110 42, 130 42, 210 42" stroke="var(--accent-teal)" stroke-width="2" fill="none" />
+    <path d="M30 100 C 110 100, 130 100, 210 100" stroke="var(--info)" stroke-width="2" fill="none"
+          style="filter: drop-shadow(0 0 2px var(--info-light));" />
+    <path d="M30 158 C 110 158, 130 158, 210 158" stroke="var(--accent-orange)" stroke-width="2" fill="none" />
+    <circle cx="30" cy="42" r="3" fill="var(--accent-teal)" />
+    <circle cx="30" cy="100" r="3" fill="var(--info)" />
+    <circle cx="30" cy="158" r="3" fill="var(--accent-orange)" />
+  </svg>
+
+  <div class="pill" style="top: 30px;  border-color: var(--accent-teal);">supports</div>
+  <div class="pill sel" style="top: 88px;">contradicts</div>
+  <div class="pill empty" style="top: 146px; border-color: var(--accent-orange);">Add label</div>
+
+  <div class="facts">
+    <div class="f"><b>path</b> canvas space, 2px; the accent at full strength — a node of the same accent holds its border back to 75%</div>
+    <div class="f"><b>selected</b> stroke swaps to info with a 2px info-light drop-shadow</div>
+    <div class="f"><b>label</b> canvas portal with bounded inverse scale, so it stays readable as the viewport zooms; idle text clamps to three lines</div>
+    <div class="f"><b>empty label</b> mounts only while the edge is selected or being edited, showing “Add label” in fg-subtle</div>
+  </div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-default); }
+  .wrap {
+    position: relative; height: 244px; box-sizing: border-box;
+    padding: 16px; background: var(--bg-default);
+    background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+    background-size: var(--grid) var(--grid);
+  }
+  .paths { position: absolute; left: 16px; top: 16px; width: 660px; height: 200px; }
+  .pill {
+    position: absolute; left: 132px;
+    box-sizing: border-box;
+    background: var(--bg-surface);
+    border: var(--border-hairline) solid var(--edge-default);
+    border-radius: var(--radius-full);
+    padding: 3px 9px; font-size: 11px; line-height: 16px;
+    color: var(--fg-default);
+  }
+  .pill.sel { border-color: var(--info); color: var(--info); }
+  .pill.empty { color: var(--fg-subtle); border-style: dashed; }
+  .facts {
+    position: absolute; right: 16px; top: 16px; width: 300px;
+    box-sizing: border-box;
+    background: var(--bg-surface);
+    border: var(--border-hairline) solid var(--edge-default);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+  }
+  .f { font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .f + .f { margin-top: 4px; }
+  .f b { color: var(--fg-default); font-weight: 500; }
+</style>

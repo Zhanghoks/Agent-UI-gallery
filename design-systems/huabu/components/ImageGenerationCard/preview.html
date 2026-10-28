@@ -1,0 +1,66 @@
+<!-- @dsCard group="Chat" height=232 subtitle="An image the agent made" -->
+<div class="wrap">
+  <button class="ds"><span class="ok" style="width:12px">●</span><i class="g"></i><span>Generated an image</span></button>
+  <div class="thread">
+    <span class="img"></span>
+    <div class="pre">a hand-drawn diagram of the folder step, muted colours</div>
+  </div>
+  <button class="ds"><span style="width:12px; color: var(--fg-muted)">●</span><i class="g"></i><span>Generating…</span></button>
+  <div class="thread"><span class="ph"><span class="gl"></span></span></div>
+  <div class="note">While it runs, a fixed <code>h-32 w-48</code> <b>bg-default</b> box with a 1px border holds the
+    space and shows an <b>fg-muted</b> glyph — the layout does not jump when the image lands. The result is
+    <code>max-h-64 max-w-full object-contain</code> in a 1px <b>edge-default</b> frame, inside a
+    <code>w-fit</code> wrapper so the frame hugs the image rather than the column.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .thread { margin-left: 16px; padding: 8px 0 8px 12px; display: flex; flex-direction: column; gap: 8px;
+            border-left: var(--border-hairline) solid color-mix(in srgb, var(--edge-default) 40%, transparent); }
+  .ds { display: flex; align-items: center; gap: 6px; font-family: inherit; font-size: 12px;
+        color: var(--fg-muted); background: transparent; border: none; cursor: pointer;
+        border-radius: var(--radius-md); padding: 2px 8px; width: 100%; box-sizing: border-box; text-align: left; }
+  .ds:hover { background: var(--bg-hover); }
+  .g { display: inline-block; width: 13px; height: 13px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .pre { font-family: var(--font-mono); font-size: 11px; line-height: 1.6; color: var(--fg-muted);
+         background: var(--bg-default); border-radius: var(--radius-sm); padding: 4px 8px;
+         white-space: pre-wrap; overflow-x: auto; }
+  .ok { color: var(--info); } .bad { color: var(--danger); }
+
+  .img { display: block; width: 240px; height: 150px; border-radius: var(--radius-md);
+         border: var(--border-hairline) solid var(--edge-default);
+         background: repeating-linear-gradient(45deg, var(--skeleton-2) 0 10px, var(--skeleton-1) 10px 20px); }
+  .ph { display: flex; align-items: center; justify-content: center; width: 192px; height: 128px;
+        background: var(--bg-default); border: var(--border-hairline) solid var(--edge-default);
+        border-radius: var(--radius-md); }
+  .gl { width: 22px; height: 18px; border: 1.8px solid var(--fg-muted); border-radius: 3px; }
+</style>

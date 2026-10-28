@@ -1,0 +1,86 @@
+<!-- @dsCard group="Settings" height=224 subtitle="A few settings, without leaving the canvas" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:18px">
+    <button class="ib" style="background: var(--bg-surface); box-shadow: var(--shadow-bottom); padding:6px"><i class="g"></i></button>
+    <div class="pop">
+      <div class="sec">Canvas</div>
+      <div class="pr"><span>Snap to grid</span><span class="sw on"><span class="knob"></span></span></div>
+      <div class="pr"><span>Dot grid</span><span class="sw on"><span class="knob"></span></span></div>
+      <div class="sepline"></div>
+      <div class="sec">Input</div>
+      <div class="pr"><span>Pointer</span><button class="plr">Auto ▾</button></div>
+      <div class="sepline"></div>
+      <button class="item" style="color: var(--info)">All settings…</button>
+    </div>
+  </div>
+  <div class="note">The same section headers and row rhythm as the settings modal, at popover density — so a
+    setting changed here and the same setting in the modal are recognisably one control. It holds only settings
+    that affect what is on screen right now, and ends with one <b>info</b> row into the full modal, so the
+    popover never has to grow.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 4px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .bt { font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer; padding: 5px 10px;
+        border-radius: var(--radius-md); }
+  .bt.solid { border: none; background: var(--bg-inverse); color: var(--fg-inverse); }
+  .bt.out { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+            color: var(--fg-muted); }
+  .bt.ghost { border: none; background: transparent; color: var(--fg-muted); }
+
+  .pop { box-sizing: border-box; width: 244px; background: var(--bg-surface);
+         border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-md);
+         box-shadow: var(--elevation-toast); padding: 6px 0; }
+  .sec { padding: 4px 12px 2px; font-size: 10px; letter-spacing: .08em; text-transform: uppercase;
+         color: var(--fg-subtle); }
+  .pr { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        padding: 5px 12px; font-size: 12px; color: var(--fg-default); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .item { display: flex; width: 100%; box-sizing: border-box; padding: 5px 12px; font-size: 12px;
+          font-weight: 500; background: transparent; border: none; cursor: pointer; text-align: left;
+          font-family: inherit; }
+  .item:hover { background: var(--bg-hover); }
+  .plr { font-family: inherit; font-size: 12px; color: var(--fg-muted); background: var(--bg-surface);
+         border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-full);
+         padding: 1px 8px; cursor: pointer; }
+  .sw { position: relative; display: inline-flex; align-items: center; width: 32px; height: 18px;
+        border-radius: var(--radius-full); border: 2px solid transparent; background: var(--edge-default);
+        box-sizing: border-box; }
+  .sw.on { background: var(--info); }
+  .knob { width: 14px; height: 14px; border-radius: var(--radius-full); background: var(--bg-surface);
+          box-shadow: var(--elevation-hover); }
+  .sw.on .knob { transform: translateX(14px); }
+</style>

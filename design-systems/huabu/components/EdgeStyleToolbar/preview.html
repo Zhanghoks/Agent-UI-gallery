@@ -1,0 +1,77 @@
+<!-- @dsCard group="Canvas" height=196 subtitle="Restyle the relationship, not the nodes" -->
+<div class="wrap grid-bg">
+  <div style="display:flex; flex-direction:column; align-items:center; gap:14px">
+    <span class="tb">
+      <span class="sw" style="background: var(--accent-grey)"></span>
+      <span class="sw sel" style="background: var(--accent-teal)"></span>
+      <span class="sw" style="background: var(--accent-red)"></span>
+      <span class="d"></span>
+      <button class="ib on"><span class="ln thin"></span></button>
+      <button class="ib"><span class="ln mid"></span></button>
+      <button class="ib"><span class="ln fat"></span></button>
+      <span class="d"></span>
+      <button class="ib"><span class="ln dash"></span></button>
+      <button class="ib"><i class="g"></i>Label</button>
+      <span class="d"></span>
+      <button class="ib" style="color: var(--danger)"><i class="g"></i></button>
+    </span>
+    <svg width="260" height="54" viewBox="0 0 260 54" aria-hidden="true">
+      <path d="M8 44 C 70 44, 90 12, 252 12" fill="none" stroke="var(--accent-teal)" stroke-width="2"/>
+      <circle cx="8" cy="44" r="3" fill="var(--accent-teal)"/>
+      <circle cx="252" cy="12" r="3" fill="var(--accent-teal)"/>
+    </svg>
+  </div>
+  <div class="note">Stroke swatches use the same nine-token palette as nodes — an edge paints the raw accent at
+    100%, so an edge and a node of the same token read as one family. Width and dash sit behind a divider;
+    <b>Label</b> mounts the edge's label pill for editing; delete is last, in <b>danger</b>.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .tb { display: inline-flex; align-items: center; gap: 4px; padding: 6px;
+        background: var(--bg-surface); color: var(--fg-muted);
+        border-radius: var(--radius-lg); box-shadow: var(--shadow-bottom); }
+  .tb .d { width: 1px; height: 16px; background: var(--edge-default); margin: 0 2px; }
+  .ib { position: relative; cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 5px 6px; display: inline-flex; align-items: center; gap: 4px;
+        font-family: inherit; font-size: 11px; }
+  .ib:hover, .ib.on { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .sw { width: 14px; height: 14px; border-radius: var(--radius-full);
+        border: var(--border-swatch) solid var(--edge-default); box-sizing: border-box; }
+  .sw.sel { border-color: var(--info); transform: scale(1.1); }
+  .cap { display: inline-flex; align-items: center; padding: 0 4px; font-size: 11px; color: var(--fg-subtle); }
+
+  .ln { display: block; width: 18px; border-radius: var(--radius-full); background: currentColor; }
+  .ln.thin { height: 1px; } .ln.mid { height: 2px; } .ln.fat { height: 4px; }
+  .ln.dash { height: 2px; background: repeating-linear-gradient(90deg, currentColor 0 4px, transparent 4px 7px); }
+</style>

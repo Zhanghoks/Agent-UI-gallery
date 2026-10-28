@@ -1,0 +1,87 @@
+<!-- @dsCard group="Controls" height=276 subtitle="Soft fill, full-tone border, solid badge" -->
+<div class="wrap">
+  <div class="t info">
+    <span class="badge info">i</span>
+    <span class="msg">Space synced from your Home folder.</span>
+  </div>
+
+  <div class="t success">
+    <span class="badge success">✓</span>
+    <span class="msg">Three nodes added to Research.</span>
+    <button class="act success">Show</button>
+  </div>
+
+  <div class="t warning">
+    <span class="badge warning">!</span>
+    <span class="msg">Two source files moved since the last run.</span>
+    <button class="act warning">Relink</button>
+  </div>
+
+  <div class="t danger stacked">
+    <div class="line">
+      <span class="badge danger">×</span>
+      <span class="msg">The agent could not reach the model provider. Nothing on the canvas changed.</span>
+      <button class="act danger x">×</button>
+    </div>
+    <div class="acts">
+      <button class="act danger">Settings</button>
+      <button class="act danger">Retry</button>
+    </div>
+  </div>
+
+  <div class="t neutral">
+    <span class="badge neutral">i</span>
+    <span class="msg">Pan with Space, or two fingers.</span>
+  </div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-default); }
+  .wrap {
+    display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
+    padding: 16px; background: var(--bg-default);
+    background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+    background-size: var(--grid) var(--grid);
+  }
+  .t {
+    box-sizing: border-box; display: flex; align-items: center; gap: 12px;
+    width: fit-content; max-width: 460px;
+    padding: 10px 12px;
+    border: var(--border-hairline) solid;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--elevation-toast);
+    font-size: 14px; line-height: 20px;
+  }
+  .t.stacked { flex-direction: column; align-items: stretch; gap: 8px; }
+  .t.stacked .line { display: flex; align-items: flex-start; gap: 12px; }
+  .t.stacked .acts { display: flex; justify-content: flex-end; gap: 8px; }
+
+  .t.neutral { background: var(--bg-surface); border-color: var(--fg-default); color: var(--fg-default); }
+  .t.info    { background: var(--info-bg);    border-color: var(--info);    color: var(--info); }
+  .t.success { background: var(--success-bg); border-color: var(--success); color: var(--success); }
+  .t.warning { background: var(--warning-bg); border-color: var(--warning); color: var(--warning); }
+  .t.danger  { background: var(--danger-bg);  border-color: var(--danger);  color: var(--danger); }
+
+  .badge {
+    flex: none; width: 18px; height: 18px; border-radius: var(--radius-full);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: var(--fg-inverse);
+  }
+  .badge.neutral { background: var(--bg-inverse); }
+  .badge.info    { background: var(--info); }
+  .badge.success { background: var(--success); }
+  .badge.warning { background: var(--warning); }
+  .badge.danger  { background: var(--danger); }
+
+  .msg { min-width: 0; flex: 1 1 auto; }
+  .act {
+    font-family: inherit; font-size: 12px; line-height: 16px; font-weight: 500;
+    padding: 4px 10px; border: none; background: transparent; cursor: pointer;
+    border-radius: var(--radius-md); color: inherit;
+  }
+  .act.x { padding: 4px 7px; font-size: 14px; }
+  .act.info:hover    { background: var(--info-bg-hover); }
+  .act.success:hover { background: var(--success-bg-hover); }
+  .act.warning:hover { background: var(--warning-bg-hover); }
+  .act.danger:hover  { background: var(--danger-bg-hover); }
+</style>

@@ -1,0 +1,64 @@
+<!-- @dsCard group="Chat" height=232 subtitle="What the agent ran, and what came back" -->
+<div class="wrap">
+  <button class="ds"><span style="width:12px" class="ok">●</span><i class="g"></i><span>Read apps/web/src/index.css</span></button>
+  <div class="thread">
+    <div class="pre">{ "path": "apps/web/src/index.css", "range": [1, 120] }</div>
+    <div class="pre">766 lines · 45 CSS custom properties under :root</div>
+    <a class="lnk">Open in preview</a>
+  </div>
+  <button class="ds"><span style="width:12px" class="bad">●</span><i class="g"></i><span>Write research/summary.md</span></button>
+  <div class="thread">
+    <div class="pre bad-out">EACCES: permission denied, open 'research/summary.md'</div>
+  </div>
+  <div class="note">Input and output are both <b>xs</b> mono blocks on <b>bg-default</b> at
+    <code>rounded-sm px-2 py-1</code> with <code>whitespace-pre-wrap</code> and <code>overflow-x-auto</code>.
+    A result the person can act on gets an <b>info</b> underlined <b>xs</b> link; a failure keeps the same block
+    and turns the glyph <b>danger</b>. Status lives in the 12px glyph, never in the block's background.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .thread { margin-left: 16px; padding: 8px 0 8px 12px; display: flex; flex-direction: column; gap: 8px;
+            border-left: var(--border-hairline) solid color-mix(in srgb, var(--edge-default) 40%, transparent); }
+  .ds { display: flex; align-items: center; gap: 6px; font-family: inherit; font-size: 12px;
+        color: var(--fg-muted); background: transparent; border: none; cursor: pointer;
+        border-radius: var(--radius-md); padding: 2px 8px; width: 100%; box-sizing: border-box; text-align: left; }
+  .ds:hover { background: var(--bg-hover); }
+  .g { display: inline-block; width: 13px; height: 13px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .pre { font-family: var(--font-mono); font-size: 11px; line-height: 1.6; color: var(--fg-muted);
+         background: var(--bg-default); border-radius: var(--radius-sm); padding: 4px 8px;
+         white-space: pre-wrap; overflow-x: auto; }
+  .ok { color: var(--info); } .bad { color: var(--danger); }
+
+  .lnk { font-size: 11px; color: var(--info); text-decoration: underline; cursor: pointer; }
+  .bad-out { color: var(--danger); }
+</style>

@@ -29,6 +29,7 @@
 | [0012](adr/0012-docs-structure-and-consistency-check.md) | 文档分工与文档一致性检查 | 已采纳 |
 | [0013](adr/0013-own-icon-set.md) | 使用自有图标集，不依赖第三方图标包 | 已采纳 |
 | [0014](adr/0014-workflow-protocol-and-zcode-intake.md) | workflow 展示协议、mock 后端，以及从 ZCode 整理组件 | 已采纳 |
+| [0015](adr/0015-design-system-reference-pages.md) | 设计系统参照页独立于画廊 | 已采纳 |
 
 ## 技能配置
 

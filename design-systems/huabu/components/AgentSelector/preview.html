@@ -1,0 +1,74 @@
+<!-- @dsCard group="Agents" height=232 subtitle="Which agent is answering" -->
+<div class="wrap">
+  <div class="row" style="align-items:flex-start">
+    <span class="lbl" style="margin-top:4px">pill</span>
+    <button class="pill"><span class="mk">R</span>Research agent<span class="cv">▾</span></button>
+    <button class="pill"><span class="mk b">A</span>Architect<span class="cv">▾</span></button>
+  </div>
+  <div class="row" style="align-items:flex-start">
+    <span class="lbl" style="margin-top:4px">menu</span>
+    <div class="panel" style="min-width:236px">
+      <div class="grp"><span class="hr"></span>Built-in<span class="hr"></span></div>
+      <button class="item"><span class="mk sm">R</span><span style="flex:1">Research agent</span><span class="chk">✓</span></button>
+      <button class="item"><span class="mk sm b">A</span><span style="flex:1">Architect</span></button>
+      <div class="grp"><span class="hr"></span>Your team<span class="hr"></span></div>
+      <button class="item"><span class="mk sm c">P</span>
+        <span style="flex:1"><span style="display:block">Paper scout</span>
+          <span class="sub">agent-teams/paper-scout</span></span></button>
+      <div class="sepline"></div>
+      <div style="padding: 2px 4px 0"><button class="item" style="color: var(--info)">Manage agents…</button></div>
+    </div>
+  </div>
+  <div class="note">A <b>Select</b> with a pill trigger: the agent's mark, its name, a chevron. Grouping is
+    built-in versus the person's own team, and an external agent shows its manifest path as the <b>xs</b>
+    <b>fg-muted</b> description. The footer opens settings, so the list never has to explain how to add one.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .pill { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-family: inherit;
+          font-size: 12px; color: var(--fg-muted); background: var(--bg-surface);
+          border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-full);
+          padding: 3px 10px 3px 4px; }
+  .pill:hover { background: var(--bg-hover); }
+  .mk { width: 20px; height: 20px; border-radius: var(--radius-full); background: var(--ai);
+        color: var(--fg-inverse); font-size: 10px; font-weight: 500;
+        display: inline-flex; align-items: center; justify-content: center; }
+  .mk.sm { width: 18px; height: 18px; font-size: 9px; }
+  .mk.b { background: var(--accent-teal); } .mk.c { background: var(--accent-purple); }
+  .cv { font-size: 9px; color: var(--fg-subtle); }
+  .grp { display: flex; align-items: center; gap: 8px; padding: 4px 12px 2px;
+         font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-muted); }
+  .hr { flex: 1; height: 1px; background: var(--edge-default); }
+  .chk { margin-left: auto; width: 14px; text-align: center; color: var(--fg-default); }
+  .sub { display: block; font-size: 11px; color: var(--fg-muted); }
+</style>

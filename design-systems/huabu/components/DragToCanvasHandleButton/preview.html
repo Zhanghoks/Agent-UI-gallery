@@ -1,0 +1,59 @@
+<!-- @dsCard group="Controls" height=176 subtitle="Drag this result onto the canvas" -->
+<div class="wrap">
+  <div class="card">
+    <div class="ch"><span class="ic"></span><span style="flex:1; font-size:12px; font-weight:500">Interview transcript.pdf</span>
+      <button class="dh"><span class="dots"></span></button></div>
+    <div class="cbody">Three pages · added by the agent</div>
+  </div>
+  <div class="row"><span class="lbl">states</span>
+    <button class="dh"><span class="dots"></span></button>
+    <button class="dh act"><span class="dots"></span></button>
+    <span style="font-size:11px; color: var(--fg-subtle)">rest · dragging</span>
+  </div>
+  <div class="note">A ghost icon <b>Button</b> that opts out of the icon-size clamp
+    (<code>[&amp;_svg]:h-auto [&amp;_svg]:w-auto</code>) so the grip glyph can carry its own size. It is a
+    drag handle, not a click target: the whole affordance is "this thing can go on the canvas".</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .card { width: 300px; background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+          border-radius: var(--radius-md); padding: 8px 10px; }
+  .ch { display: flex; align-items: center; gap: 8px; }
+  .cbody { margin-top: 4px; font-size: 11px; color: var(--fg-muted); }
+  .dh { cursor: grab; border: none; background: transparent; border-radius: var(--radius-md);
+        padding: 4px; color: var(--fg-subtle); display: inline-flex; }
+  .dh:hover, .dh.act { background: var(--bg-hover); color: var(--fg-muted); }
+  .dots { display: block; width: 10px; height: 14px;
+          background-image: radial-gradient(currentColor 1.2px, transparent 1.2px);
+          background-size: 5px 5px; }
+</style>

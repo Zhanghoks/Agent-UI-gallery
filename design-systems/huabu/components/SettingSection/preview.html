@@ -1,0 +1,82 @@
+<!-- @dsCard group="Settings" height=252 subtitle="Divided rows in a ringed card" -->
+<div class="wrap">
+  <div class="sec">
+    <button class="sh"><span class="cv">⌄</span>Canvas</button>
+    <div class="group">
+      <div class="sr"><span class="sl"><span class="st">Snap to grid</span><span class="sd">Nodes land on the 18px grid.</span></span><span class="sw on"><span class="knob"></span></span></div>
+      <div class="sr"><span class="sl"><span class="st">Input mode</span></span><button class="pl">Auto ▾</button></div>
+      <div class="sr cmp"><span class="sl"><span class="st">Show the dot grid</span></span><span class="sw"><span class="knob"></span></span></div>
+    </div>
+  </div>
+  <div class="note">The header is an <b>xs medium fg-muted</b> ghost row at <code>mb-1.5 px-1</code> whose
+    chevron rotates <code>-90°</code> when collapsed. The group is <b>bg-surface</b> at
+    <code>rounded-md</code> with <code>divide-y divide-edge-default</code>, <code>overflow-hidden</code>,
+    <b>elevation-hover</b> and a <code>ring-1</code> in <b>edge-default at 50%</b> — a ring rather than a border,
+    so the divider lines meet the edge exactly. Rows are <code>px-3</code> with
+    <code>py-2.5</code>, or <code>py-1.5</code> when compact.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 4px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .ti { box-sizing: border-box; font-family: inherit; border: var(--border-hairline) solid var(--edge-default);
+        background: var(--bg-surface); color: var(--fg-default); border-radius: var(--radius-md);
+        outline: none; padding: 4px 8px; font-size: 12px; }
+  .sw { position: relative; display: inline-flex; align-items: center; width: 36px; height: 20px;
+        border-radius: var(--radius-full); border: 2px solid transparent; background: var(--edge-default);
+        box-sizing: border-box; }
+  .sw.on { background: var(--info); }
+  .knob { width: 16px; height: 16px; border-radius: var(--radius-full); background: var(--bg-surface);
+          box-shadow: var(--elevation-hover); }
+  .sw.on .knob { transform: translateX(16px); }
+
+  .sec { max-width: 420px; margin-bottom: 16px; }
+  .sh { display: flex; align-items: center; gap: 4px; margin-bottom: 6px; padding: 0 4px;
+        font-family: inherit; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+        background: transparent; border: none; cursor: pointer; }
+  .sh:hover { color: var(--fg-default); }
+  .cv { font-size: 10px; color: var(--fg-subtle); }
+  .group { background: var(--bg-surface); border-radius: var(--radius-md); overflow: hidden;
+           box-shadow: var(--elevation-hover), 0 0 0 1px color-mix(in srgb, var(--edge-default) 50%, transparent); }
+  .sr { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; }
+  .sr + .sr { border-top: var(--border-hairline) solid var(--edge-default); }
+  .sr.cmp { padding: 6px 12px; }
+  .sl { min-width: 0; flex: 1; }
+  .st { display: block; font-size: 12px; font-weight: 500; color: var(--fg-default); }
+  .sd { display: block; margin-top: 2px; font-size: 11px; color: var(--fg-subtle); font-weight: 400; }
+  .pl { font-family: inherit; font-size: 12px; color: var(--fg-muted); background: var(--bg-surface);
+        border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-full);
+        padding: 2px 8px; cursor: pointer; }
+</style>

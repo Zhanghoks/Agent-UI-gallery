@@ -1,0 +1,57 @@
+<!-- @dsCard group="Canvas" height=300 subtitle="Three tiers, chosen by node size — never by title length" -->
+<div class="wrap">
+  <div class="tiers">
+    <figure class="t" style="width: 150px; height: 104px;">
+      <div class="ph" style="font-size: 26px;">Kickoff</div>
+      <figcaption>lod-32 · size &lt; 300</figcaption>
+    </figure>
+    <figure class="t" style="width: 214px; height: 148px;">
+      <div class="ph" style="font-size: 36px;">Constraints</div>
+      <figcaption>lod-52 · 300–600</figcaption>
+    </figure>
+    <figure class="t" style="width: 286px; height: 196px;">
+      <div class="ph" style="font-size: 50px;">Open questions</div>
+      <figcaption>lod-76 · 600+</figcaption>
+    </figure>
+  </div>
+
+  <div class="rule">
+    <div class="r"><b>tier</b> from √(w × h), the node's representative canvas size — so two nodes of the same size always show the same type</div>
+    <div class="r"><b>switch</b> at lod-threshold 150px screen width, ±lod-hysteresis 10px (collapse below 140, expand at 160)</div>
+    <div class="r"><b>wrap</b> at word boundaries, up to lod-max-lines 6 or however many fit the height, then ellipsize — never shrink to fit</div>
+    <div class="r"><b>fade</b> lod-fade 120ms, both layers mounted so entering and leaving animate symmetrically</div>
+    <div class="r sub">Type sizes shown at ~0.8 scale to fit this card; the real tiers are 32 / 52 / 76px in canvas space.</div>
+  </div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-default); }
+  .wrap {
+    padding: 16px; background: var(--bg-default);
+    background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+    background-size: var(--grid) var(--grid);
+  }
+  .tiers { display: flex; gap: var(--space-4); align-items: flex-end; }
+  .t { margin: 0; }
+  .ph {
+    box-sizing: border-box; width: 100%; height: calc(100% - 18px);
+    display: flex; align-items: center;
+    padding: 8px 10px;
+    background: var(--bg-surface);
+    border: var(--border-node) solid color-mix(in srgb, var(--accent-teal) var(--accent-border-mix), transparent);
+    border-radius: var(--radius-lg);
+    color: color-mix(in srgb, var(--accent-teal) var(--accent-fg-mix), var(--fg-default));
+    line-height: 1.2; font-weight: 500;
+    overflow: hidden;
+  }
+  figcaption { margin-top: 5px; font-size: 10px; color: var(--fg-subtle); }
+  .rule {
+    margin-top: 16px; padding: 10px 12px;
+    background: var(--bg-surface);
+    border: var(--border-hairline) solid var(--edge-default);
+    border-radius: var(--radius-md);
+  }
+  .r { font-size: 11px; line-height: 1.75; color: var(--fg-muted); }
+  .r b { color: var(--fg-default); font-weight: 500; }
+  .r.sub { margin-top: 5px; color: var(--fg-subtle); }
+</style>

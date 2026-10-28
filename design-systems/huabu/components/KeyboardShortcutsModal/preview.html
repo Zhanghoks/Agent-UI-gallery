@@ -1,0 +1,72 @@
+<!-- @dsCard group="Panels" height=248 subtitle="Every shortcut, grouped the way the canvas is used" -->
+<div class="wrap" style="padding:0">
+  <div class="mo">
+    <h3 class="mt">Keyboard shortcuts</h3>
+    <div class="cols">
+      <div><div class="sec">Canvas</div>
+        <div class="kr"><span>Pan</span><span class="ks"><kbd>Space</kbd>+drag</span></div>
+        <div class="kr"><span>Zoom to fit</span><span class="ks"><kbd>⇧</kbd><kbd>1</kbd></span></div>
+        <div class="kr"><span>Lasso</span><span class="ks"><kbd>L</kbd></span></div></div>
+      <div><div class="sec">Create</div>
+        <div class="kr"><span>Note</span><span class="ks"><kbd>N</kbd></span></div>
+        <div class="kr"><span>Text</span><span class="ks"><kbd>T</kbd></span></div>
+        <div class="kr"><span>Agent node</span><span class="ks"><kbd>Q</kbd></span></div></div>
+    </div>
+  </div>
+  <div class="note" style="margin:12px 16px">A <b>Modal</b> with the standard title, laid out in columns of
+    label-and-keys rows. Keys are <code>kbd</code> chips: mono <b>xs</b> on <b>bg-default</b> with a 1px
+    <b>edge-default</b> border at <code>rounded-sm</code> — the same chip the permission card uses for scopes.
+    Groups follow how the canvas is actually used (navigate, create, select, agents), not the key order.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 4px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+
+  .mo { box-sizing: border-box; width: 470px; margin: 12px 16px 0; background: var(--bg-surface);
+        border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-bottom); padding: 20px; }
+  .mt { margin: 0 0 12px; font-size: 16px; font-weight: 600; color: var(--fg-default); }
+  .cols { display: flex; gap: 28px; }
+  .cols > div { flex: 1; min-width: 0; }
+  .sec { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-subtle);
+         margin-bottom: 6px; }
+  .kr { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        font-size: 12px; color: var(--fg-muted); padding: 3px 0; }
+  .ks { display: inline-flex; align-items: center; gap: 3px; color: var(--fg-subtle); }
+  kbd { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted);
+        background: var(--bg-default); border: var(--border-hairline) solid var(--edge-default);
+        border-radius: var(--radius-sm); padding: 1px 5px; }
+</style>

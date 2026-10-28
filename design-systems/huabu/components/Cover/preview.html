@@ -1,0 +1,64 @@
+<!-- @dsCard height=288 -->
+<div class="cover">
+  <!--
+    blocks: accent-teal 126×216 slab · accent-amber 144×108 card + question-border board (agent-depth-offset 8) · accent-grey 168×126 relief bleeding right · accent-orange 90×72 · accent-purple 222×72 bleeding right — every side a multiple of grid 18, corners radius-lg
+    arrangement: one tall slab with satellites in the right box (x 486→960), two blocks running off the right edge, 18px alleys throughout
+    pattern: a two-row dot field at the grid's own 18px pitch across the top band — the technical/grid row, chosen because Huabu's 18px dot grid IS its ground: the background, React Flow's snap step and the layout engine all read the same number; the one offset card-and-board pair is the agent sticky's depth motif, which no other canvas has
+    scales: pitch grid 18px · block sides 5×–14× grid · corners radius-lg 8px · board offset agent-depth-offset 8px · name 120px / .92, tagline 14px
+  -->
+  <svg class="art" viewBox="0 0 960 288" width="960" height="288" aria-hidden="true">
+    <!-- pattern: dot field at one grid step -->
+    <g class="dots">
+      <circle cx="486" cy="9" r="1.5"/><circle cx="504" cy="9" r="1.5"/><circle cx="522" cy="9" r="1.5"/><circle cx="540" cy="9" r="1.5"/><circle cx="558" cy="9" r="1.5"/><circle cx="576" cy="9" r="1.5"/><circle cx="594" cy="9" r="1.5"/><circle cx="612" cy="9" r="1.5"/><circle cx="630" cy="9" r="1.5"/><circle cx="648" cy="9" r="1.5"/><circle cx="666" cy="9" r="1.5"/><circle cx="684" cy="9" r="1.5"/><circle cx="702" cy="9" r="1.5"/><circle cx="720" cy="9" r="1.5"/><circle cx="738" cy="9" r="1.5"/><circle cx="756" cy="9" r="1.5"/><circle cx="774" cy="9" r="1.5"/><circle cx="792" cy="9" r="1.5"/><circle cx="810" cy="9" r="1.5"/><circle cx="828" cy="9" r="1.5"/><circle cx="846" cy="9" r="1.5"/><circle cx="864" cy="9" r="1.5"/><circle cx="882" cy="9" r="1.5"/><circle cx="900" cy="9" r="1.5"/><circle cx="918" cy="9" r="1.5"/><circle cx="936" cy="9" r="1.5"/><circle cx="954" cy="9" r="1.5"/>
+      <circle cx="486" cy="27" r="1.5"/><circle cx="504" cy="27" r="1.5"/><circle cx="522" cy="27" r="1.5"/><circle cx="540" cy="27" r="1.5"/><circle cx="558" cy="27" r="1.5"/><circle cx="576" cy="27" r="1.5"/><circle cx="594" cy="27" r="1.5"/><circle cx="612" cy="27" r="1.5"/><circle cx="630" cy="27" r="1.5"/><circle cx="648" cy="27" r="1.5"/><circle cx="666" cy="27" r="1.5"/><circle cx="684" cy="27" r="1.5"/><circle cx="702" cy="27" r="1.5"/><circle cx="720" cy="27" r="1.5"/><circle cx="738" cy="27" r="1.5"/><circle cx="756" cy="27" r="1.5"/><circle cx="774" cy="27" r="1.5"/><circle cx="792" cy="27" r="1.5"/><circle cx="810" cy="27" r="1.5"/><circle cx="828" cy="27" r="1.5"/><circle cx="846" cy="27" r="1.5"/><circle cx="864" cy="27" r="1.5"/><circle cx="882" cy="27" r="1.5"/><circle cx="900" cy="27" r="1.5"/><circle cx="918" cy="27" r="1.5"/><circle cx="936" cy="27" r="1.5"/><circle cx="954" cy="27" r="1.5"/>
+    </g>
+
+    <!-- blocks -->
+    <rect class="teal"   x="486" y="54"  width="126" height="216" rx="8"/>
+    <rect class="grey"   x="792" y="54"  width="168" height="126" rx="8"/>
+    <rect class="board"  x="638" y="76"  width="144" height="108" rx="8"/>
+    <rect class="amber"  x="630" y="68"  width="144" height="108" rx="8"/>
+    <rect class="orange" x="630" y="198" width="90"  height="72"  rx="8"/>
+    <rect class="purple" x="738" y="198" width="222" height="72"  rx="8"/>
+  </svg>
+
+  <div class="text">
+    <h1>Huabu</h1>
+    <p>Where you and your agents think together.</p>
+  </div>
+</div>
+
+<style>
+  body { margin: 0; }
+  .cover {
+    position: relative;
+    width: 960px; height: 288px;
+    background: var(--bg-default);
+    font-family: var(--font-sans);
+    overflow: hidden;
+  }
+  .art { position: absolute; inset: 0; }
+  .dots  { fill: var(--canvas-grid); }
+  .teal   { fill: var(--accent-teal); }
+  .amber  { fill: var(--accent-amber); }
+  .board  { fill: var(--question-border); }
+  .grey   { fill: var(--accent-grey); }
+  .orange { fill: var(--accent-orange); }
+  .purple { fill: var(--accent-purple); }
+
+  .text {
+    position: absolute; left: 56px; bottom: 44px;
+    width: 400px;
+  }
+  .text h1 {
+    margin: 0;
+    font-size: 120px; line-height: .92; font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--fg-default);
+  }
+  .text p {
+    margin: 14px 0 0;
+    font-size: 14px; line-height: 20px;
+    color: var(--fg-muted);
+  }
+</style>

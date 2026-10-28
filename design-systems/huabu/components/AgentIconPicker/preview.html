@@ -1,0 +1,84 @@
+<!-- @dsCard group="Agents" height=224 subtitle="Pick a face for an agent" -->
+<div class="wrap">
+  <div class="row" style="align-items:flex-start">
+    <span class="lbl" style="margin-top:6px">trigger</span>
+    <button class="trg"><span class="mk">A</span></button>
+  </div>
+  <div class="row" style="align-items:flex-start">
+    <span class="lbl" style="margin-top:6px">panel</span>
+    <div class="pk">
+      <div class="sec">Shapes</div>
+      <div class="gridr">
+        <button class="op on"><span class="sh c"></span></button><button class="op"><span class="sh sq"></span></button>
+        <button class="op"><span class="sh tr"></span></button><button class="op"><span class="sh hx"></span></button>
+        <button class="op"><span class="sh dm"></span></button>
+      </div>
+      <div class="sec">Colours</div>
+      <div class="gridr">
+        <span class="sw" style="background: var(--ai)"></span>
+        <span class="sw sel" style="background: var(--accent-teal)"></span>
+        <span class="sw" style="background: var(--accent-green)"></span>
+        <span class="sw" style="background: var(--accent-orange)"></span>
+        <span class="sw" style="background: var(--accent-purple)"></span>
+      </div>
+    </div>
+  </div>
+  <div class="note">Trigger is a <code>rounded-full p-0.5</code> ghost Button whose glyph is forced to 20px.
+    Section headers are the system's 10px uppercase wide-tracked <b>fg-subtle</b> label at <code>px-0.5</code>;
+    rows sit at <code>gap-1</code> inside a <code>gap-2</code> column, in a <code>w-auto p-2</code> popover.
+    Colour swatches reuse the accent palette's ring behaviour.</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .trg { cursor: pointer; border: none; background: transparent; border-radius: var(--radius-full); padding: 2px; }
+  .trg:hover { background: var(--bg-hover); }
+  .mk { width: 28px; height: 28px; border-radius: var(--radius-full); background: var(--accent-teal);
+        color: var(--fg-inverse); font-size: 12px; font-weight: 500;
+        display: inline-flex; align-items: center; justify-content: center; }
+  .pk { display: flex; flex-direction: column; gap: 8px; width: auto; padding: 8px;
+        background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+        border-radius: var(--radius-md); box-shadow: var(--elevation-toast); }
+  .sec { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-subtle); padding: 0 2px; }
+  .gridr { display: flex; gap: 4px; align-items: center; }
+  .op { cursor: pointer; border: none; background: transparent; padding: 4px; border-radius: var(--radius-md);
+        display: inline-flex; color: var(--fg-muted); }
+  .op:hover, .op.on { background: var(--bg-hover); color: var(--fg-default); }
+  .sh { display: block; width: 16px; height: 16px; background: currentColor; }
+  .sh.c { border-radius: var(--radius-full); }
+  .sh.sq { border-radius: 3px; }
+  .sh.tr { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .sh.hx { clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); }
+  .sh.dm { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+  .sw { width: 16px; height: 16px; border-radius: var(--radius-full); box-sizing: border-box;
+        border: var(--border-swatch) solid var(--edge-default); }
+  .sw.sel { border-color: var(--info); transform: scale(1.1); }
+</style>

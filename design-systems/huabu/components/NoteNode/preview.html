@@ -1,0 +1,78 @@
+<!-- @dsCard group="Nodes" height=236 subtitle="Rich text on the canvas, with a fade where it overflows" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:16px">
+    <div class="nd" style="width:210px; height:172px">
+      <div class="nb">
+        <h4>Onboarding friction</h4>
+        <p>Three of five people stalled at the folder step. Two said they expected a template.</p>
+        <ul><li>Name the folder "Home"</li><li>Offer a starter Space</li></ul>
+        <p>Follow-up: ask about the second session.</p>
+      </div>
+      <div class="fade"><span class="more">⌄</span></div>
+    </div>
+    <div class="nd acc" style="width:186px; height:172px">
+      <div class="nb"><h4>Constraints</h4><p>Ship inside the quarter. No new model spend.</p></div>
+    </div>
+    <div class="nd" style="width:150px; height:172px; display:flex; align-items:center; justify-content:center">
+      <div class="skl" style="width:110px"></div>
+    </div>
+  </div>
+  <div class="note">Markdown body rendered by <b>Milkdown</b>, inheriting the node's accent text colour.
+    Overflow is signalled by a gradient from <b>fg-subtle</b> at 30% over a 40px foot with a chevron in
+    <b>fg-subtle</b> — never a scrollbar, which would fight canvas panning. Below the LOD threshold the body is
+    replaced by <b>SemanticPlaceholder</b>.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .nd { position: relative; box-sizing: border-box; background: var(--bg-surface);
+        border: var(--border-node) solid transparent; border-radius: var(--radius-lg);
+        overflow: hidden; box-shadow: var(--elevation-hover); }
+  .nd.acc { background: color-mix(in srgb, var(--accent-amber) var(--accent-bg-mix), var(--bg-surface));
+            border-color: color-mix(in srgb, var(--accent-amber) var(--accent-border-mix), transparent);
+            color: color-mix(in srgb, var(--accent-amber) var(--accent-fg-mix), var(--fg-default)); }
+  .nb { padding: 8px 10px; font-size: 11px; line-height: 1.5; }
+  .nb h4 { margin: 0 0 4px; font-size: 12px; font-weight: 600; }
+  .nb p { margin: 0 0 5px; color: inherit; }
+  .nb ul { margin: 0 0 5px; padding-left: 16px; }
+  .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 40px;
+          display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px;
+          pointer-events: none; }
+  .fade::before { content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, color-mix(in srgb, var(--fg-subtle) 30%, transparent), transparent); }
+  .more { position: relative; color: var(--fg-subtle); font-size: 12px; }
+  @keyframes shim { 0% { background-position: 200% center; } 100% { background-position: -200% center; } }
+  .skl { height: 10px; border-radius: var(--radius-sm);
+         background: linear-gradient(90deg, var(--skeleton-1), var(--skeleton-2) 25%, var(--skeleton-3) 50%,
+                     var(--skeleton-2) 75%, var(--skeleton-1)); background-size: 200% auto;
+         animation: shim 1.8s ease-in-out infinite; }
+</style>

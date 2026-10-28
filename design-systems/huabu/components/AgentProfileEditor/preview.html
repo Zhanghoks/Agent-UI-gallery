@@ -1,0 +1,86 @@
+<!-- @dsCard group="Settings" height=252 subtitle="Adding an agent to your team" -->
+<div class="wrap">
+  <div class="ed">
+    <div class="tabs"><button class="tb on">Command</button><button class="tb">Manifest</button></div>
+    <div class="fields">
+      <div class="f"><span class="fl">Name</span><input class="ti" value="Paper scout" /></div>
+      <div class="f"><span class="fl">Icon</span><span class="mk">P</span></div>
+      <div class="f"><span class="fl">Command</span><input class="ti mono" value="node agent-teams/paper-scout/main.js" /></div>
+      <div class="f"><span class="fl">Working dir</span><span class="ro mono">~/Documents/Spaces</span></div>
+    </div>
+    <p class="help">The command runs on your computer when this agent is used. Huabu does not install anything for it.</p>
+    <p class="warn" role="status">This command has not been run yet — it will start the first time you use the agent.</p>
+    <div class="ft"><button class="bt ghost">Cancel</button><button class="bt solid">Add agent</button></div>
+  </div>
+  <div class="note">One <code>flex-col</code> form: a <b>TabGroup</b> choosing the profile kind, then full-width
+    fields, then a <code>px-3 pb-2.5 text-[11px] leading-snug</code> <b>fg-subtle</b> help line, then a
+    <code>px-3 py-2.5 text-xs</code> <b>warning</b> <code>role="status"</code> line for anything unverified, then
+    a right-aligned <code>gap-2</code> footer. The order is fixed — explain, then warn, then commit.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 4px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .bt { font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer; padding: 5px 10px;
+        border-radius: var(--radius-md); }
+  .bt.solid { border: none; background: var(--bg-inverse); color: var(--fg-inverse); }
+  .bt.out { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+            color: var(--fg-muted); }
+  .bt.ghost { border: none; background: transparent; color: var(--fg-muted); }
+
+  .ed { box-sizing: border-box; max-width: 430px; background: var(--bg-surface);
+        border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-md);
+        display: flex; flex-direction: column; padding: 10px 0; }
+  .tabs { display: flex; gap: 4px; padding: 0 12px 8px; }
+  .tb { font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer; border: none;
+        background: transparent; color: var(--fg-muted); border-radius: var(--radius-md); padding: 4px 10px; }
+  .tb.on { background: var(--bg-default); color: var(--fg-default); }
+  .fields { display: flex; flex-direction: column; gap: 8px; padding: 0 12px; }
+  .f { display: flex; align-items: center; gap: 10px; }
+  .fl { width: 86px; flex: none; font-size: 12px; font-weight: 500; color: var(--fg-default); }
+  .ti { flex: 1; min-width: 0; box-sizing: border-box; font-family: inherit; font-size: 12px;
+        padding: 4px 8px; border-radius: var(--radius-md); color: var(--fg-default);
+        background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default); outline: none; }
+  .ti.mono, .ro.mono { font-family: var(--font-mono); }
+  .ro { flex: 1; min-width: 0; box-sizing: border-box; font-size: 12px; padding: 4px 8px;
+        color: var(--fg-muted); background: var(--bg-default);
+        border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-md); }
+  .mk { width: 22px; height: 22px; border-radius: var(--radius-full); background: var(--accent-purple);
+        color: var(--fg-inverse); font-size: 10px; display: inline-flex; align-items: center;
+        justify-content: center; }
+  .help { margin: 10px 0 0; padding: 0 12px; font-size: 11px; line-height: 1.45; color: var(--fg-subtle); }
+  .warn { margin: 0; padding: 8px 12px 0; font-size: 12px; line-height: 1.5; color: var(--warning); }
+  .ft { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 12px 0; }
+</style>

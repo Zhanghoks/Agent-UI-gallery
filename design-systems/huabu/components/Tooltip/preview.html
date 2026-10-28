@@ -1,0 +1,54 @@
+<!-- @dsCard group="Controls" height=200 subtitle="bg-inverse, shadow-bottom, pointer-events-none" -->
+<div class="wrap">
+  <div class="cell">
+    <div class="tip top">Add a note<span class="tail t"></span></div>
+    <button class="ib"><i class="g"></i></button>
+    <div class="cap">auto — top, flips when there is no room</div>
+  </div>
+
+  <div class="cell">
+    <button class="ib"><i class="g"></i></button>
+    <div class="tip bottom"><span class="tail b"></span>Fit to selection</div>
+    <div class="cap">bottom — for chrome at the window's top edge</div>
+  </div>
+
+  <div class="cell">
+    <div class="tip top wide">Merge this stroke into the nearest sketch<span class="tail t"></span></div>
+    <button class="ib"><i class="g"></i></button>
+    <div class="cap">max-width 90vw, xs text, no wrapping tricks</div>
+  </div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); }
+  .wrap {
+    display: flex; gap: 28px; align-items: center; justify-content: center;
+    padding: 26px 16px; background: var(--bg-surface);
+  }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 180px; }
+  .tip {
+    position: relative;
+    background: var(--bg-inverse); color: var(--fg-inverse);
+    border-radius: var(--radius-md);
+    padding: 4px 8px;
+    font-size: 12px; line-height: 16px;
+    box-shadow: var(--shadow-bottom);
+    max-width: 160px; text-align: center;
+  }
+  .tip.wide { max-width: 170px; }
+  .tail {
+    position: absolute; left: 50%; margin-left: -4px;
+    width: 8px; height: 8px; background: var(--bg-inverse);
+    transform: rotate(45deg);
+  }
+  .tail.t { bottom: -4px; }
+  .tail.b { top: -4px; }
+  .ib {
+    cursor: pointer; border: none; background: var(--bg-hover);
+    border-radius: var(--radius-md); padding: 6px;
+    color: var(--fg-default);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .g { display: block; width: 16px; height: 16px; border: 1.75px solid currentColor; border-radius: 2px; }
+  .cap { font-size: 10px; line-height: 1.5; color: var(--fg-subtle); text-align: center; }
+</style>

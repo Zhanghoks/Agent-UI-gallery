@@ -1,0 +1,61 @@
+<!-- @dsCard group="Canvas" height=204 subtitle="A popover pinned to something on the canvas" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:22px">
+    <div class="anch">
+      <div class="nd">Survey results</div>
+      <div class="pp">
+        <div class="pt">Set by the research agent 4 minutes ago</div>
+        <div class="pa"><button class="btn ghost" style="font-size:11px; padding:3px 8px">Dismiss</button></div>
+      </div>
+    </div>
+    <div class="note" style="flex:1; min-width:210px; margin:0; border:none; padding:0">
+      It tracks a <i>flow-space</i> anchor through the viewport transform, so it stays with the node while the
+      canvas pans and zooms — but renders in screen space, so it keeps its own size and legibility.
+    </div>
+  </div>
+  <div class="note">Chrome is the toolbar popover's: <b>bg-surface</b>, 1px <b>edge-default</b>,
+    <code>rounded-lg</code>, <b>shadow-bottom</b>. It carries <code>data-floating-chrome</code>, stops pointer
+    events from reaching the canvas, and closes on canvas interaction — never on hover.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .anch { position: relative; }
+  .nd { box-sizing: border-box; width: 170px; padding: 14px 12px; background: var(--bg-surface);
+        border: var(--border-node) solid transparent; border-radius: var(--radius-lg);
+        box-shadow: var(--elevation-hover); font-size: 12px; font-weight: 500; color: var(--fg-default); }
+  .pp { position: absolute; left: 24px; top: 100%; margin-top: 8px; width: 216px; box-sizing: border-box;
+        background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+        border-radius: var(--radius-lg); box-shadow: var(--shadow-bottom); padding: 8px 10px; }
+  .pt { font-size: 11px; line-height: 1.6; color: var(--fg-muted); }
+  .pa { display: flex; justify-content: flex-end; margin-top: 6px; }
+</style>

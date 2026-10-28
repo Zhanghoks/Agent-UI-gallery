@@ -1,0 +1,73 @@
+<!-- @dsCard group="Panels" height=200 subtitle="The desktop title bar Huabu draws itself" -->
+<div class="wrap" style="padding:0">
+  <div class="wc">
+    <span class="traffic"><i></i><i></i><i></i></span>
+    <button class="ib"><i class="g"></i></button>
+    <button class="ib"><i class="g"></i></button>
+    <span class="centre">
+      <button class="nm">Q3 onboarding</button>
+      <span class="sub">~/Documents/Spaces</span>
+    </span>
+    <span style="flex:1"></span>
+    <button class="upd">Update ready</button>
+  </div>
+  <div class="note" style="margin:14px 16px">A <code>shrink-0</code> <b>bg-surface</b> row at
+    <code>gap-2 px-2</code> with <b>h-7 w-7</b> <code>rounded-md</code> ghost buttons. The centre block is
+    <code>absolute left-1/2 -translate-x-1/2 max-w-[50%]</code> and <b>pointer-events-none</b>, with only the name
+    itself <code>pointer-events-auto</code> — the title can be centred over the whole bar without stealing the
+    drag region the window needs. Name: <b>sm medium fg-muted</b> hovering to fg-default; path:
+    <b>fg-subtle</b> beneath.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 4px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+
+  .wc { position: relative; display: flex; align-items: center; gap: 8px; padding: 6px 8px;
+        background: var(--bg-surface); }
+  .traffic { display: inline-flex; gap: 6px; margin-right: 4px; }
+  .traffic i { width: 11px; height: 11px; border-radius: var(--radius-full); background: var(--edge-default); }
+  .ib { width: 28px; height: 28px; align-items: center; justify-content: center; }
+  .centre { position: absolute; left: 50%; transform: translateX(-50%); max-width: 50%; min-width: 0;
+            display: flex; flex-direction: column; align-items: center; pointer-events: none; }
+  .nm { pointer-events: auto; font-family: inherit; font-size: 13px; font-weight: 500; color: var(--fg-muted);
+        background: transparent; border: none; cursor: pointer; border-radius: var(--radius-md);
+        padding: 1px 8px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .nm:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .sub { margin-top: 2px; font-size: 11px; color: var(--fg-subtle); }
+  .upd { font-family: inherit; font-size: 11px; font-weight: 500; cursor: pointer;
+         border: var(--border-hairline) solid var(--info); background: var(--info-bg); color: var(--info);
+         border-radius: var(--radius-full); padding: 3px 10px; }
+</style>

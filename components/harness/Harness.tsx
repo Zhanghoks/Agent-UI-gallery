@@ -591,7 +591,7 @@ export default function Harness() {
   );
 
   return (
-    <main className="flex h-[100dvh] gap-0 bg-canvas p-2.5 text-ink lg:pl-0">
+    <main className="flex h-full min-h-[70vh] min-w-0 flex-1 gap-0 bg-canvas p-2.5 text-ink lg:min-h-0 lg:pl-0">
       <SidebarNav
         fill
         className="hidden lg:flex"

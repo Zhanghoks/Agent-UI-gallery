@@ -1,0 +1,71 @@
+<!-- @dsCard group="Nodes" height=224 subtitle="A live page, or its card when it will not frame" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:14px">
+    <div class="wb" style="width:212px">
+      <div class="bar"><span class="glb"></span><span class="url">docs.claude.com/…</span></div>
+      <div class="view"><div class="lines"><i></i><i style="width:70%"></i><i style="width:88%"></i><i style="width:54%"></i></div></div>
+    </div>
+    <div class="wb" style="width:184px">
+      <div class="bar"><span class="glb"></span><span class="url">github.com/microsoft…</span></div>
+      <div class="view fb">
+        <span class="fav"></span>
+        <span class="fttl">microsoft/Huabu</span>
+        <span class="fsub">Cannot be framed — showing the card</span>
+      </div>
+    </div>
+  </div>
+  <div class="note">The URL row is <code>nodrag</code>, <b>xs</b> medium in <b>fg-muted</b> hovering to <b>info</b>,
+    truncated to <code>max-w-24</code> by <code>shortenForToolbar</code>. A page that refuses framing falls back to
+    a centred card: 64px favicon at <code>object-contain</code>, title <b>sm</b> truncated, reason in fg-subtle.
+    Web is on the binary LOD ladder — below the threshold the frame is dropped for a title.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .wb { box-sizing: border-box; background: var(--bg-surface); border: var(--border-node) solid transparent;
+        border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--elevation-hover); }
+  .bar { display: flex; align-items: center; gap: 6px; padding: 5px 8px;
+         border-bottom: var(--border-hairline) solid var(--edge-default); }
+  .glb { width: 11px; height: 11px; border-radius: var(--radius-full);
+         border: 1.5px solid var(--fg-subtle); }
+  .url { font-size: 11px; font-weight: 500; color: var(--fg-muted); overflow: hidden;
+         text-overflow: ellipsis; white-space: nowrap; }
+  .view { height: 118px; padding: 12px; background: var(--bg-surface); }
+  .lines { display: flex; flex-direction: column; gap: 8px; }
+  .lines i { display: block; height: 8px; width: 100%; border-radius: var(--radius-sm); background: var(--skeleton-2); }
+  .view.fb { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+             text-align: center; }
+  .fav { width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--skeleton-2); }
+  .fttl { font-size: 13px; color: var(--fg-muted); max-width: 100%; overflow: hidden;
+          text-overflow: ellipsis; white-space: nowrap; }
+  .fsub { font-size: 10px; color: var(--fg-subtle); }
+</style>

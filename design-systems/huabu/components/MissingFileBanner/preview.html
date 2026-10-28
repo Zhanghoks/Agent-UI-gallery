@@ -1,0 +1,77 @@
+<!-- @dsCard group="Nodes" height=232 subtitle="The file behind this node moved" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:14px">
+    <div class="mf full">
+      <span class="warn"></span>
+      <div class="txt">
+        <div class="t">The file for this node is missing</div>
+        <div class="d">It may have been renamed, moved out of Home, or deleted since the Space was saved.</div>
+      </div>
+      <ul class="paths"><li>research/interviews/session-3.pdf</li><li>research/interviews/session-4.pdf</li></ul>
+      <div class="acts"><button class="btn">Locate…</button><button class="btn">Retry</button></div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:10px">
+      <div class="mf compact"><span class="warn sm"></span><span class="cd">session-3.pdf — missing</span></div>
+      <div class="note" style="margin:0; border:none; padding:0; max-width:220px">
+        Two densities, chosen by the node's size: full inside a node big enough to read it, compact when it is not.
+      </div>
+    </div>
+  </div>
+  <div class="note">Both use a dashed… no: a solid 1px <b>warning-light</b> border on <b>bg-surface</b> in
+    <b>fg-muted</b>, with the glyph in <b>warning</b>. Full: 32px glyph at 80% opacity, title <b>sm</b> medium
+    <b>fg-default</b>, reason <b>xs</b> fg-subtle <code>line-clamp-3</code>, the offending paths in a mono-ish
+    scrolling list capped at <code>max-h-20</code>, then two <b>outline</b> buttons. Compact: one truncated
+    <b>xs</b> line with a title attribute.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .mf { box-sizing: border-box; background: var(--bg-surface);
+        border: var(--border-hairline) solid var(--warning-light);
+        border-radius: var(--radius-md); color: var(--fg-muted); }
+  .mf.full { width: 300px; display: flex; flex-direction: column; align-items: center; gap: 10px;
+             padding: 14px; text-align: center; }
+  .mf.compact { display: flex; align-items: center; gap: 8px; padding: 0 8px; height: 30px;
+                font-size: 11px; max-width: 220px; }
+  .warn { width: 30px; height: 26px; opacity: .8;
+          clip-path: polygon(50% 0, 100% 100%, 0 100%); background: var(--warning); }
+  .warn.sm { width: 13px; height: 12px; opacity: 1; }
+  .txt .t { font-size: 13px; font-weight: 500; color: var(--fg-default); }
+  .txt .d { margin-top: 3px; font-size: 11px; line-height: 1.5; color: var(--fg-subtle); }
+  .paths { margin: 0; padding: 4px 8px; list-style: none; width: 100%; max-width: 260px; box-sizing: border-box;
+           border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-sm);
+           background: var(--bg-default); font-size: 10px; line-height: 1.7; color: var(--fg-muted);
+           text-align: left; max-height: 44px; overflow: auto; }
+  .paths li { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .acts { display: flex; gap: 8px; }
+  .cd { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+</style>

@@ -1,0 +1,90 @@
+<!-- @dsCard group="Canvas" height=224 subtitle="Pen or eraser, colour and size, while drawing" -->
+<div class="wrap grid-bg">
+  <div style="display:flex; flex-direction:column; align-items:center; gap:14px">
+    <span class="tb" style="padding: 4px 6px">
+      <span class="seg"><button class="sg on"><i class="g" style="border-radius:0 3px 3px 0"></i></button><button class="sg"><i class="g" style="border-radius:3px"></i></button></span>
+      <span class="d"></span>
+      <span class="stack">
+        <span class="sw" style="background: var(--ink-black)"></span>
+        <span class="sw sel" style="background: var(--accent-teal)"></span>
+        <span class="sw" style="background: var(--accent-amber)"></span>
+        <span class="sw" style="background: var(--accent-red)"></span>
+      </span>
+      <span class="d"></span>
+      <button class="ib szp"><span class="pv" style="height:3px"></span></button>
+      <button class="ib szp on"><span class="pv" style="height:6px"></span></button>
+      <button class="ib szp"><span class="pv" style="height:9px"></span></button>
+    </span>
+    <span class="tb" style="padding: 6px 8px">
+      <span class="cap">Eraser</span>
+      <span class="track" style="width:112px"><span class="thumb" style="left:28%"></span></span>
+      <span class="ro">12</span>
+    </span>
+  </div>
+  <div class="note">Anchored <code>bottom-full left-1/2 mb-3 -translate-x-1/2</code> above the sketch, in toolbar
+    chrome. Density follows the pointer: <code>p-1.5</code> and an <code>h-9</code> control row on touch,
+    <code>px-1.5 py-1</code> and <code>h-8</code> for the mouse. The row height is fixed so swapping between pen
+    and eraser presets does not move the bar. A size preset is an <code>h-6 w-7</code> ghost button whose glyph is
+    a pill of the actual stroke height (2–10px), on <b>bg-default</b>, taking an <b>info</b> ring when open.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .tb { display: inline-flex; align-items: center; gap: 4px; padding: 6px;
+        background: var(--bg-surface); color: var(--fg-muted);
+        border-radius: var(--radius-lg); box-shadow: var(--shadow-bottom); }
+  .tb .d { width: 1px; height: 16px; background: var(--edge-default); margin: 0 2px; }
+  .ib { position: relative; cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 5px 6px; display: inline-flex; align-items: center; gap: 4px;
+        font-family: inherit; font-size: 11px; }
+  .ib:hover, .ib.on { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .sw { width: 14px; height: 14px; border-radius: var(--radius-full);
+        border: var(--border-swatch) solid var(--edge-default); box-sizing: border-box; }
+  .sw.sel { border-color: var(--info); transform: scale(1.1); }
+  .cap { display: inline-flex; align-items: center; padding: 0 4px; font-size: 11px; color: var(--fg-subtle); }
+
+  .seg { display: inline-flex; gap: 2px; }
+  .sg { cursor: pointer; border: none; background: transparent; padding: 4px 6px;
+        border-radius: var(--radius-md); color: var(--fg-muted); }
+  .sg.on { background: var(--bg-default); color: var(--fg-default); }
+  .stack { display: inline-flex; gap: 6px; align-items: center; }
+  .szp { width: 28px; height: 24px; justify-content: center; background: var(--bg-default); }
+  .szp.on { background: var(--bg-surface); box-shadow: 0 0 0 1px var(--info); }
+  .pv { display: block; width: 16px; border-radius: var(--radius-full); background: var(--fg-default); }
+  .track { position: relative; display: inline-block; height: 6px; border-radius: var(--radius-full);
+           background: var(--edge-default); }
+  .thumb { position: absolute; top: 50%; width: 12px; height: 12px; border-radius: var(--radius-full);
+           background: var(--info); transform: translate(-50%, -50%); }
+  .ro { font-size: 12px; min-width: 20px; text-align: center; color: var(--fg-subtle);
+        font-variant-numeric: tabular-nums; }
+</style>

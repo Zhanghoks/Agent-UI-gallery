@@ -1,0 +1,115 @@
+<!-- @dsCard group="Canvas" height=268 subtitle="One accent token drives border, fill and text" -->
+<div class="wrap">
+  <div class="row">
+    <div class="col">
+      <div class="lbl">no accent</div>
+      <div class="card plain">
+        <div class="head"><span class="ic"></span>Note</div>
+        <div class="body">Transparent fill — the canvas shows through.</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="lbl">accent-teal</div>
+      <div class="card" style="--a: var(--accent-teal);">
+        <div class="head"><span class="ic"></span>Note</div>
+        <div class="body">Border 75%, fill 10%, text 60%.</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="lbl">accent-amber · hover</div>
+      <div class="card hover" style="--a: var(--accent-amber);">
+        <div class="head"><span class="ic"></span>Note</div>
+        <div class="body">elevation-hover on hover and while editing.</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="lbl">accent-white</div>
+      <div class="card" style="--a: var(--accent-white);">
+        <div class="head white"><span class="ic"></span>Note</div>
+        <div class="body">Achromatic — text stays fg-default.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row second">
+    <div class="col">
+      <div class="lbl">AI provenance badge</div>
+      <div class="card" style="--a: var(--accent-purple);">
+        <span class="ai">AI</span>
+        <div class="head"><span class="ic"></span>Summary</div>
+        <div class="body">Rewritten by an agent.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="lbl">dragging</div>
+      <div class="card drag" style="--a: var(--accent-green);">
+        <div class="head"><span class="ic"></span>Note</div>
+        <div class="body">elevation-drag while it moves.</div>
+      </div>
+    </div>
+    <div class="col wide">
+      <div class="lbl">the derivation</div>
+      <ul class="mix">
+        <li><b>border</b> 75% accent over transparent</li>
+        <li><b>fill</b> 10% accent over bg-surface</li>
+        <li><b>text</b> 60% accent into fg-default</li>
+        <li><b>divider</b> 25% · <b>soft fill</b> 4%</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-default); }
+  .wrap {
+    padding: 14px 16px; background: var(--bg-default);
+    background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+    background-size: var(--grid) var(--grid);
+  }
+  .row { display: flex; gap: var(--space-3); align-items: flex-start; }
+  .row.second { margin-top: 14px; }
+  .col { flex: 1 1 0; min-width: 0; }
+  .col.wide { flex: 1.2 1 0; }
+  .lbl { font-size: 10px; line-height: 1; font-weight: 500; color: var(--fg-subtle); margin-bottom: 6px; }
+  .card {
+    box-sizing: border-box; position: relative;
+    border: var(--border-node) solid color-mix(in srgb, var(--a) var(--accent-border-mix), transparent);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--a) var(--accent-bg-mix), var(--bg-surface));
+    color: color-mix(in srgb, var(--a) var(--accent-fg-mix), var(--fg-default));
+    padding: 8px 10px; min-height: 74px;
+  }
+  .card.plain {
+    border-color: transparent; background: transparent; color: var(--fg-default);
+    box-shadow: inset 0 0 0 1px var(--edge-default);
+  }
+  .card.hover { box-shadow: var(--elevation-hover); }
+  .card.drag { box-shadow: var(--elevation-drag); }
+  .head {
+    display: flex; align-items: center; gap: var(--space-1);
+    font-size: 12px; line-height: 16px; font-weight: 500;
+  }
+  .head.white { color: var(--fg-default); }
+  .ic {
+    width: 10px; height: 12px; border-radius: 2px;
+    border: 1.5px solid currentColor; opacity: .75;
+  }
+  .body { margin-top: 4px; font-size: 11px; line-height: 1.5; color: var(--fg-muted); }
+  .ai {
+    position: absolute; top: 4px; right: 4px;
+    font-size: 10px; line-height: 1; font-weight: 500;
+    padding: 3px 4px; border-radius: var(--radius-sm);
+    color: var(--fg-default); background: var(--ai-bg);
+    border: var(--border-hairline) solid var(--ai-light);
+  }
+  .mix {
+    margin: 0; padding: 8px 10px 8px 24px; list-style: disc;
+    background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+    border-radius: var(--radius-md);
+    font-size: 11px; line-height: 1.7; color: var(--fg-muted);
+  }
+  .mix b { color: var(--fg-default); font-weight: 500; }
+</style>

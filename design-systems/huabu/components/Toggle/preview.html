@@ -1,0 +1,62 @@
+<!-- @dsCard group="Controls" height=140 subtitle="role=switch, 20×36, info when on" -->
+<div class="wrap">
+  <div class="row"><span class="lbl">off · on</span>
+    <span class="sw"><span class="knob"></span></span>
+    <span class="sw on"><span class="knob"></span></span>
+  </div>
+  <div class="row"><span class="lbl">disabled</span>
+    <span class="sw dis"><span class="knob"></span></span>
+    <span class="sw on dis"><span class="knob"></span></span>
+  </div>
+  <div class="row"><span class="lbl">in a row</span>
+    <span style="font-size:14px">Snap to grid</span>
+    <span class="sw on" style="margin-left:8px"><span class="knob"></span></span>
+  </div>
+  <div class="note">h-5 w-9, <b>rounded-full</b>, 2px transparent border, track <b>edge-default</b> → <b>info</b>,
+    knob bg-surface h-4 w-4 with elevation-hover, 200ms ease-in-out, focus ring 2px info with 1px offset.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  .ti { box-sizing: border-box; font-family: inherit; border: var(--border-hairline) solid var(--edge-default);
+        background: var(--bg-surface); color: var(--fg-default); border-radius: var(--radius-md); outline: none; }
+  .ti::placeholder { color: var(--fg-subtle); }
+  .ti:focus { box-shadow: 0 0 0 1px var(--info-light); }
+  .ti.sm { padding: 4px 8px; font-size: 12px; }
+  .ti.md { padding: 6px 10px; font-size: 14px; }
+  .ti.mono { font-family: var(--font-mono); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+
+  .sw { position: relative; display: inline-flex; align-items: center; width: 36px; height: 20px;
+        border-radius: var(--radius-full); border: 2px solid transparent; background: var(--edge-default);
+        box-sizing: border-box; cursor: pointer; transition: background-color 200ms ease-in-out; }
+  .sw.on { background: var(--info); }
+  .sw.dis { opacity: var(--disabled); cursor: not-allowed; }
+  .knob { display: inline-block; width: 16px; height: 16px; border-radius: var(--radius-full);
+          background: var(--bg-surface); box-shadow: var(--elevation-hover);
+          transition: transform 200ms ease-in-out; }
+  .sw.on .knob { transform: translateX(16px); }
+</style>

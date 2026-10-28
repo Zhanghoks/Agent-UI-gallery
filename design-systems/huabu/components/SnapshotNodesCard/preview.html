@@ -1,0 +1,69 @@
+<!-- @dsCard group="Chat" height=232 subtitle="Nodes the agent is about to put on the canvas" -->
+<div class="wrap">
+  <button class="ds"><span class="ok" style="width:12px">●</span><i class="g"></i><span>Add 3 nodes to Themes</span></button>
+  <div class="thread">
+    <div class="shots">
+      <div class="shot"><span class="pane"></span><span class="cap">Folder step</span></div>
+      <div class="shot"><span class="pane"></span><span class="cap">Prior tools</span></div>
+      <div class="shot"><span class="pane"></span><span class="cap">Recovery</span></div>
+    </div>
+  </div>
+  <button class="ds"><span class="bad" style="width:12px">●</span><i class="g"></i><span>Add 1 node</span></button>
+  <div class="thread"><div class="pre" style="color: var(--danger)">The target frame no longer exists.</div></div>
+  <div class="note">Each preview is a <code>w-32</code> column: an <code>h-24</code> <b>bg-default</b> pane with a
+    1px <b>edge-default</b> border and <code>overflow-hidden</code>, then its title. Laid out
+    <code>flex-wrap gap-3</code>, all inside the disclosure's border-indented thread. A failure keeps the same
+    thread and puts the reason in a <b>danger</b> mono block — the card never turns red.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .thread { margin-left: 16px; padding: 8px 0 8px 12px; display: flex; flex-direction: column; gap: 8px;
+            border-left: var(--border-hairline) solid color-mix(in srgb, var(--edge-default) 40%, transparent); }
+  .ds { display: flex; align-items: center; gap: 6px; font-family: inherit; font-size: 12px;
+        color: var(--fg-muted); background: transparent; border: none; cursor: pointer;
+        border-radius: var(--radius-md); padding: 2px 8px; width: 100%; box-sizing: border-box; text-align: left; }
+  .ds:hover { background: var(--bg-hover); }
+  .g { display: inline-block; width: 13px; height: 13px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .pre { font-family: var(--font-mono); font-size: 11px; line-height: 1.6; color: var(--fg-muted);
+         background: var(--bg-default); border-radius: var(--radius-sm); padding: 4px 8px;
+         white-space: pre-wrap; overflow-x: auto; }
+  .ok { color: var(--info); } .bad { color: var(--danger); }
+
+  .shots { display: flex; flex-wrap: wrap; gap: 12px; }
+  .shot { display: flex; flex-direction: column; gap: 4px; width: 128px; }
+  .pane { display: block; height: 96px; background: var(--bg-default);
+          border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-md);
+          overflow: hidden;
+          background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px); background-size: 9px 9px; }
+  .cap { font-size: 11px; color: var(--fg-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+</style>
