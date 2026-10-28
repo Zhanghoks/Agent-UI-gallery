@@ -4,14 +4,6 @@ import { useEffect, useMemo, useState, type ReactNode } from "react";
 import type { DesignSystem } from "@/lib/design-system";
 import { designAnchor } from "@/components/site/design-anchor";
 
-function resolvedColor(system: DesignSystem, name: string, theme: string, depth = 0): string {
-  if (depth > 16) return "transparent";
-  const token = system.color.find((item) => item.name === name);
-  const raw = token?.values[theme] ?? "";
-  const alias = raw.match(/^\{([A-Za-z0-9_.-]+)\}$/);
-  return alias ? resolvedColor(system, alias[1], theme, depth + 1) : raw;
-}
-
 function frameDocument(previewHtml: string, theme: string, css: string, fileBase: string, stylesheets: string[], scripts: string[]): string {
   const assets = [
     `<style>${css}</style>`,
@@ -112,9 +104,8 @@ export function DesignSystemView({
   anchorPrefix?: string;
 }) {
   const fallback = system.themes[0]?.id ?? "light";
-  const [active, setActive] = useState(system.themes.some((theme) => theme.id === "dark") ? "dark" : fallback);
-  const ground = resolvedColor(system, system.color.some((token) => token.name === "page") ? "page" : "bg-default", active);
-  const ink = resolvedColor(system, system.color.some((token) => token.name === "ink") ? "ink" : "fg-default", active);
+  const [active, setActive] = useState(fallback);
+  const [synced, setSynced] = useState(false);
 
   useEffect(() => {
     const sync = () => {
@@ -122,6 +113,7 @@ export function DesignSystemView({
       if (next) setActive(next);
     };
     sync();
+    setSynced(true);
     const observer = new MutationObserver(sync);
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
     return () => observer.disconnect();
@@ -151,11 +143,11 @@ export function DesignSystemView({
   return (
     <div
       className="ds-page"
-      data-theme={active}
+      data-theme={synced ? active : undefined}
       style={{
         minHeight: "100vh",
-        background: ground || "var(--page, var(--bg-default))",
-        color: ink || "var(--ink, var(--fg-default))",
+        background: "var(--page, var(--bg-default))",
+        color: "var(--ink, var(--fg-default))",
         fontFamily: "var(--font-sans, ui-sans-serif, system-ui, sans-serif)",
       }}
     >
@@ -170,15 +162,15 @@ export function DesignSystemView({
                 <button
                   key={item.id}
                   type="button"
-                  aria-pressed={item.id === active}
+                  aria-pressed={synced && item.id === active}
                   onClick={() => {
                     setActive(item.id);
                     writeSiteTheme(item.id);
                   }}
                   style={{
                     border: "1px solid var(--line, var(--edge-default, currentColor))",
-                    background: item.id === active ? "var(--ink, var(--fg-default))" : "transparent",
-                    color: item.id === active ? "var(--page, var(--bg-default))" : "inherit",
+                    background: synced && item.id === active ? "var(--ink, var(--fg-default))" : "transparent",
+                    color: synced && item.id === active ? "var(--page, var(--bg-default))" : "inherit",
                     borderRadius: 999,
                     padding: "4px 12px",
                     font: "inherit",
@@ -206,10 +198,9 @@ export function DesignSystemView({
             <h2 style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase" }}>Color</h2>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
               {system.color.map((token) => {
-                const value = resolvedColor(system, token.name, active);
                 return (
                   <div key={token.name} title={`${token.name}: ${token.usage}`} style={{ width: 88 }}>
-                    <div style={{ height: 36, borderRadius: 8, background: value, outline: "1px solid color-mix(in oklab, currentColor 16%, transparent)" }} />
+                    <div style={{ height: 36, borderRadius: 8, background: `var(--${token.name.replace(/\./g, "-")})`, outline: "1px solid color-mix(in oklab, currentColor 16%, transparent)" }} />
                     <div style={{ marginTop: 4, fontSize: 11, lineHeight: 1.3 }}>{token.name}</div>
                   </div>
                 );
@@ -265,12 +256,16 @@ export function DesignSystemView({
         ) : null}
 
         {system.cover ? (
-          <iframe
-            title="Cover"
-            sandbox="allow-scripts"
-            style={{ width: "100%", height: system.cover.height, marginTop: 28, border: 0, background: "transparent" }}
-            srcDoc={preview(system.cover.previewHtml)}
-          />
+          synced ? (
+            <iframe
+              title="Cover"
+              sandbox="allow-scripts"
+              style={{ width: "100%", height: system.cover.height, marginTop: 28, border: 0, background: "transparent" }}
+              srcDoc={preview(system.cover.previewHtml)}
+            />
+          ) : (
+            <div style={{ height: system.cover.height, marginTop: 28 }} />
+          )
         ) : null}
 
         <nav style={{ display: "flex", flexWrap: "wrap", gap: "8px 16px", marginTop: 32, fontSize: 13 }}>
@@ -290,13 +285,17 @@ export function DesignSystemView({
                 <article key={card.name} id={anchor(card.name)} style={{ scrollMarginTop: 24 }}>
                   <h3 style={{ margin: 0, fontSize: 15 }}>{card.name}</h3>
                   {card.summary ? <p style={{ margin: "4px 0 10px", fontSize: 13, opacity: 0.75 }}>{card.summary}</p> : null}
-                  <iframe
-                    title={card.name}
-                    sandbox="allow-scripts"
-                    loading="lazy"
-                    style={{ width: "100%", height: card.height, border: 0, background: "transparent" }}
-                    srcDoc={preview(card.previewHtml)}
-                  />
+                  {synced ? (
+                    <iframe
+                      title={card.name}
+                      sandbox="allow-scripts"
+                      loading="lazy"
+                      style={{ width: "100%", height: card.height, border: 0, background: "transparent" }}
+                      srcDoc={preview(card.previewHtml)}
+                    />
+                  ) : (
+                    <div style={{ height: card.height }} />
+                  )}
                 </article>
               ))}
             </div>
