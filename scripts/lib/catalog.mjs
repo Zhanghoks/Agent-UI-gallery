@@ -7,6 +7,7 @@ import { categoryIds, categoryProblem, configProblems } from "./config.mjs";
 const GALLERY_DIR = "components/gallery";
 const ATOMS_DIR = "components/atoms";
 const GLOBALS_CSS = "app/globals.css";
+const UTILS_FILE = "lib/utils.ts";
 const GENERATED_CSS_MARKER = "gallery.generated.css";
 const REQUIRED = ["id", "title", "caption", "category"];
 const ORIGINS = ["upstream", "own"];
@@ -208,6 +209,20 @@ function findCycle(entries) {
 
 /* ── registry ─────────────────────────────────────────────── */
 
+function foundationDependencies(css, hasUtils) {
+  const packages = new Set();
+  for (const match of css.matchAll(/@import\s+["']([^"']+)["']/g)) {
+    const name = packageName(match[1]);
+    if (!name || name.startsWith(".") || name === "tailwindcss") continue;
+    packages.add(name);
+  }
+  if (hasUtils) {
+    packages.add("clsx");
+    packages.add("tailwind-merge");
+  }
+  return [...packages].sort();
+}
+
 function buildRegistry({ root, config, entries, atoms }) {
   const { name: siteName, registryName, homepage, registryBaseUrl: base, namespaceDir: ns } = config;
   const foundationDep = `${base}/foundation.json`;
@@ -218,6 +233,19 @@ function buildRegistry({ root, config, entries, atoms }) {
     .split("\n")
     .filter((line) => !line.includes(GENERATED_CSS_MARKER))
     .join("\n");
+  const hasUtils = exists(root, UTILS_FILE);
+  const dependencies = foundationDependencies(globals, hasUtils);
+  const files = [
+    {
+      path: `app/${ns}/foundation.css`,
+      content: globals,
+      type: "registry:file",
+      target: `app/${ns}/foundation.css`,
+    },
+  ];
+  if (hasUtils) {
+    files.push({ path: UTILS_FILE, content: read(root, UTILS_FILE), type: "registry:lib", target: UTILS_FILE });
+  }
   out.foundation = {
     $schema: SCHEMA_ITEM,
     name: "foundation",
@@ -225,15 +253,10 @@ function buildRegistry({ root, config, entries, atoms }) {
     title: `${siteName} foundation`,
     description:
       "Design tokens (:root/.dark), the @theme mapping, base rules, the primitive-* spacing utilities, and shared keyframes every component needs." +
-      importNote(`${ns}/foundation.css`),
-    files: [
-      {
-        path: `app/${ns}/foundation.css`,
-        content: globals,
-        type: "registry:file",
-        target: `app/${ns}/foundation.css`,
-      },
-    ],
+      importNote(`${ns}/foundation.css`) +
+      (hasUtils ? " Also installs `cn` at `lib/utils.ts`." : ""),
+    ...(dependencies.length ? { dependencies } : {}),
+    files,
   };
 
   for (const a of atoms) {
