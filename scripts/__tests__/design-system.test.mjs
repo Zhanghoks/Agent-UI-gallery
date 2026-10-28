@@ -84,6 +84,11 @@ test("cards, summaries, cover, and both theme values come from the file table", 
   assert.match(css, /--space-0-5:\s*2px/);
   assert.match(css, /--diff:\s*var\(--page\)/);
   assert.match(css, /--diff:\s*#000/);
+  const page = tokenCss(result, "page");
+  assert.match(page, /html:not\(\.dark\) \.ds-page/);
+  assert.match(page, /html\.dark \.ds-page/);
+  assert.match(page, /html:not\(\.dark\) \.ds-page \{[^}]*--page:\s*#fff/);
+  assert.match(page, /html\.dark \.ds-page \{[^}]*--page:\s*#111/);
 });
 
 test("a missing index and a map-shaped token file are problems, not an empty theme", () => {

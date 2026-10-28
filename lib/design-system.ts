@@ -166,7 +166,16 @@ export function tokenCss(system: DesignSystem, target: "page" | "frame"): string
         if (value) lines.push(decl(token.name, value));
       }
     }
-    const selector = target === "page" ? `.ds-page[data-theme="${theme}"]` : theme === themes[0] ? `:root, [data-theme="${theme}"]` : `[data-theme="${theme}"]`;
+    const selector =
+      target === "page"
+        ? theme === "dark"
+          ? "html.dark .ds-page"
+          : theme === "light"
+            ? "html:not(.dark) .ds-page"
+            : `.ds-page[data-theme="${theme}"]`
+        : theme === themes[0]
+          ? `:root, [data-theme="${theme}"]`
+          : `[data-theme="${theme}"]`;
     blocks.push(`${selector} {\n${lines.join("\n")}\n}`);
   }
   return blocks.join("\n");
