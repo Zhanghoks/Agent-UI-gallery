@@ -1,0 +1,115 @@
+<!-- @dsCard group="Controls" height=300 subtitle="Three variants × five tones × three sizes" -->
+<div class="wrap">
+  <table class="grid">
+    <tr>
+      <th></th><th>neutral</th><th>info</th><th>success</th><th>warning</th><th>danger</th>
+    </tr>
+    <tr>
+      <th>solid</th>
+      <td><button class="b md solid neutral">Save</button></td>
+      <td><button class="b md solid info">Connect</button></td>
+      <td><button class="b md solid success">Accept</button></td>
+      <td><button class="b md solid warning">Review</button></td>
+      <td><button class="b md solid danger">Delete</button></td>
+    </tr>
+    <tr>
+      <th>outline</th>
+      <td><button class="b md outline neutral">Cancel</button></td>
+      <td><button class="b md outline info">Open</button></td>
+      <td><button class="b md outline success">Keep</button></td>
+      <td><button class="b md outline warning">Retry</button></td>
+      <td><button class="b md outline danger">Discard</button></td>
+    </tr>
+    <tr>
+      <th>ghost</th>
+      <td><button class="b md ghost neutral">More</button></td>
+      <td><button class="b md ghost info">Details</button></td>
+      <td><button class="b md ghost success">Done</button></td>
+      <td><button class="b md ghost warning">Skip</button></td>
+      <td><button class="b md ghost danger">Remove</button></td>
+    </tr>
+  </table>
+
+  <div class="strip">
+    <span class="lbl">sizes</span>
+    <button class="b sm solid neutral">sm</button>
+    <button class="b md solid neutral">md</button>
+    <button class="b lg solid neutral">lg</button>
+    <span class="sep"></span>
+    <span class="lbl">pill</span>
+    <button class="b md solid info pill">Add to Space</button>
+    <span class="sep"></span>
+    <span class="lbl">icon-only + shortcut</span>
+    <button class="b md ghost neutral icon"><i class="sq"></i><em class="badge">N</em></button>
+    <button class="b md ghost neutral icon active"><i class="sq"></i><em class="badge on">S</em></button>
+    <span class="sep"></span>
+    <span class="lbl">disabled</span>
+    <button class="b md solid neutral off">Save</button>
+  </div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); color: var(--fg-default); }
+  .grid { border-collapse: separate; border-spacing: 8px 8px; margin: -8px; }
+  .grid th {
+    font-size: 10px; font-weight: 500; color: var(--fg-subtle);
+    text-align: left; padding: 0 4px;
+  }
+  .b {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: inherit; cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: background-color 150ms, color 150ms, border-color 150ms;
+  }
+  .b.pill { border-radius: var(--radius-full); }
+  .sm { padding: 4px 10px; font-size: 12px; line-height: 16px; gap: 6px; }
+  .md { padding: 8px 12px; font-size: 14px; line-height: 20px; gap: 8px; font-weight: 500; }
+  .lg { padding: 10px 16px; font-size: 16px; line-height: 24px; gap: 8px; font-weight: 500; }
+  .icon { padding: 6px; position: relative; }
+
+  .solid { border: var(--border-hairline) solid transparent; color: var(--fg-inverse); }
+  .solid.neutral { background: var(--bg-inverse); }
+  .solid.info    { background: var(--info); }
+  .solid.success { background: var(--success); }
+  .solid.warning { background: var(--warning); }
+  .solid.danger  { background: var(--danger); }
+
+  .outline { border: var(--border-hairline) solid var(--edge-default); background: var(--bg-surface); }
+  .outline.neutral { color: var(--fg-muted); }
+  .outline.info    { color: var(--info);    border-color: var(--info); }
+  .outline.success { color: var(--success); border-color: var(--success); }
+  .outline.warning { color: var(--warning); border-color: var(--warning); }
+  .outline.danger  { color: var(--danger);  border-color: var(--danger); }
+
+  .ghost { border: none; background: transparent; }
+  .ghost.neutral { color: var(--fg-muted); }
+  .ghost.info    { color: var(--info); }
+  .ghost.success { color: var(--success); }
+  .ghost.warning { color: var(--warning); }
+  .ghost.danger  { color: var(--danger); }
+  .ghost.neutral:hover { background: var(--bg-hover); }
+  .ghost.info:hover    { background: var(--info-bg); }
+  .ghost.success:hover { background: var(--success-bg); }
+  .ghost.warning:hover { background: var(--warning-bg); }
+  .ghost.danger:hover  { background: var(--danger-bg); }
+  .outline.neutral:hover { background: var(--bg-hover); }
+  .off { opacity: var(--disabled); cursor: not-allowed; }
+  .icon.active { background: var(--bg-hover); }
+
+  .sq { width: 16px; height: 16px; border: 1.75px solid currentColor; border-radius: 3px; display: block; }
+  .badge {
+    position: absolute; right: 4px; bottom: 2px;
+    font-size: 9px; line-height: 1; font-weight: 500; font-style: normal;
+    color: var(--fg-subtle);
+  }
+  .badge.on { color: var(--info); }
+
+  .strip {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    margin-top: 18px; padding-top: 14px;
+    border-top: var(--border-hairline) solid var(--edge-default);
+  }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); }
+  .sep { width: 1px; height: 16px; background: var(--edge-default); margin: 0 4px; }
+</style>

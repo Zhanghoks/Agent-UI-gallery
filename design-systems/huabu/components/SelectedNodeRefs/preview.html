@@ -1,0 +1,55 @@
+<!-- @dsCard group="Chat" height=176 subtitle="What the canvas selection is contributing" -->
+<div class="wrap">
+  <div class="col">
+    <span class="hd"><i class="g"></i>3 nodes selected</span>
+    <span class="refs"><span class="nr">Interview notes</span><span class="nr">Survey results</span><span class="nr">Constraints</span></span>
+  </div>
+  <div class="row" style="margin-top:14px"><span class="lbl">one node</span>
+    <span class="hd"><i class="g"></i><span class="nr">Folder step</span></span>
+  </div>
+  <div class="note">A <code>gap-0.5</code> column: a <b>sm</b> <b>fg-muted</b> <code>leading-tight</code> header
+    that is <code>cursor-default</code> with no focus ring — a readout, not a control — then the references as
+    <b>NodeRef</b> badges at <b>xs</b>. It reflects the live canvas selection, so it changes as the person clicks
+    around; the references only become part of a turn when the turn is sent.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .col { display: flex; flex-direction: column; gap: 2px; }
+  .hd { display: inline-flex; align-items: center; gap: 4px; font-size: 14px; line-height: 1.25;
+        color: var(--fg-muted); cursor: default; }
+  .g { display: inline-block; width: 13px; height: 13px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .refs { display: flex; flex-wrap: wrap; gap: 4px; }
+  .nr { display: inline-flex; align-items: center; padding: 1px 4px; border-radius: var(--radius-sm);
+        font-size: 11px; color: var(--fg-subtle);
+        border: var(--border-hairline) solid color-mix(in srgb, var(--edge-default) 60%, transparent); }
+</style>

@@ -1,0 +1,49 @@
+<!-- @dsCard group="Agents" height=160 subtitle="Which mode the agent is answering in" -->
+<div class="row wrap" style="gap:18px; padding:16px">
+  <span class="mi"><i class="chat"></i><span class="mn">Chat</span></span>
+  <span class="mi"><i class="plan"></i><span class="mn">Plan</span></span>
+  <span class="mi"><i class="edit"></i><span class="mn">Edit</span></span>
+  <div class="note" style="width:100%">Line-only glyphs sharing one <code>SVG_PROPS</code> — the same size,
+    stroke width, cap and join — so the three read as one set rather than three icons that happen to sit together.
+    They take <b>currentColor</b>, so a mode selector, a message header and a menu row all tint them from their
+    own text colour.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .mi { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--fg-muted); }
+  .mn { font-weight: 500; }
+  .mi i { display: block; width: 16px; height: 16px; border: 1.75px solid currentColor; }
+  .chat { border-radius: 4px 4px 4px 1px; }
+  .plan { border-radius: 2px; border-left-width: 4px; }
+  .edit { border-radius: 2px; transform: rotate(45deg) scale(.82); border-top-width: 4px; }
+</style>

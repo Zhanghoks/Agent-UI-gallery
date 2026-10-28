@@ -1,0 +1,93 @@
+<!-- @dsCard group="Canvas" height=232 subtitle="Floating chrome: shadow-bottom, no border, ghost buttons" -->
+<div class="wrap">
+  <div class="bar">
+    <div class="grp">
+      <button class="ib on"><i class="g arrow"></i><em class="k on">V</em></button>
+      <button class="ib"><i class="g hand"></i><em class="k">H</em></button>
+      <button class="ib"><i class="g lasso"></i><em class="k">L</em></button>
+    </div>
+    <span class="div"></span>
+    <div class="grp">
+      <button class="ib"><i class="g sticky"></i><em class="k">N</em></button>
+      <button class="ib"><i class="g type"></i><em class="k">T</em></button>
+      <button class="ib"><i class="g frame"></i><em class="k">F</em></button>
+      <button class="ib"><i class="g pencil"></i><em class="k">S</em></button>
+    </div>
+    <span class="div"></span>
+    <div class="grp">
+      <button class="ib"><i class="g plus"></i></button>
+      <button class="ib"><i class="g ask"></i><em class="k">Q</em></button>
+    </div>
+  </div>
+
+  <div class="bar touch">
+    <div class="grp">
+      <button class="ib big on"><i class="g arrow"></i></button>
+      <button class="ib big"><i class="g lasso"></i></button>
+      <span class="div"></span>
+      <button class="ib big"><i class="g pencil"></i></button>
+      <button class="ib big"><i class="g sticky"></i></button>
+      <button class="ib big"><i class="g plus"></i></button>
+    </div>
+  </div>
+
+  <div class="note">Mouse layout above, touch layout below — the toolbar follows the <b>current pointer</b>, not the persisted preference, so a mouse and a finger on the same device each get their own.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-default); }
+  .wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    padding: 18px 16px 14px; background: var(--bg-default);
+    background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+    background-size: var(--grid) var(--grid);
+  }
+  .bar {
+    display: flex; align-items: center; gap: var(--space-1-5, 6px);
+    width: max-content;
+    padding: 8px 16px; border: 0;
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    color: var(--fg-muted);
+    box-shadow: var(--shadow-bottom);
+  }
+  .grp { display: flex; align-items: center; gap: 6px; }
+  .div { width: 1px; height: 16px; background: var(--edge-default); margin: 0 4px; }
+  .ib {
+    position: relative; cursor: pointer;
+    border: none; background: transparent; color: var(--fg-muted);
+    border-radius: var(--radius-md);
+    padding: 6px 8px 8px 6px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background-color 150ms;
+  }
+  .ib:hover { background: var(--bg-hover); }
+  .ib.on { background: var(--bg-hover); color: var(--fg-default); }
+  .ib.big { padding: 10px; }
+  .k {
+    position: absolute; right: 3px; bottom: 1px;
+    font-size: 9px; line-height: 1; font-weight: 500; font-style: normal;
+    color: var(--fg-subtle);
+  }
+  .k.on { color: var(--info); }
+  .g { display: block; width: 16px; height: 16px; border: 1.75px solid currentColor; }
+  .ib.big .g { width: 20px; height: 20px; }
+  .arrow  { border: none; background: currentColor;
+            clip-path: polygon(15% 0, 15% 85%, 42% 62%, 62% 100%, 78% 90%, 58% 55%, 92% 48%); }
+  .hand   { border-radius: 40% 40% 45% 45%; }
+  .lasso  { border-radius: var(--radius-full); border-style: dashed; }
+  .sticky { border-radius: 2px; }
+  .type   { border: none; background: currentColor;
+            clip-path: polygon(0 0, 100% 0, 100% 22%, 60% 22%, 60% 100%, 40% 100%, 40% 22%, 0 22%); }
+  .frame  { border-radius: 3px; border-style: solid; box-shadow: inset 0 0 0 3px var(--bg-surface); }
+  .pencil { border: none; background: currentColor;
+            clip-path: polygon(74% 0, 100% 26%, 30% 96%, 0 100%, 6% 70%); }
+  .plus   { border: none; background: currentColor;
+            clip-path: polygon(42% 0, 58% 0, 58% 42%, 100% 42%, 100% 58%, 58% 58%, 58% 100%, 42% 100%, 42% 58%, 0 58%, 0 42%, 42% 42%); }
+  .ask    { border-radius: 45% 45% 45% 10%; }
+  .note {
+    max-width: 520px; text-align: center;
+    font-size: 11px; line-height: 1.6; color: var(--fg-subtle);
+  }
+  .note b { color: var(--fg-muted); font-weight: 500; }
+</style>

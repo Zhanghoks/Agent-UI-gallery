@@ -1,0 +1,66 @@
+<!-- @dsCard group="Canvas" height=200 subtitle="The chrome contract every canvas toolbar shares" -->
+<div class="wrap grid-bg">
+  <div class="row"><span class="lbl">the bar</span>
+    <span class="tb"><button class="ib"><i class="g"></i></button><span class="d"></span>
+      <span class="cap">Size</span><button class="ib">12</button><span class="d"></span>
+      <button class="ib"><i class="g"></i></button></span>
+  </div>
+  <div class="row" style="align-items:flex-start"><span class="lbl">its popover</span>
+    <span class="pop">A popover opened out of a toolbar gets the same radius and shadow, plus a 1px border</span>
+  </div>
+  <div class="note"><code>FLOATING_TOOLBAR_CLASS</code>: <b>bg-surface</b>, <b>fg-muted</b>,
+    <code>rounded-lg p-1.5</code>, <b>shadow-bottom</b>, <code>gap-1</code>, and no border — over a canvas the
+    shadow is the separation. <code>FLOATING_TOOLBAR_POPOVER_CLASS</code> adds a 1px <b>edge-default</b> border and
+    <code>px-2 py-1.5</code>. Dividers are <code>mx-0.5 h-4 w-px</code> in edge-default; a label is
+    <b>xs</b> <b>fg-subtle</b> at <code>px-0.5</code>.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .tb { display: inline-flex; align-items: center; gap: 4px; padding: 6px;
+        background: var(--bg-surface); color: var(--fg-muted);
+        border-radius: var(--radius-lg); box-shadow: var(--shadow-bottom); }
+  .tb .d { width: 1px; height: 16px; background: var(--edge-default); margin: 0 2px; }
+  .ib { position: relative; cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 5px 6px; display: inline-flex; align-items: center; gap: 4px;
+        font-family: inherit; font-size: 11px; }
+  .ib:hover, .ib.on { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .sw { width: 14px; height: 14px; border-radius: var(--radius-full);
+        border: var(--border-swatch) solid var(--edge-default); box-sizing: border-box; }
+  .sw.sel { border-color: var(--info); transform: scale(1.1); }
+  .cap { display: inline-flex; align-items: center; padding: 0 4px; font-size: 11px; color: var(--fg-subtle); }
+
+  .pop { box-sizing: border-box; max-width: 300px; padding: 6px 8px; background: var(--bg-surface);
+         border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-lg);
+         box-shadow: var(--shadow-bottom); font-size: 11px; line-height: 1.6; color: var(--fg-muted); }
+</style>

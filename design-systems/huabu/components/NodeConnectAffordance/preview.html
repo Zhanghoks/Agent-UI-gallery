@@ -1,0 +1,71 @@
+<!-- @dsCard group="Canvas" height=224 subtitle="Ports on the border box, growing toward the aim" -->
+<div class="wrap grid-bg">
+  <div class="row" style="gap:26px; align-items:center">
+    <div class="nw">
+      <div class="nd">Interview notes</div>
+      <span class="pt" style="left:50%; top:0"></span>
+      <span class="pt" style="left:50%; bottom:0"></span>
+      <span class="pt" style="left:0; top:50%"></span>
+      <span class="pt" style="right:0; top:50%"></span>
+    </div>
+    <svg width="130" height="90" viewBox="0 0 130 90" aria-hidden="true">
+      <path class="drag" d="M6 46 C 50 46, 66 26, 118 26"/>
+      <circle class="tip" cx="118" cy="26" r="11"/>
+      <path class="arrow" d="M114 22 l7 4 -7 4 z"/>
+    </svg>
+    <div class="nw">
+      <div class="nd">Constraints</div>
+      <span class="pt big" style="left:0; top:50%"></span>
+    </div>
+  </div>
+  <div class="note">Every port is a disc centred on the side it names, sitting on the node's <b>border box</b>, with
+    a 2.5px <b>info</b> border and an <b>info</b> fill — border and fill the same colour, so a port never reads as
+    a hole. The aimed-at port grows and shows an <b>fg-inverse</b> glyph at 60% of its size. In-flow dots live
+    inside the card, so they fade with it; the drag tip is a <code>z-999</code> screen-space overlay that does
+    not.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .nw { position: relative; }
+  .nd { box-sizing: border-box; width: 150px; padding: 14px 12px; background: var(--bg-surface);
+        border: var(--border-node) solid transparent; border-radius: var(--radius-lg);
+        box-shadow: var(--elevation-hover); font-size: 12px; font-weight: 500; color: var(--fg-default); }
+  .pt { position: absolute; width: 11px; height: 11px; box-sizing: border-box; border-radius: var(--radius-full);
+        border: 2.5px solid var(--info); background: var(--info); transform: translate(-50%, -50%); }
+  .pt[style*="bottom"] { transform: translate(-50%, 50%); }
+  .pt[style*="right"] { transform: translate(50%, -50%); }
+  .pt.big { width: 20px; height: 20px; }
+  .drag { fill: none; stroke: var(--info); stroke-width: 2; stroke-dasharray: 4 3; }
+  .tip { fill: var(--info); }
+  .arrow { fill: var(--fg-inverse); }
+</style>

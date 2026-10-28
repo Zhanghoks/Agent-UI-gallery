@@ -21,7 +21,7 @@ app/globals.css  设计 token 与基础样式
 ```
 
 - `harness` 依赖 `gallery`，`gallery` 依赖 `atoms`；反向不允许。
-- `site` 与 `harness` 互不依赖，只由 `app/` 里的页面各自引入，共同联系是画廊页脚指向 `/harness` 的链接。
+- `site` 与 `harness` 互不依赖，只由 `app/` 里的页面各自引入。画廊右栏直接渲染 harness 与 workflow 控制台，页脚指向 `/?view=harness`；`/harness` 与 `/workflow` 转到对应视图。
 - `lib/workflow/` 与 `harness` 同层：可以依赖 gallery 组件的类型，gallery 组件不能依赖它（组件经 registry 分发，不能引用只存在于画廊里的 `lib/`）。见 ADR-0014。
 - gallery 组件可以依赖其他 gallery 组件（不能成环），不能依赖 `site`、`harness`。规则与校验见 ADR-0011。
 
@@ -29,14 +29,14 @@ app/globals.css  设计 token 与基础样式
 
 ```
 foundry.config.json      站点名、registry 地址、命名空间目录、分类列表
-app/                     路由：画廊 /、演示 /harness、控制台 /workflow、/license；globals.css
+app/                     路由：画廊 /、演示 /harness、控制台 /workflow、参照页 /design-systems/<id>、/license；globals.css
   api/mock/workflow/     mock workflow 服务端的 HTTP 路由（ADR-0014）
 components/
   atoms/                 atom；atoms.json 声明哪些随 registry 分发
   gallery/<id>/          index.tsx · meta.json · styles.css（可选）
   harness/               Harness.tsx（渲染）· scenarios.tsx（假数据）· WorkflowConsole.tsx（接 mock 服务端）
   site/                  画廊外壳
-lib/                     meta 类型、registry 组装；*.generated.* 为生成文件
+lib/                     meta 类型、registry 组装、设计系统读取；*.generated.* 为生成文件
   workflow/              protocol.ts 协议 · reducer.ts 事件折叠 · fixtures.ts 事件脚本 ·
                          mock-server.ts 内存服务端 · project.ts 投影 · client.ts 浏览器端 hook
 scripts/
@@ -44,8 +44,9 @@ scripts/
   new.mjs                生成新组件文件夹
   docs-check.mjs         文档一致性检查
   lib/                   catalog（目录扫描）· scaffold · docs-check · config · naming · emit
-  __tests__/             两个测试接缝的测试
+  __tests__/             三个测试接缝的测试
 public/r/                生成的 shadcn registry（入库）
+design-systems/          两份设计系统文件表快照，目录扫描不读这里
 docs/                    本文、路线图、ADR、NOTICE、技能配置
 CONTEXT.md               术语表
 .scratch/                改用 GitHub issues 之前遗留的本地 spec（不再新增）
@@ -105,12 +106,19 @@ client.ts     useRunStream（快照 + 事件）· usePoll · 命令 fetch
 
 ## 测试接缝
 
-只有两个，均输入仓库根目录、输出结果，用临时夹具仓库测试：
+三条，前两条输入仓库根目录、输出结果，用临时夹具仓库测试；第三条输入一份设计系统目录：
 
 1. 目录扫描 → 目录、分组与 registry（`scripts/lib/catalog.mjs`）；
-2. 文档一致性检查 → 问题列表（`scripts/lib/docs-check.mjs`）。
+2. 文档一致性检查 → 问题列表（`scripts/lib/docs-check.mjs`）；
+3. 设计系统读取 → 标题、主题、分组与卡片（`lib/design-system.ts`）。参照页只消费这个结果。
 
 不测组件渲染与视觉。
+
+## 画廊与参照页
+
+画廊是组件库。左栏页面切换只有 Gallery、Workflow、Harness，地址是 `/` 与 `/?view=`。`/workflow`、`/harness` 转回 `/?view=`。组件导航只列目录里的组件。设计系统不进这套切换，单独列在它下面，作为离开画廊的入口。
+
+参照页在 `/design-systems/beautiful-ui` 和 `/design-systems/huabu`。左栏是回到画廊的链接、两套系统的切换，以及该快照自己的分组，不用画廊的名称口号。`/?view=beautiful-ui` 与 `/?view=huabu` 转到对应参照页。每张参照页用该快照自己的 token 作主题，不写进 foundation。快照不进目录、不进 registry。见 ADR-0015。
 
 ## 占位值与待清理项
 

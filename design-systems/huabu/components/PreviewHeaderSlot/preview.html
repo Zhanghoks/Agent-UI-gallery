@@ -1,0 +1,62 @@
+<!-- @dsCard group="Nodes" height=176 subtitle="Where a node type hangs its own chrome" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:14px">
+    <div class="pc" style="width:206px">
+      <div class="slot"><span class="glb"></span><span class="u">docs.claude.com/…</span>
+        <button class="mini">↗</button></div>
+      <div class="body">web node — its URL row</div>
+    </div>
+    <div class="pc" style="width:206px">
+      <div class="slot"><span class="pg">3 / 18</span><span class="u">Interview transcript</span>
+        <button class="mini">⌕</button></div>
+      <div class="body">pdf node — page and search</div>
+    </div>
+  </div>
+  <div class="note">A portal, not a layout: a node type renders into the slot and the preview owns the geometry, so
+    every header sits at the same height with the same hairline and the same <code>nodrag</code> contract. Contents
+    stay <b>xs</b> in <b>fg-muted</b>; the slot never introduces a surface colour of its own.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .pc { box-sizing: border-box; background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+        border-radius: var(--radius-lg); overflow: hidden; }
+  .slot { display: flex; align-items: center; gap: 8px; padding: 5px 8px;
+          border-bottom: var(--border-hairline) solid var(--edge-default); font-size: 11px; color: var(--fg-muted); }
+  .glb { width: 11px; height: 11px; border-radius: var(--radius-full); border: 1.5px solid currentColor; }
+  .pg { font-variant-numeric: tabular-nums; }
+  .u { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+  .mini { border: none; background: transparent; color: inherit; cursor: pointer; font-size: 11px;
+          padding: 2px 4px; border-radius: var(--radius-sm); }
+  .mini:hover { background: var(--bg-hover); }
+  .body { padding: 14px 12px; font-size: 11px; color: var(--fg-subtle); }
+</style>

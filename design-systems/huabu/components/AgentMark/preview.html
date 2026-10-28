@@ -1,0 +1,74 @@
+<!-- @dsCard group="Nodes" height=224 subtitle="The agent on a node: avatar, state, count" -->
+<div class="wrap grid-bg">
+  <div class="row" style="gap:22px">
+    <span class="mk"><span class="av">R</span></span>
+    <span class="mk"><span class="av b">A</span><span class="cnt">3</span></span>
+    <span class="mk"><span class="av c">M</span><span class="st"></span></span>
+    <span class="mk"><span class="dot"></span></span>
+  </div>
+  <div class="row" style="margin-top:16px">
+    <div class="stk"><span class="mk abs"><span class="av">R</span><span class="cnt">2</span></span>
+      <div class="q">Which of these ships first?</div></div>
+  </div>
+  <div class="note">A screen-space portal, so it is never faded with the card and stays legible at any zoom.
+    The count chip is <code>h-6 min-w-6</code> <b>warning-bg</b> on <b>warning</b>, 11px bold,
+    <code>-top-2.5 -right-3.5</code> with <b>elevation-hover</b>; the running pip is solid <b>warning</b> with
+    <b>fg-inverse</b>. Zoomed far out the avatar collapses to a plain dot — the node's last readable form.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .mk { position: relative; display: inline-flex; }
+  .av { width: 28px; height: 28px; border-radius: var(--radius-full); background: var(--ai);
+        color: var(--fg-inverse); font-size: 12px; font-weight: 500;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 0 0 2px var(--bg-default); }
+  .av.b { background: var(--accent-teal); }
+  .av.c { background: var(--accent-purple); }
+  .cnt { position: absolute; top: -10px; right: -14px; height: 24px; min-width: 24px; box-sizing: border-box;
+         padding: 0 6px; border-radius: var(--radius-full);
+         background: var(--warning-bg); color: var(--warning);
+         font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+         box-shadow: var(--elevation-hover); }
+  .st { position: absolute; right: -3px; bottom: -3px; width: 12px; height: 12px;
+        border-radius: var(--radius-full); background: var(--warning);
+        box-shadow: 0 0 0 2px var(--bg-default); }
+  .dot { width: 12px; height: 12px; border-radius: var(--radius-full); background: var(--ai);
+         box-shadow: 0 0 0 2px var(--bg-default); }
+  .stk { position: relative; box-sizing: border-box; width: 200px; padding: 12px;
+         border-radius: var(--radius-lg); background: var(--question-bg); color: var(--question-fg);
+         font-family: var(--font-agent); }
+  .stk::before { content: ''; position: absolute; inset: 8px -8px -8px 8px; z-index: -1;
+                 border-radius: var(--radius-lg); background: var(--question-border); }
+  .mk.abs { position: absolute; top: -10px; right: -10px; z-index: 2; }
+  .q { font-size: 14px; line-height: 1.5; }
+</style>

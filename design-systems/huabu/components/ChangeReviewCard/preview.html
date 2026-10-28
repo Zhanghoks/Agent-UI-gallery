@@ -1,0 +1,85 @@
+<!-- @dsCard group="Chat" height=232 subtitle="Everything the agent changed, above the composer" -->
+<div class="wrap">
+  <div class="stack">
+    <div class="crc">
+      <div class="crh"><span class="cv">&rsaquo;</span><span class="ct">6 changes on this canvas</span>
+        <span class="acts"><button class="sq"></button><button class="wd">Reject all</button><button class="wd">Accept all</button></span></div>
+      <div class="crb">
+        <div class="cr"><i class="g"></i><span class="t">Folder step — note added</span></div>
+        <div class="cr"><i class="g"></i><span class="t">Interview notes — summary rewritten</span></div>
+        <div class="cr"><i class="g"></i><span class="t">Themes — frame created</span></div>
+      </div>
+    </div>
+    <div class="comp"><span class="cp">Ask, or describe what to change…</span></div>
+  </div>
+  <div class="note">It sits directly on the composer: <code>rounded-t-2xl</code>, <code>border-b-0</code> and
+    <code>-mb-px</code>, so the two share one edge and read as one control; the composer answers with
+    <code>rounded-t-none rounded-b-2xl</code>. Header <code>px-3 py-1.5 gap-1.5 text-xs</code>, truncating title
+    in <b>fg-muted</b>, chevron rotating 90°. The row list is <code>max-h-48</code>, scrolling, above a 1px
+    <b>edge-default</b> top border. Actions are <code>h-5</code> <code>rounded-sm</code> buttons.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .thread { margin-left: 16px; padding: 8px 0 8px 12px; display: flex; flex-direction: column; gap: 8px;
+            border-left: var(--border-hairline) solid color-mix(in srgb, var(--edge-default) 40%, transparent); }
+  .ds { display: flex; align-items: center; gap: 6px; font-family: inherit; font-size: 12px;
+        color: var(--fg-muted); background: transparent; border: none; cursor: pointer;
+        border-radius: var(--radius-md); padding: 2px 8px; width: 100%; box-sizing: border-box; text-align: left; }
+  .ds:hover { background: var(--bg-hover); }
+  .g { display: inline-block; width: 13px; height: 13px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .pre { font-family: var(--font-mono); font-size: 11px; line-height: 1.6; color: var(--fg-muted);
+         background: var(--bg-default); border-radius: var(--radius-sm); padding: 4px 8px;
+         white-space: pre-wrap; overflow-x: auto; }
+  .ok { color: var(--info); } .bad { color: var(--danger); }
+
+  .stack { max-width: 430px; }
+  .crc { box-sizing: border-box; background: var(--bg-surface);
+         border: var(--border-hairline) solid var(--edge-default); border-bottom: 0;
+         border-radius: 16px 16px 0 0; margin-bottom: -1px; font-size: 12px; }
+  .crh { display: flex; align-items: center; gap: 6px; padding: 6px 12px; }
+  .cv { color: var(--fg-subtle); font-size: 10px; }
+  .ct { min-width: 0; flex: 1; color: var(--fg-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .acts { display: flex; align-items: center; gap: 4px; }
+  .sq { width: 20px; height: 20px; border-radius: var(--radius-sm); border: none; cursor: pointer;
+        background: var(--bg-hover); }
+  .wd { height: 20px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-family: inherit;
+        font-size: 11px; padding: 0 8px; background: var(--bg-hover); color: var(--fg-muted); }
+  .crb { border-top: var(--border-hairline) solid var(--edge-default); max-height: 96px; overflow-y: auto;
+         padding: 2px 0; }
+  .cr { display: flex; align-items: center; gap: 6px; padding: 4px 12px; color: var(--fg-muted); }
+  .t { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .comp { box-sizing: border-box; background: var(--bg-surface);
+          border: var(--border-hairline) solid var(--edge-default);
+          border-radius: 0 0 16px 16px; padding: 12px; }
+  .cp { font-size: 13px; color: var(--fg-subtle); }
+</style>

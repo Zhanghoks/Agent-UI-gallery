@@ -1,0 +1,50 @@
+{
+ "v": 3,
+ "layout": "files",
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-09-18T02:30:00Z"
+ },
+ "title": "Huabu",
+ "namespace": "Huabu",
+ "libraries": [],
+ "sections": {},
+ "blobs": {},
+ "docs": {
+  "readme": "project/README.md",
+  "sections": []
+ },
+ "groups": [
+  "Logos"
+ ],
+ "assetGroups": {
+  "Logos": {
+   "name": "Logos",
+   "tile": "l",
+   "order": [
+    "huabu-logo.svg",
+    "huabu-collaboration.svg"
+   ],
+   "files": {
+    "huabu-logo.svg": {
+     "name": "huabu-logo.svg",
+     "blob": "4f32c03f209222783172805dd9ec7761",
+     "size": 2673,
+     "type": "image/svg+xml"
+    },
+    "huabu-collaboration.svg": {
+     "name": "huabu-collaboration.svg",
+     "blob": "9eb0ad7bd1ef43abdc03a8d8e167f959",
+     "size": 5278,
+     "type": "image/svg+xml"
+    }
+   }
+  }
+ },
+ "lastChange": {
+  "by": "Jie Minji",
+  "at": "2026-09-18T03:05:00Z",
+  "via": "GitHub \u00b7 microsoft/Huabu@057da9b1",
+  "note": "Full component reverse-engineering: 110 cards across Canvas, Nodes, Controls, Chat, Agents, Panels, Settings and Editors."
+ }
+}

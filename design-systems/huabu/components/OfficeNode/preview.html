@@ -1,0 +1,67 @@
+<!-- @dsCard group="Nodes" height=212 subtitle="Word, Excel, PowerPoint — one node, per-format icon" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:14px">
+    <div class="of" style="width:160px">
+      <div class="kind"><span class="ic doc"></span><span class="fmt">docx</span></div>
+      <div class="meta"><div class="ttl">Onboarding brief</div>
+        <div class="ex">Scope, the three flows we tested, and what we are not doing this quarter.</div></div>
+    </div>
+    <div class="of" style="width:140px">
+      <div class="kind"><span class="ic xls"></span><span class="fmt">xlsx</span></div>
+      <div class="meta"><div class="ttl">Session log</div></div>
+    </div>
+    <div class="of" style="width:140px">
+      <div class="kind"><span class="ic ppt"></span><span class="fmt">pptx</span></div>
+      <div class="meta"><div class="ttl">Readout</div></div>
+    </div>
+  </div>
+  <div class="note">The format glyph resolves through <code>getNodeIcon(type, data)</code> — Word <b>FileText</b>,
+    Excel <b>Sheet</b>, PowerPoint <b>Presentation</b> — so the canvas card, the layers sidebar and the breadcrumb
+    can never disagree. Format label: <b>xs</b>, uppercase, wide tracking, <b>fg-muted</b>. Title <b>lg</b>
+    medium with the icon floated into the first line; extract <b>base</b> fg-muted at <code>line-clamp-5</code>.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .of { box-sizing: border-box; background: var(--bg-surface); border: var(--border-node) solid transparent;
+        border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--elevation-hover); }
+  .kind { height: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+  .ic { width: 20px; height: 24px; border-radius: 2px; }
+  .ic.doc { background: var(--info); }
+  .ic.xls { background: var(--success); }
+  .ic.ppt { background: var(--warning); }
+  .fmt { font-size: 11px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; color: var(--fg-muted); }
+  .meta { padding: 6px 12px 10px; }
+  .ttl { font-size: 14px; font-weight: 500; color: var(--fg-default); overflow-wrap: break-word; }
+  .ex { margin-top: 4px; font-size: 11px; line-height: 1.6; color: var(--fg-muted);
+        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+</style>

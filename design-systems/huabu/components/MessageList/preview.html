@@ -1,0 +1,74 @@
+<!-- @dsCard group="Chat" height=248 subtitle="The transcript: user right, agent left, everything else quiet" -->
+<div class="wrap">
+  <div class="tl">
+    <div class="rr"><span class="bub">Compare the two transcripts and tell me what changed.</span></div>
+    <div class="rl"><button class="dis"><span class="cv">&rsaquo;</span><i class="g"></i><span>Read 2 files</span></button></div>
+    <div class="rl"><span class="think">Looking for the folder step in both…</span></div>
+    <div class="rl"><div class="md">Both sessions stall at the same place. In session 4 the person
+      recovered on their own; in session 5 they did not.</div></div>
+    <div class="rl"><span class="stat"><i class="dot"></i>Generation interrupted</span></div>
+  </div>
+  <div class="note">One <code>space-y-1</code> column in a <code>px-3</code> scroller. A user turn is
+    right-aligned and capped at <b>80%</b>; everything from the agent is left-aligned and full width. Tool work
+    collapses into disclosure rows rather than bubbles, so a long run of tool calls stays one screen tall.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .bub { box-sizing: border-box; background: var(--bg-default); color: var(--fg-default);
+         border-radius: var(--radius-md); padding: 8px 16px; font-size: 14px; line-height: 1.7; }
+  .card { box-sizing: border-box; background: var(--bg-surface);
+          border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-md); }
+  .hd { display: flex; align-items: center; gap: 6px; padding: 8px 12px; font-size: 12px; color: var(--fg-muted); }
+  .cv { color: var(--fg-subtle); font-size: 10px; }
+  .bdy { padding: 0 12px 10px; font-size: 12px; line-height: 1.7; color: var(--fg-muted); }
+  .g { display: inline-block; width: 13px; height: 13px; border: 1.6px solid currentColor; border-radius: 3px; }
+
+  .tl { display: flex; flex-direction: column; gap: 4px; padding: 0 12px; }
+  .rr { display: flex; justify-content: flex-end; }
+  .rl { display: flex; justify-content: flex-start; }
+  .rr .bub { max-width: 80%; }
+  .dis { display: inline-flex; align-items: center; gap: 6px; font-family: inherit; font-size: 12px;
+         color: var(--fg-muted); background: transparent; border: none; cursor: pointer;
+         border-radius: var(--radius-md); padding: 2px 8px; }
+  .dis:hover { background: var(--bg-hover); }
+  @keyframes tsh { 0% { background-position: 200% center } 100% { background-position: -200% center } }
+  .think { font-size: 13px; padding: 2px 8px;
+           background: linear-gradient(90deg, var(--shimmer-1), var(--shimmer-2) 25%, var(--shimmer-3) 50%,
+                       var(--shimmer-2) 75%, var(--shimmer-1)); background-size: 200% auto;
+           background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+           animation: tsh 3s linear infinite; }
+  .md { font-size: 13px; line-height: 1.75; color: var(--fg-default); padding: 2px 8px; max-width: 92%; }
+  .stat { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--info);
+          background: var(--info-bg); border-radius: var(--radius-md); padding: 3px 8px; }
+  .dot { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--info-light); }
+</style>

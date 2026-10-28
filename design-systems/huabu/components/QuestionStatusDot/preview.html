@@ -1,0 +1,67 @@
+<!-- @dsCard group="Panels" height=180 subtitle="A 6px dot, three states, one of them invisible" -->
+<div class="wrap">
+  <div class="row" style="gap:20px">
+    <span class="host"><i class="g"></i><span class="dot run"></span></span>
+    <span class="host"><i class="g"></i><span class="dot done"></span></span>
+    <span class="host"><i class="g"></i><span class="dot err"></span></span>
+    <span class="host"><i class="g"></i></span>
+    <span class="lbl" style="min-width:0">running · done · error · done and seen</span>
+  </div>
+  <div class="note">A <code>h-1.5 w-1.5</code> <code>rounded-full</code> dot pinned
+    <code>-right-0.5 -bottom-0.5</code> on whatever it marks: <b>info</b> running, <b>success</b> with
+    <code>animate-pulse</code> when finished, <b>danger</b> on error. Once a finished answer has been
+    <i>viewed</i>, the dot returns <code>null</code> — the pulse is a summons, and it stops the moment it is
+    answered. It is <code>role="status"</code> with a tooltip and an <code>aria-label</code>, so the state is
+    never carried by colour alone.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .surf { box-sizing: border-box; background: var(--bg-surface); }
+  .hb { display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 12px;
+        border-bottom: var(--border-hairline) solid var(--edge-default); }
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 5px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 16px; height: 16px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .ttl { font-size: 14px; font-weight: 600; color: var(--fg-muted); min-width: 0;
+         overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .host { position: relative; display: inline-flex; padding: 3px; }
+  .host .g { width: 22px; height: 22px; border-color: var(--fg-muted); border-radius: var(--radius-md); }
+  .dot { position: absolute; right: -2px; bottom: -2px; width: 6px; height: 6px;
+         border-radius: var(--radius-full); }
+  .dot.run { background: var(--info); }
+  @keyframes pls2 { 0%,100% { opacity: 1 } 50% { opacity: .4 } }
+  .dot.done { background: var(--success); animation: pls2 1.6s ease-in-out infinite; }
+  .dot.err { background: var(--danger); }
+</style>

@@ -1,0 +1,66 @@
+<!-- @dsCard group="Chat" height=216 subtitle="The one message with a surface" -->
+<div class="wrap">
+  <div class="col">
+    <div class="rr"><span class="bub">Compare <span class="nr">Interview notes</span> with
+      <span class="nr">Survey results</span>.</span></div>
+    <div class="rr refs">
+      <span class="nr">Interview notes</span><span class="nr">Survey results</span><span class="nr">Constraints</span>
+    </div>
+    <div class="rr"><span class="bub"><span class="mono">/summarize</span> the last three notes</span></div>
+  </div>
+  <div class="note">Right-aligned, <code>max-w-[80%]</code>, <b>bg-default</b> with <b>fg-default</b> text,
+    <code>rounded-md px-4 py-2 text-sm</code> and explicitly <b>no border</b>. Body is
+    <code>whitespace-pre-wrap wrap-anywhere leading-relaxed</code> — the person's line breaks are kept and a long
+    URL breaks rather than widening the panel. A slash command keeps the mono family. Attached node references
+    sit in their own right-aligned wrapping row beneath the bubble.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .bub { box-sizing: border-box; background: var(--bg-default); color: var(--fg-default);
+         border-radius: var(--radius-md); padding: 8px 16px; font-size: 14px; line-height: 1.7; }
+  .card { box-sizing: border-box; background: var(--bg-surface);
+          border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-md); }
+  .hd { display: flex; align-items: center; gap: 6px; padding: 8px 12px; font-size: 12px; color: var(--fg-muted); }
+  .cv { color: var(--fg-subtle); font-size: 10px; }
+  .bdy { padding: 0 12px 10px; font-size: 12px; line-height: 1.7; color: var(--fg-muted); }
+  .g { display: inline-block; width: 13px; height: 13px; border: 1.6px solid currentColor; border-radius: 3px; }
+
+  .col { display: flex; flex-direction: column; gap: 6px; }
+  .rr { display: flex; justify-content: flex-end; }
+  .rr .bub { max-width: 80%; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .refs { gap: 4px; flex-wrap: wrap; }
+  .nr { display: inline-flex; align-items: center; padding: 1px 4px; border-radius: var(--radius-sm);
+        font-size: 10px; border: var(--border-hairline) solid color-mix(in srgb, var(--edge-default) 60%, transparent);
+        color: var(--fg-subtle); }
+  .mono { font-family: var(--font-mono); margin-right: 4px; }
+</style>

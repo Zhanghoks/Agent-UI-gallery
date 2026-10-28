@@ -1,0 +1,79 @@
+{
+ "v": 3,
+ "layout": "files",
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-09-28T16:07:37Z"
+ },
+ "title": "Beautiful UI",
+ "namespace": "BeautifulUI",
+ "libraries": [
+  {
+   "name": "react",
+   "version": "19.2.6",
+   "global": "React",
+   "file": "components/lib/react.production.min.js"
+  },
+  {
+   "name": "react-dom",
+   "version": "19.2.6",
+   "global": "ReactDOM",
+   "file": "components/lib/react-dom.production.min.js"
+  }
+ ],
+ "sections": {},
+ "groups": [
+  "Logos",
+  "Images"
+ ],
+ "assetGroups": {
+  "Logos": {
+   "name": "Logos",
+   "tile": "l",
+   "order": [
+    "beautiful-ui-logo.png"
+   ],
+   "files": {
+    "beautiful-ui-logo.png": {
+     "name": "beautiful-ui-logo.png",
+     "blob": "e89dc7ad31f7e706d66b4b98d439023d",
+     "size": 15391,
+     "type": "image/png"
+    }
+   }
+  },
+  "Images": {
+   "name": "Images",
+   "tile": "m",
+   "order": [
+    "agent-desktop.webp",
+    "turbo-flourish.png"
+   ],
+   "files": {
+    "agent-desktop.webp": {
+     "name": "agent-desktop.webp",
+     "blob": "98a38bd2c37f6f4d7bb36721ae882b23",
+     "size": 120416,
+     "type": "image/webp"
+    },
+    "turbo-flourish.png": {
+     "name": "turbo-flourish.png",
+     "blob": "1f61a93fb486d6c36075f769ebdeee2d",
+     "size": 1546,
+     "type": "image/png"
+    }
+   }
+  }
+ },
+ "blobs": {},
+ "docs": {
+  "readme": "project/README.md",
+  "sections": []
+ },
+ "lastChange": {
+  "by": "ZMJ",
+  "at": "2026-09-28T16:07:37Z",
+  "via": "GitHub \u00b7 slev12397/beautiful-ui@44a274e",
+  "note": "First sync: 28 colours \u00d7 2 themes, 9 text styles, 8 spacing, 5 radii, 6 shadows, 33 live components, logo and images"
+ }
+}

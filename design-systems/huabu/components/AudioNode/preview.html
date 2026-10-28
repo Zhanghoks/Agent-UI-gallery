@@ -1,0 +1,84 @@
+<!-- @dsCard group="Nodes" height=212 subtitle="A waveform you can scrub, and a recorder" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:14px">
+    <div class="au" style="width:250px">
+      <div class="ctl">
+        <button class="pp"><span class="tri"></span></button>
+        <span class="wave">
+          <i style="height:30%"></i><i style="height:62%"></i><i style="height:88%"></i><i style="height:45%"></i>
+          <i style="height:70%"></i><i style="height:96%"></i><i style="height:52%"></i><i class="q" style="height:34%"></i>
+          <i class="q" style="height:74%"></i><i class="q" style="height:40%"></i><i class="q" style="height:58%"></i>
+          <i class="q" style="height:28%"></i><i class="q" style="height:66%"></i><i class="q" style="height:36%"></i>
+        </span>
+        <span class="tc">0:14</span>
+      </div>
+      <div class="cap">Session 3 · participant audio</div>
+    </div>
+    <div class="au" style="width:190px">
+      <div class="ctl">
+        <button class="rec"><span class="sq"></span></button>
+        <span class="wave live">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </span>
+        <span class="tc">0:03</span>
+      </div>
+      <div class="cap">Recording…</div>
+    </div>
+  </div>
+  <div class="note">Transport: a 32px <b>bg-inverse</b> disc with an <b>fg-inverse</b> glyph, hovering to 80%.
+    Bars are played vs unplayed, so the waveform is the scrubber. Time is <b>11px tabular-nums</b> in fg-muted so
+    it never reflows. Recording swaps in a 2px <b>danger</b>-bordered stop button and the Voice-Memos equalizer —
+    <code>audio-live-bar</code>, 900ms, 25% ↔ 90% height. Every interactive part is <code>nodrag</code>.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .au { box-sizing: border-box; background: var(--bg-surface); border: var(--border-node) solid transparent;
+        border-radius: var(--radius-lg); padding: 10px; box-shadow: var(--elevation-hover); }
+  .ctl { display: flex; align-items: center; gap: 8px; }
+  .pp, .rec { flex: none; width: 32px; height: 32px; border-radius: var(--radius-full); cursor: pointer;
+              display: flex; align-items: center; justify-content: center; }
+  .pp { border: none; background: var(--bg-inverse); color: var(--fg-inverse); }
+  .rec { background: transparent; border: 2px solid color-mix(in srgb, var(--danger) 60%, transparent); }
+  .sq { width: 12px; height: 12px; border-radius: 3px; background: var(--danger); }
+  .tri { width: 0; height: 0; margin-left: 2px; border-left: 9px solid currentColor;
+         border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+  .wave { flex: 1; display: flex; align-items: center; gap: 2px; height: 32px; cursor: pointer; }
+  .wave i { flex: 1; border-radius: var(--radius-full); background: var(--fg-default); }
+  .wave i.q { background: var(--edge-default); }
+  @keyframes alb { 0%, 100% { height: 25%; } 50% { height: 90%; } }
+  .wave.live i { height: 25%; background: var(--danger); animation: alb 900ms ease-in-out infinite; }
+  .wave.live i:nth-child(2n) { animation-delay: .15s; }
+  .wave.live i:nth-child(3n) { animation-delay: .3s; }
+  .tc { flex: none; font-size: 11px; color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+  .cap { margin-top: 6px; font-size: 11px; color: var(--fg-muted); text-align: center; }
+</style>

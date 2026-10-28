@@ -1,0 +1,70 @@
+<!-- @dsCard group="Panels" height=192 subtitle="Narrow the tree by type and state" -->
+<div class="wrap" style="padding:0">
+  <div class="fb">
+    <span class="chips">
+      <button class="ch on"><i class="g sm"></i>Notes</button>
+      <button class="ch"><i class="g sm"></i>PDFs</button>
+      <button class="ch"><i class="g sm"></i>Sketches</button>
+      <button class="ch on"><i class="g sm"></i>Agents</button>
+    </span>
+    <span class="rgt"><button class="ib"><i class="g"></i></button><button class="ib"><i class="g"></i></button></span>
+  </div>
+  <div class="note" style="margin:14px 16px">A <code>shrink-0</code> strip on <b>bg-surface</b> with a bottom
+    border in <b>edge-default at 40%</b> — lighter than a panel divider, because it separates a control from the
+    list it filters rather than two regions. <code>px-2 py-1.5 gap-1.5</code>, chips wrapping at
+    <code>gap-0.5</code> and the actions pinned right, each button forced to <code>p-1!</code>. Chips use the
+    node-type icons, so a filter looks like the thing it filters.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .surf { box-sizing: border-box; background: var(--bg-surface); }
+  .hb { display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 12px;
+        border-bottom: var(--border-hairline) solid var(--edge-default); }
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 5px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 16px; height: 16px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .ttl { font-size: 14px; font-weight: 600; color: var(--fg-muted); min-width: 0;
+         overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .fb { display: flex; align-items: center; gap: 6px; padding: 6px 8px; background: var(--bg-surface);
+        border-bottom: var(--border-hairline) solid color-mix(in srgb, var(--edge-default) 40%, transparent); }
+  .chips { display: flex; flex: 1; flex-wrap: wrap; align-items: center; gap: 2px; }
+  .ch { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; font-family: inherit;
+        font-size: 11px; color: var(--fg-muted); background: transparent; border: none;
+        border-radius: var(--radius-md); padding: 3px 7px; }
+  .ch:hover { background: var(--bg-hover); }
+  .ch.on { background: var(--bg-default); color: var(--fg-default); }
+  .g.sm { width: 11px; height: 11px; }
+  .rgt { display: inline-flex; gap: 2px; flex: none; }
+</style>

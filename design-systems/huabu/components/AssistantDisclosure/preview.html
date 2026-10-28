@@ -1,0 +1,70 @@
+<!-- @dsCard group="Chat" height=212 subtitle="One line per piece of tool work" -->
+<div class="wrap">
+  <div class="col">
+    <button class="ds"><span class="ch">&rsaquo;</span><i class="g"></i><span class="t">Read 3 files</span></button>
+    <button class="ds"><span class="ch op">&rsaquo;</span><i class="g"></i><span class="t">Searched the web for "onboarding drop-off"</span></button>
+    <div class="inner">
+      <div class="srow"><i class="g"></i><span class="t">nngroup.com — Onboarding friction</span></div>
+      <div class="srow"><i class="g"></i><span class="t">baymard.com — First-run experience</span></div>
+    </div>
+    <button class="ds"><span class="ch">&rsaquo;</span><i class="g"></i><span class="t">Ran pnpm test</span></button>
+  </div>
+  <div class="note">The row is <code>px-2 py-0.5 text-xs gap-1.5 rounded-md</code> in <b>fg-muted</b>, filling
+    <b>bg-hover</b> on hover; the title truncates with a <code>title</code> tooltip, and the chevron is
+    <b>fg-muted at 50%</b> rotating 90°. Expanded content is indented behind an
+    <b>edge-default at 40%</b> left border (<code>ml-4 pl-3</code>) — the thread of the work, not a card.
+    A <code>size-3</code> slot holds the status glyph so rows stay aligned whether or not one is present.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .bub { box-sizing: border-box; background: var(--bg-default); color: var(--fg-default);
+         border-radius: var(--radius-md); padding: 8px 16px; font-size: 14px; line-height: 1.7; }
+  .card { box-sizing: border-box; background: var(--bg-surface);
+          border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-md); }
+  .hd { display: flex; align-items: center; gap: 6px; padding: 8px 12px; font-size: 12px; color: var(--fg-muted); }
+  .cv { color: var(--fg-subtle); font-size: 10px; }
+  .bdy { padding: 0 12px 10px; font-size: 12px; line-height: 1.7; color: var(--fg-muted); }
+  .g { display: inline-block; width: 13px; height: 13px; border: 1.6px solid currentColor; border-radius: 3px; }
+
+  .col { display: flex; flex-direction: column; gap: 2px; }
+  .ds { display: flex; align-items: center; gap: 6px; width: 100%; box-sizing: border-box;
+        font-family: inherit; font-size: 12px; color: var(--fg-muted); background: transparent;
+        border: none; cursor: pointer; text-align: left; padding: 2px 8px; border-radius: var(--radius-md); }
+  .ds:hover { background: var(--bg-hover); }
+  .ch { flex: none; width: 12px; color: color-mix(in srgb, var(--fg-muted) 50%, transparent); }
+  .ch.op { transform: rotate(90deg); }
+  .t { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .inner { margin-left: 16px; padding: 6px 0 6px 12px; display: flex; flex-direction: column; gap: 6px;
+           border-left: var(--border-hairline) solid color-mix(in srgb, var(--edge-default) 40%, transparent); }
+  .srow { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--fg-muted); }
+</style>

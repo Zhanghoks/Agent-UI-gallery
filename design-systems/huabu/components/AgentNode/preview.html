@@ -1,0 +1,83 @@
+<!-- @dsCard group="Canvas" height=260 subtitle="The handwritten sticky with its offset depth board" -->
+<div class="wrap">
+  <div class="stage">
+    <div class="sticky">
+      <span class="mark">A</span>
+      <div class="q">Which of these three approaches actually ships this quarter?</div>
+      <div class="bar"><span></span></div>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="sticky small">
+      <span class="mark">R</span>
+      <div class="q">Ask a question…</div>
+    </div>
+  </div>
+
+  <div class="facts">
+    <div class="f"><b>fill</b> question-bg</div>
+    <div class="f"><b>board</b> question-border, offset 8px down-right, z-index −1</div>
+    <div class="f"><b>text</b> question-fg in the <code>agent</code> stack, auto-fitted, 1.5</div>
+    <div class="f"><b>padding</b> 12px all round · radius-lg</div>
+    <div class="f warn">question-fg on question-bg is 2.5:1 light, 1.9:1 dark — chrome, not body, carries anything critical.</div>
+  </div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-default); }
+  .wrap {
+    display: flex; gap: 22px; align-items: flex-start;
+    padding: 20px 22px 16px; background: var(--bg-default);
+    background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+    background-size: var(--grid) var(--grid);
+  }
+  .stage { padding: 0 10px 12px 0; }
+  .sticky {
+    position: relative; box-sizing: border-box;
+    width: 186px; min-height: 128px;
+    padding: var(--agent-node-padding);
+    border-radius: var(--radius-lg);
+    background: var(--question-bg);
+    color: var(--question-fg);
+    font-family: var(--font-agent);
+    overflow: visible;
+  }
+  .sticky.small { width: 140px; min-height: 96px; opacity: .95; }
+  .sticky::before {
+    content: ''; position: absolute;
+    inset: var(--agent-depth-offset) calc(var(--agent-depth-offset) * -1)
+           calc(var(--agent-depth-offset) * -1) var(--agent-depth-offset);
+    z-index: -1; border-radius: var(--radius-lg);
+    background: var(--question-border);
+    pointer-events: none;
+  }
+  .q { font-size: 15px; line-height: 1.5; }
+  .sticky.small .q { font-size: 13px; opacity: .7; }
+  .mark {
+    position: absolute; top: -9px; right: -9px;
+    width: 24px; height: 24px; border-radius: var(--radius-full);
+    background: var(--ai); color: var(--fg-inverse);
+    font-family: var(--font-sans); font-size: 11px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 2px var(--bg-default);
+  }
+  .bar {
+    position: absolute; left: 12px; right: 12px; bottom: 8px;
+    height: 3px; border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--question-fg) 20%, transparent);
+    overflow: hidden;
+  }
+  .bar span { display: block; width: 62%; height: 100%; background: var(--question-fg); }
+  .facts {
+    flex: 1 1 0; min-width: 0;
+    background: var(--bg-surface);
+    border: var(--border-hairline) solid var(--edge-default);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+  }
+  .f { font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .f b { color: var(--fg-default); font-weight: 500; }
+  .f.warn { margin-top: 6px; padding-top: 6px; border-top: var(--border-hairline) solid var(--edge-default); color: var(--fg-subtle); }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+</style>

@@ -1,0 +1,56 @@
+<!-- @dsCard group="Controls" height=268 subtitle="w-96, blurred ground, zoom-in-95" -->
+<div class="wrap grid-bg" style="position:relative; padding:0; height:268px; overflow:hidden">
+  <div class="scrim"></div>
+  <div class="mo">
+    <h3 class="mt">Move 3 nodes to another Space?</h3>
+    <p class="md">They keep their edges to nodes that move with them. Edges to nodes left behind are removed.</p>
+    <div class="mf">
+      <button class="btn ghost">Cancel</button>
+      <button class="btn solid">Move</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .scrim { position: absolute; inset: 0; background: color-mix(in srgb, var(--bg-default) 80%, transparent);
+           backdrop-filter: blur(4px); }
+  .mo { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+        box-sizing: border-box; width: 384px; max-width: calc(100% - 48px);
+        background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+        border-radius: var(--radius-lg); box-shadow: var(--shadow-bottom); padding: 24px; }
+  .mt { margin: 0; font-size: 16px; line-height: 22px; font-weight: 600; color: var(--fg-default); }
+  .md { margin: 4px 0 0; font-size: 14px; line-height: 20px; color: var(--fg-muted); }
+  .mf { margin-top: 20px; display: flex; justify-content: flex-end; gap: 8px; }
+  .btn.solid { background: var(--bg-inverse); color: var(--fg-inverse); border-color: transparent;
+               padding: 8px 12px; font-size: 14px; line-height: 20px; font-weight: 500; }
+</style>

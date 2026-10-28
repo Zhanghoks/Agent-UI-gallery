@@ -1,0 +1,76 @@
+<!-- @dsCard group="Canvas" height=268 subtitle="A container whose padding is derived from its content" -->
+<div class="wrap">
+  <div class="frame">
+    <div class="flabel">Research · column</div>
+    <div class="child">Interview notes</div>
+    <div class="child">Survey results</div>
+    <div class="child ghost">drop zone</div>
+  </div>
+
+  <div class="frame free">
+    <div class="flabel">Scratch · free</div>
+    <div class="halo"></div>
+    <div class="fchild" style="left:14px; top:34px; width:104px;">Sketch</div>
+    <div class="fchild" style="left:74px; top:96px; width:96px;">Clipping</div>
+  </div>
+
+  <div class="facts">
+    <div class="f"><b>padding</b> 10% of the median child extent, floored at frame-padding-min 16px — no upper clamp, so a uniform resize keeps the body flush with the drag rect</div>
+    <div class="f"><b>gap</b> 8% of the same extent, so padding reads as ≈2× the gap</div>
+    <div class="f"><b>label</b> screen-space overlay, collision-aware when frames nest</div>
+    <div class="f"><b>halo</b> frame-capture-margin 24px — the pointer still counts as inside</div>
+    <div class="f"><b>resize</b> width and height ease-out 200ms, suspended while a handle is being dragged</div>
+  </div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-default); }
+  .wrap {
+    display: flex; gap: var(--space-4); align-items: flex-start;
+    padding: 16px; background: var(--bg-default);
+    background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+    background-size: var(--grid) var(--grid);
+  }
+  .frame {
+    position: relative; box-sizing: border-box;
+    width: 172px;
+    padding: var(--frame-padding-min);
+    display: flex; flex-direction: column; gap: 8px;
+    border: var(--border-node) solid color-mix(in srgb, var(--accent-grey) var(--accent-border-mix), transparent);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--accent-grey) 4%, var(--bg-surface));
+  }
+  .frame.free { height: 176px; display: block; }
+  .flabel {
+    position: absolute; left: 0; top: -17px;
+    font-size: 11px; line-height: 1; font-weight: 500; color: var(--fg-muted);
+    white-space: nowrap;
+  }
+  .child, .fchild {
+    box-sizing: border-box;
+    background: var(--bg-surface);
+    border: var(--border-hairline) solid var(--edge-default);
+    border-radius: var(--radius-md);
+    padding: 7px 9px; font-size: 11px; color: var(--fg-default);
+  }
+  .child.ghost {
+    background: transparent; border-style: dashed; color: var(--fg-subtle);
+    border-color: var(--info);
+  }
+  .fchild { position: absolute; }
+  .halo {
+    position: absolute; inset: calc(var(--frame-capture-margin) * -1);
+    border: var(--border-hairline) dashed color-mix(in srgb, var(--info) 45%, transparent);
+    border-radius: 14px; pointer-events: none;
+  }
+  .facts {
+    flex: 1 1 0; min-width: 0;
+    background: var(--bg-surface);
+    border: var(--border-hairline) solid var(--edge-default);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+  }
+  .f { font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .f + .f { margin-top: 4px; }
+  .f b { color: var(--fg-default); font-weight: 500; }
+</style>

@@ -1,0 +1,39 @@
+<!-- @dsCard group="Human in the loop" height=230 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RecommendationCard</title>
+<style>
+  html, body { margin: 0; background: var(--page); }
+  body { padding: 12px; font-family: var(--font-sans); }
+  .stage { position: relative; display: flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 206px; padding: 12px 12px 12px; background: var(--canvas); border-radius: 14px; box-shadow: 0 0 0 1px var(--line); overflow: hidden; }
+  .inner { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 10px; }
+  .inner > * { margin-left: auto; margin-right: auto; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; }
+  .prose { margin: 0; font-size: 14px; line-height: 1.7; color: var(--ink); text-align: center; }
+  .card { width: 100%; box-sizing: border-box; padding: 0 12px; background: var(--surface); border-radius: 10px; box-shadow: var(--shadow-card); }
+  .rule { height: 1px; background: var(--line); }
+  .menurow { position: relative; display: block; width: 100%; padding: 7px 10px; border: 0; background: transparent; text-align: left; font: 400 13px/1.5 var(--font-sans); color: var(--ink); border-radius: 8px; }
+  .vars { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; padding: 2px; border-radius: 999px; background: var(--field); }
+  .vars button { border: 0; background: transparent; border-radius: 999px; padding: 2px 8px; font: 500 11.5px/1.5 var(--font-sans); color: var(--ink-3); }
+  .vars button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-btn); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+  var B = window.BeautifulUI, h = React.createElement;
+  var VARIANTS = null;
+  function Demo() {
+    var st = React.useState(VARIANTS ? VARIANTS[0] : null), v = st[0];
+    return h('div', { className: 'stage' },
+      h('div', { className: 'inner' }, h(B.RecommendationCard)),
+      VARIANTS && h('div', { className: 'vars' }, VARIANTS.map(function (x) {
+        return h('button', { key: x, 'aria-pressed': x === v, onClick: function () { st[1](x); } }, x);
+      })));
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

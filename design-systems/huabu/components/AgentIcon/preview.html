@@ -1,0 +1,59 @@
+<!-- @dsCard group="Agents" height=212 subtitle="An agent, and whether it is working" -->
+<div class="wrap">
+  <div class="row" style="gap:20px">
+    <span class="ag"><svg viewBox="0 0 40 40" class="sv"><g class="body"><circle cx="20" cy="20" r="17"/><rect x="18" y="-1" width="4" height="10" rx="2"/><rect x="18" y="31" width="4" height="10" rx="2"/><rect x="-1" y="18" width="10" height="4" rx="2"/><rect x="31" y="18" width="10" height="4" rx="2"/></g><g class="face"><circle cx="14" cy="18" r="2"/><circle cx="26" cy="18" r="2"/><path d="M14 26 q6 4 12 0" fill="none" stroke-width="2"/></g></svg></span>
+    <span class="ag"><svg viewBox="0 0 40 40" class="sv wk"><g class="body spin"><circle cx="20" cy="20" r="17"/><rect x="18" y="-1" width="4" height="10" rx="2"/><rect x="18" y="31" width="4" height="10" rx="2"/><rect x="-1" y="18" width="10" height="4" rx="2"/><rect x="31" y="18" width="10" height="4" rx="2"/></g><g class="face"><circle cx="14" cy="18" r="2"/><circle cx="26" cy="18" r="2"/><path d="M14 26 q6 4 12 0" fill="none" stroke-width="2"/></g></svg></span>
+    <span class="mk">R</span><span class="mk b">A</span><span class="mk c">M</span>
+    <span class="lbl" style="min-width:0">idle · working · initial marks</span>
+  </div>
+  <div class="note">One SVG, two layers: <code>agent-icon-working-body</code> rotates 360° over 3s linear while
+    <code>agent-icon-working-avatar</code> holds the face still — a windmill, not a spinner, so a working agent
+    still looks at you. Both stop under <code>prefers-reduced-motion: reduce</code>.
+    <b>AgentAvatarMark</b> is the fallback: an initial on a <code>radius-full</code> disc in the agent's own
+    colour, ringed in the surface behind it so it reads on a canvas or in a list.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .ag { display: inline-flex; width: 40px; height: 40px; }
+  .sv { width: 40px; height: 40px; }
+  .sv .body { fill: var(--ai); transform-box: fill-box; transform-origin: center; }
+  .sv .face { fill: var(--fg-inverse); stroke: var(--fg-inverse); }
+  @keyframes wm { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .sv .body.spin { animation: wm 3s linear infinite; }
+  @media (prefers-reduced-motion: reduce) { .sv .body.spin { animation: none; } }
+  .mk { width: 28px; height: 28px; border-radius: var(--radius-full); background: var(--ai);
+        color: var(--fg-inverse); font-size: 12px; font-weight: 500;
+        display: inline-flex; align-items: center; justify-content: center;
+        box-shadow: 0 0 0 2px var(--bg-surface); }
+  .mk.b { background: var(--accent-teal); } .mk.c { background: var(--accent-purple); }
+</style>

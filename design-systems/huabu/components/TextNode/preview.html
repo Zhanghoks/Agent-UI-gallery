@@ -1,0 +1,52 @@
+<!-- @dsCard group="Nodes" height=204 subtitle="Bare type on the canvas, auto-fitted to its box" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:18px">
+    <div class="tn" style="width:150px; height:64px"><span style="font-size:19px">Where does this break?</span></div>
+    <div class="tn" style="width:150px; height:112px"><span style="font-size:26px">Where does this break?</span></div>
+    <div class="tn" style="width:132px; height:112px"><span style="font-family: var(--font-serif); font-size:22px">Serif</span></div>
+    <div class="tn" style="width:110px; height:112px"><span style="font-family: var(--font-mono); font-size:17px">mono</span></div>
+    <div class="tn ph" style="width:110px; height:64px"><span style="font-size:17px">Type...</span></div>
+  </div>
+  <div class="note">No surface of its own: transparent fill, transparent border, just type on the canvas.
+    Padding <b>node-padding-x</b> 12 / <b>node-padding-y</b> 4, line-height fixed at <b>1.5</b>, and the size
+    measured to fill the box — same measurement the frame-resize cascade re-runs, so a text node re-fits when its
+    frame changes. Family is the person's choice of default, serif, mono or hand. Placeholder <code>Type...</code>
+    is measured too, so an empty node is sized to its placeholder rather than one giant line.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .tn { box-sizing: border-box; display: flex; align-items: center; padding: 4px 12px;
+        color: var(--fg-default); line-height: 1.5; border: var(--border-node) solid transparent;
+        border-radius: var(--radius-lg); }
+  .tn.ph { color: var(--fg-subtle); }
+</style>

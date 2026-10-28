@@ -1,0 +1,64 @@
+<!-- @dsCard group="Panels" height=204 subtitle="Open previews, with transient tabs in italics" -->
+<div class="wrap" style="padding:0">
+  <div class="strip">
+    <span class="tab on"><i class="g" style="width:12px;height:12px"></i><span class="t">Interview transcript</span><span class="x">×</span></span>
+    <span class="tab"><i class="g" style="width:12px;height:12px"></i><span class="t">Onboarding brief</span><span class="x">×</span></span>
+    <span class="tab tr"><i class="g" style="width:12px;height:12px"></i><span class="t">Spec v3</span><span class="x">×</span></span>
+    <span class="tab drag"><i class="g" style="width:12px;height:12px"></i><span class="t">Session log</span><span class="x">×</span></span>
+  </div>
+  <div class="note" style="margin:14px 16px">Tabs are <code>h-9 min-w-20 max-w-48</code> with
+    <code>gap-1.5 px-2.5 text-sm</code>, a 14px type glyph and a truncating title. A <b>transient</b> tab — opened
+    by a single click and replaced by the next one — is set in <i>italic</i>, the same convention editors use. The
+    drag overlay is the tab with a 1px <b>edge-default</b> border and <b>elevation-drag</b>, so the thing being
+    dragged is literally the thing, lifted. Glyph and title stay <b>fg-subtle</b> until
+    <code>group-hover</code>.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 4px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+
+  .strip { display: flex; align-items: center; gap: 4px; padding: 6px 8px; background: var(--bg-default); }
+  .tab { display: inline-flex; align-items: center; gap: 6px; height: 36px; min-width: 80px; max-width: 192px;
+         box-sizing: border-box; padding: 0 10px; border-radius: var(--radius-sm);
+         background: transparent; color: var(--fg-subtle); font-size: 13px; cursor: pointer; }
+  .tab:hover { color: var(--fg-muted); }
+  .tab.on { background: var(--bg-surface); color: var(--fg-default); }
+  .tab.tr { font-style: italic; }
+  .tab.drag { background: var(--bg-surface); color: var(--fg-default);
+              border: var(--border-hairline) solid var(--edge-default); box-shadow: var(--elevation-drag); }
+  .t { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .x { margin-left: auto; font-size: 13px; color: var(--fg-subtle); }
+</style>

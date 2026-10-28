@@ -1,0 +1,91 @@
+<!-- @dsCard group="Canvas" height=300 subtitle="The ground: 18px dot grid, screen-space selection, snap guide" -->
+<div class="surface">
+  <div class="grid"></div>
+
+  <svg class="edges" viewBox="0 0 640 260" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M196 96 C 260 96, 268 168, 330 168" fill="none" stroke="var(--accent-teal)" stroke-width="2" />
+    <path d="M196 96 C 250 96, 300 62, 352 62" fill="none" stroke="var(--info)" stroke-width="2" />
+  </svg>
+
+  <!-- snap guide: 1px info line, screen-space -->
+  <div class="guide"></div>
+
+  <div class="node" style="left:72px; top:66px; width:124px;">
+    <div class="node-head"><span class="dot"></span>Kickoff notes</div>
+    <div class="node-body">Grid is 18px. Everything lands on it.</div>
+  </div>
+
+  <div class="node accent" style="left:330px; top:138px; width:150px;">
+    <div class="node-head"><span class="dot teal"></span>Constraints</div>
+    <div class="node-body">Snapped to the same grid the dots draw.</div>
+  </div>
+
+  <!-- selected node: outline is a screen-space overlay, not a ring on the node -->
+  <div class="node" style="left:352px; top:32px; width:128px;">
+    <div class="node-head"><span class="dot"></span>Open question</div>
+    <div class="node-body">Selected.</div>
+  </div>
+  <div class="outline" style="left:351px; top:31px; width:130px; height:58px;"></div>
+
+  <div class="legend">
+    <span><i class="k-grid"></i>grid 18px</span>
+    <span><i class="k-info"></i>info · selection &amp; guides</span>
+    <span><i class="k-accent"></i>accent · content</span>
+  </div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-default); }
+  .surface {
+    position: relative; height: 300px; overflow: hidden;
+    background: var(--bg-default); color: var(--fg-default);
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+    background-size: var(--grid) var(--grid);
+  }
+  .edges { position: absolute; inset: 0 0 40px 0; width: 100%; height: 260px; }
+  .guide {
+    position: absolute; left: 352px; top: 8px; width: 1px; height: 210px;
+    background: var(--info);
+  }
+  .node {
+    position: absolute; box-sizing: border-box;
+    background: var(--bg-surface);
+    border: var(--border-node) solid transparent;
+    border-radius: var(--radius-lg);
+    padding: 6px 8px;
+    box-shadow: var(--elevation-hover);
+  }
+  .node.accent {
+    background: color-mix(in srgb, var(--accent-teal) var(--accent-bg-mix), var(--bg-surface));
+    border-color: color-mix(in srgb, var(--accent-teal) var(--accent-border-mix), transparent);
+  }
+  .node-head {
+    display: flex; align-items: center; gap: var(--space-1);
+    font-size: 12px; line-height: 16px; font-weight: 500; color: var(--fg-default);
+  }
+  .node-body { font-size: 11px; line-height: 1.5; color: var(--fg-muted); margin-top: 2px; }
+  .dot { width: 6px; height: 6px; border-radius: var(--radius-full); background: var(--fg-subtle); }
+  .dot.teal { background: var(--accent-teal); }
+  .outline {
+    position: absolute; box-sizing: border-box;
+    outline: var(--border-hairline) solid var(--info);
+    box-shadow: 0 0 6px 0 var(--info-light);
+    pointer-events: none;
+  }
+  .legend {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    display: flex; gap: var(--space-4); align-items: center;
+    padding: 8px 12px;
+    background: var(--bg-surface);
+    border-top: var(--border-hairline) solid var(--edge-default);
+    font-size: 11px; color: var(--fg-muted);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .k-grid { background: var(--canvas-grid); }
+  .k-info { background: var(--info); }
+  .k-accent { background: var(--accent-teal); }
+</style>

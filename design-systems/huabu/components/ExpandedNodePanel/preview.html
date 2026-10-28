@@ -1,0 +1,70 @@
+<!-- @dsCard group="Panels" height=248 subtitle="One node, at reading size" -->
+<div class="wrap" style="padding:0">
+  <div class="ep">
+    <div class="bc"><button class="crumb">Themes</button><span class="sl">/</span>
+      <button class="crumb"><i class="g" style="width:12px;height:12px"></i>Interview transcript</button>
+      <span style="flex:1"></span><button class="ib"><i class="g"></i></button><button class="ib"><i class="g"></i></button></div>
+    <div class="meta"><span>PDF · 18 pages</span><span>Added by the research agent</span></div>
+    <div class="body">
+      <div class="page"></div><div class="page"></div>
+    </div>
+  </div>
+  <div class="note" style="margin:14px 16px">A <b>bg-surface</b> column, <code>overflow-hidden</code>, with a
+    1px <b>edge-default</b> <i>left</i> border when it is docked and none when embedded — the divider belongs to
+    the layout, not the panel. The breadcrumb's Select is capped at <code>min-w-56</code> and its glyphs forced to
+    14px. The metadata strip is <code>px-3 py-1 text-xs font-medium uppercase</code> in <b>fg-subtle</b>, with any
+    long value switching to <code>normal-case</code> so a filename is not shouted.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 4px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+
+  .ep { display: flex; flex-direction: column; height: 190px; background: var(--bg-surface);
+        border-left: var(--border-hairline) solid var(--edge-default); overflow: hidden; }
+  .bc { display: flex; align-items: center; gap: 6px; padding: 6px 12px; flex: none; }
+  .crumb { display: inline-flex; align-items: center; gap: 4px; font-family: inherit; font-size: 12px;
+           color: var(--fg-muted); background: transparent; border: none; cursor: pointer;
+           padding: 3px 6px; border-radius: var(--radius-md); }
+  .crumb:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .sl { color: var(--fg-subtle); font-size: 11px; }
+  .meta { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+          padding: 4px 12px; font-size: 11px; font-weight: 500; text-transform: uppercase;
+          color: var(--fg-subtle); flex: none; }
+  .meta span:last-child { text-transform: none; }
+  .body { flex: 1; min-height: 0; overflow: auto; padding: 8px 12px; display: flex; flex-direction: column; gap: 8px; }
+  .page { height: 60px; flex: none; background: var(--bg-default);
+          border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-sm); }
+</style>

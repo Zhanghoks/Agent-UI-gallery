@@ -1,0 +1,82 @@
+<!-- @dsCard group="Chat" height=248 subtitle="Commands, above the composer" -->
+<div class="wrap">
+  <div class="stack">
+    <div class="scm">
+      <button class="sr on">
+        <span class="top"><span class="nm">/summarize</span><span class="ar">[nodes]</span></span>
+        <span class="ds">Write one summary note per selected node.</span>
+      </button>
+      <button class="sr">
+        <span class="top"><span class="nm">/group</span><span class="ar">[by]</span></span>
+        <span class="ds">Group the selection into frames by theme.</span>
+      </button>
+      <button class="sr">
+        <span class="top"><span class="nm">/clear</span></span>
+        <span class="ds">Start a new session on this canvas.</span>
+      </button>
+    </div>
+    <div class="ld"><span class="sp"></span>Loading commands…</div>
+    <div class="comp"><span class="cp">/sum</span></div>
+  </div>
+  <div class="note">Anchored <code>absolute bottom-full left-0 right-0 mb-2 z-50</code> over the composer: 1px
+    <b>edge-default</b> on <b>bg-surface</b>, <code>rounded-lg</code>, <b>elevation-toast</b>,
+    <code>max-h-64</code> scrolling. A row is a <code>px-3 py-2 gap-0.5</code> column — the name in <b>mono xs
+    medium</b> with its argument hint in truncated <b>fg-subtle</b>, then the description in <b>fg-muted</b> at
+    two lines. While commands load, a <code>size-3.5</code> ring spins in a <code>px-3 py-2.5</code> row.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .stack { max-width: 400px; }
+  .scm { box-sizing: border-box; background: var(--bg-surface);
+         border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-lg);
+         box-shadow: var(--elevation-toast); max-height: 160px; overflow-y: auto; margin-bottom: 8px; }
+  .sr { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%;
+        box-sizing: border-box; padding: 8px 12px; text-align: left; font-family: inherit;
+        background: transparent; border: none; cursor: pointer; }
+  .sr:hover, .sr.on { background: var(--bg-hover); }
+  .top { display: flex; width: 100%; align-items: baseline; gap: 8px; }
+  .nm { font-family: var(--font-mono); font-size: 12px; font-weight: 500; color: var(--fg-default); }
+  .ar { font-size: 12px; color: var(--fg-subtle); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ds { font-size: 12px; line-height: 1.5; color: var(--fg-muted);
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .ld { display: flex; align-items: center; gap: 8px; padding: 10px 12px; margin-bottom: 8px;
+        font-size: 12px; color: var(--fg-muted); background: var(--bg-surface);
+        border: var(--border-hairline) solid var(--edge-default); border-radius: var(--radius-lg); }
+  @keyframes sp4 { to { transform: rotate(360deg) } }
+  .sp { width: 14px; height: 14px; border-radius: var(--radius-full);
+        border: 2px solid var(--edge-default); border-top-color: var(--fg-muted);
+        animation: sp4 700ms linear infinite; }
+  .comp { box-sizing: border-box; background: var(--bg-surface);
+          border: var(--border-hairline) solid var(--edge-default); border-radius: 16px; padding: 12px; }
+  .cp { font-family: var(--font-mono); font-size: 13px; color: var(--fg-default); }
+</style>

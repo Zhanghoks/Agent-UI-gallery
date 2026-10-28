@@ -1,0 +1,74 @@
+<!-- @dsCard group="Panels" height=212 subtitle="An address bar that is a readout, not an input" -->
+<div class="wrap" style="padding:0">
+  <div class="up">
+    <div class="bar">
+      <button class="ib"><i class="g"></i></button>
+      <button class="ib"><i class="g"></i></button>
+      <span class="addr"><i class="lock"></i><span class="txt" dir="ltr"><b>docs.claude.com</b>/en/docs/agents</span></span>
+      <button class="ib"><i class="g"></i></button>
+    </div>
+    <div class="view"><span class="ln"></span><span class="ln" style="width:72%"></span><span class="ln" style="width:88%"></span></div>
+  </div>
+  <div class="note" style="margin:14px 16px">The bar is <code>h-10 shrink-0</code> with a 1px
+    <b>edge-default</b> bottom border and <code>gap-1.5 px-2</code>. The address is an <code>h-7</code>
+    <b>bg-default</b> field at <code>rounded-md px-2 text-xs</code> that <i>looks</i> like an input but is
+    <code>select-text</code> text: the <b>host</b> in <b>fg-muted medium</b>, the rest quieter, truncated, and
+    pinned <code>dir="ltr"</code> so an RTL page cannot reorder the URL. An invalid URL is one
+    <code>p-4</code> <b>fg-subtle</b> line.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .ib { cursor: pointer; border: none; background: transparent; color: var(--fg-muted);
+        border-radius: var(--radius-md); padding: 4px; display: inline-flex; }
+  .ib:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .g { display: block; width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; }
+  .bt { font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer; padding: 5px 10px;
+        border-radius: var(--radius-md); }
+  .bt.solid { border: none; background: var(--bg-inverse); color: var(--fg-inverse); }
+  .bt.out { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+            color: var(--fg-muted); }
+  .bt.ghost { border: none; background: transparent; color: var(--fg-muted); }
+
+  .up { display: flex; flex-direction: column; height: 160px; background: var(--bg-surface); }
+  .bar { display: flex; align-items: center; gap: 6px; height: 40px; flex: none; padding: 0 8px;
+         border-bottom: var(--border-hairline) solid var(--edge-default); }
+  .addr { display: flex; align-items: center; gap: 8px; height: 28px; flex: 1; min-width: 0;
+          background: var(--bg-default); border-radius: var(--radius-md); padding: 0 8px; font-size: 12px; }
+  .lock { flex: none; width: 13px; height: 13px; border-radius: 2px;
+          border: 1.6px solid var(--fg-subtle); }
+  .txt { min-width: 0; color: var(--fg-subtle); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+         user-select: text; }
+  .txt b { color: var(--fg-muted); font-weight: 500; }
+  .view { flex: 1; min-height: 0; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .ln { height: 8px; border-radius: var(--radius-sm); background: var(--skeleton-2); }
+</style>

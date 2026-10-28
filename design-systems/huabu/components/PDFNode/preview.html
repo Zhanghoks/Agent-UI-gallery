@@ -1,0 +1,72 @@
+<!-- @dsCard group="Nodes" height=232 subtitle="First page as a thumbnail, title and extract below" -->
+<div class="wrap grid-bg">
+  <div class="row" style="align-items:flex-start; gap:16px">
+    <div class="pd" style="width:190px">
+      <div class="thumb"><span class="page"></span></div>
+      <div class="meta">
+        <div class="ttl"><span class="ic"></span>Interview transcript</div>
+        <div class="ex">Five sessions, 40 minutes each. Participants were asked to set up a Space from scratch and narrate…</div>
+      </div>
+    </div>
+    <div class="pd" style="width:170px">
+      <div class="thumb"><span class="sp"></span></div>
+      <div class="meta"><div class="ttl"><span class="ic"></span>Spec v3</div></div>
+    </div>
+    <div class="note" style="flex:1; min-width:210px; border-top:none; margin:0; padding:0">
+      pdf.js loads <b>lazily</b> — only when an uncached first-page thumbnail is needed. The expanded preview keeps
+      an aspect-ratio placeholder per page and mounts the canvas and text layer only within one scroll viewport,
+      with a six-page LRU. A PDF node is on the binary LOD ladder: below the threshold it is a title.
+    </div>
+  </div>
+  <div class="note">Extract is <b>base</b> in <b>fg-muted</b>, <code>line-clamp-5</code>. Selection inside the text
+    layer uses <b>pdf-selection-border</b> with a 12% <b>info</b> wash; search highlights paint through the CSS
+    Custom Highlight API at 45% <b>warning-light</b>, diluted again over the glyph bitmap.</div>
+</div>
+
+<style>
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-surface); color: var(--fg-default); }
+  .wrap { padding: 14px 16px; background: var(--bg-surface); }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row + .row { margin-top: 12px; }
+  .lbl { font-size: 10px; font-weight: 500; color: var(--fg-subtle); min-width: 84px; }
+  .note { margin-top: 12px; padding-top: 10px; border-top: var(--border-hairline) solid var(--edge-default);
+          font-size: 11px; line-height: 1.7; color: var(--fg-muted); }
+  .note b { color: var(--fg-default); font-weight: 500; }
+  code { font-family: var(--font-mono); font-size: 10px; color: var(--fg-default); }
+  
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+         font-family: inherit; font-size: 12px; line-height: 16px; padding: 4px 10px;
+         border-radius: var(--radius-md); border: var(--border-hairline) solid var(--edge-default);
+         background: var(--bg-surface); color: var(--fg-muted); }
+  .btn:hover { background: var(--bg-hover); }
+  .btn.ghost { border: none; background: transparent; }
+  .btn.ghost:hover { background: var(--bg-hover); }
+  .panel { background: var(--bg-surface); border: var(--border-hairline) solid var(--edge-default);
+           border-radius: var(--radius-md); box-shadow: var(--elevation-toast); padding: 4px 0; min-width: 176px; }
+  .item { display: flex; align-items: center; gap: 8px; width: 100%; box-sizing: border-box;
+          padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--fg-muted);
+          background: transparent; border: none; cursor: pointer; text-align: left; }
+  .item:hover { background: var(--bg-hover); }
+  .item .sc { margin-left: auto; font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
+  .item .ic { width: 14px; height: 14px; border: 1.6px solid currentColor; border-radius: 3px; color: var(--fg-subtle); }
+  .sepline { height: 1px; background: var(--edge-default); margin: 4px 0; }
+  .grid-bg { background: var(--bg-default);
+             background-image: radial-gradient(var(--canvas-grid) 1px, transparent 1px);
+             background-size: var(--grid) var(--grid); }
+
+  .pd { box-sizing: border-box; background: var(--bg-surface); border: var(--border-node) solid transparent;
+        border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--elevation-hover); }
+  .thumb { height: 78px; background: var(--bg-default); display: flex; align-items: center; justify-content: center; }
+  .page { width: 46px; height: 60px; background: var(--bg-surface);
+          border: var(--border-hairline) solid var(--edge-default); border-radius: 2px;
+          box-shadow: var(--elevation-hover); }
+  @keyframes sp2 { to { transform: rotate(360deg) } }
+  .sp { width: 16px; height: 16px; border-radius: var(--radius-full);
+        border: 1.8px solid var(--edge-default); border-top-color: var(--fg-subtle);
+        animation: sp2 700ms linear infinite; }
+  .meta { padding: 6px 10px 8px; }
+  .ttl { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: var(--fg-default); }
+  .ttl .ic { width: 11px; height: 13px; border: 1.5px solid var(--fg-subtle); border-radius: 2px; }
+  .ex { margin-top: 4px; font-size: 11px; line-height: 1.6; color: var(--fg-muted);
+        display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+</style>

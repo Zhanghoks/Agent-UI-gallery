@@ -1,7 +1,6 @@
 "use client";
 
 import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
 import { META, GROUPS, META_BY_ID } from "@/lib/meta";
 
 /* Component nav — anchors into the list, scrollspy highlights
@@ -192,13 +191,6 @@ export function Nav() {
           );
         })}
       </ul>
-      <p className="mb-1 mt-5 px-2 text-[11px] font-medium tracking-wide text-ink-3">Try it live</p>
-      <Link className="block rounded-[7px] px-2 py-[5px] text-[12.5px] text-ink-2 hover:bg-hover hover:text-ink" href="/workflow">
-        Workflow console
-      </Link>
-      <Link className="block rounded-[7px] px-2 py-[5px] text-[12.5px] text-ink-2 hover:bg-hover hover:text-ink" href="/harness">
-        Agent harness
-      </Link>
     </nav>
   );
 }
