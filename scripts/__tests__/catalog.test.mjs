@@ -216,6 +216,22 @@ test("the foundation is the global css without the generated-import line", () =>
   assert.equal(foundation.title, "Test UI foundation");
   assert.equal(foundation.files[0].target, "app/testui/foundation.css");
   assert.equal(foundation.files[0].content, '@import "tailwindcss";\n:root { --ink: #000; }');
+  assert.equal(foundation.dependencies, undefined);
+});
+
+test("the foundation ships cn() and the packages its css imports", () => {
+  const root = makeRepo({ components: { alpha: { meta: meta("alpha") } } });
+  write(
+    path.join(root, "app/globals.css"),
+    ['@import "tailwindcss";', '@import "shadow-plugin/unprefixed";', '@import "./gallery.generated.css";', ":root { --ink: #000; }"].join("\n"),
+  );
+  write(path.join(root, "lib/utils.ts"), 'export function cn() { return ""; }\n');
+  const foundation = build(root).registry.foundation;
+  assert.deepEqual(foundation.dependencies, ["clsx", "shadow-plugin", "tailwind-merge"]);
+  const utils = foundation.files.find((file) => file.target === "lib/utils.ts");
+  assert.equal(utils.type, "registry:lib");
+  assert.match(utils.content, /export function cn/);
+  assert.match(foundation.description, /lib\/utils\.ts/);
 });
 
 test("removing a component folder removes it from the catalog and registry", () => {
